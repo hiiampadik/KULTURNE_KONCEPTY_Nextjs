@@ -1,0 +1,13 @@
+{
+  "Navigation": {
+    "contact": "Contacts",
+    "menu": {
+      "whoWeAre": "Who are we?",
+      "areas": "Areas",
+      "projects": "Projects"
+    }
+  },
+  "Overlay": {
+    "close": "Close"
+  }
+}

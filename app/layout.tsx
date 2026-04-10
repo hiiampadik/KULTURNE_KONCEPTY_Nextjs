@@ -1,5 +1,6 @@
 import type {Metadata} from 'next'
 import {GeistMono} from 'geist/font/mono'
+import '../styles/globals.scss'
 
 const baseURL = 'https://www.kulturnekoncepty.sk/'
 const description = '' // TODO

@@ -1,0 +1,13 @@
+{
+  "Navigation": {
+    "contact": "Kontakty",
+    "menu": {
+      "whoWeAre": "Kdo sme?",
+      "areas": "Oblasti",
+      "projects": "Projekty"
+    }
+  },
+  "Overlay": {
+    "close": "Zavrieť"
+  }
+}

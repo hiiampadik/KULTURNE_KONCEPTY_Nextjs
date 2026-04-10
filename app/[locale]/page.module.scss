@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.page {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+}
