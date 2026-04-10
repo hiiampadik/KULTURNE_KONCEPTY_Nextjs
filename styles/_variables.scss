@@ -20,7 +20,7 @@ $grey: #C1C1C1;
 
 
 @mixin shadow {
-  filter: drop-shadow(0 4px 22px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
 }
 
 @mixin title {

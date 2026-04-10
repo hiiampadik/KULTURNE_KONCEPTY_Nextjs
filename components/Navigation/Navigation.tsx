@@ -12,16 +12,18 @@ export const Navigation: FunctionComponent = () => {
     return (
         <nav className={styles.nav}>
 
-            <div className={styles.top}>
-                <LocaleSwitcher/>
-                <a href="#" className={styles.contact}>{t('contact')}</a>
-                <div className={styles.social}>
-                    <a href={socialLinks.instagram} className={styles.socialLink} target="_blank"
-                       rel="noopener noreferrer">IG</a>
-                    <a href={socialLinks.facebook} className={styles.socialLink} target="_blank"
-                       rel="noopener noreferrer">FB</a>
+            <DogEar corner={'top-right'} shadow={true}>
+                <div className={styles.top}>
+                    <LocaleSwitcher/>
+                    <a href="#" className={styles.contact}>{t('contact')}</a>
+                    <div className={styles.social}>
+                        <a href={socialLinks.instagram} className={styles.socialLink} target="_blank"
+                           rel="noopener noreferrer">IG</a>
+                        <a href={socialLinks.facebook} className={styles.socialLink} target="_blank"
+                           rel="noopener noreferrer">FB</a>
+                    </div>
                 </div>
-            </div>
+            </DogEar>
 
             <div className={styles.bottom}>
                 <div className={styles.logo}>
@@ -32,12 +34,18 @@ export const Navigation: FunctionComponent = () => {
                     <DogEar corner={'bottom-right'} shadow={true}>
                         <a className={classNames([styles.menuItem, styles.item1])} href="#">{t('menu.whoWeAre')}</a>
                     </DogEar>
-                    <a className={classNames([styles.menuItem, styles.item2])} href="#">{t('menu.areas')}</a>
+                    <a className={classNames([styles.menuItem, styles.item2])} href="#">{t('menu.fields')}</a>
                     <DogEar corner={'bottom-right'} shadow={true}>
                         <a className={classNames([styles.menuItem, styles.item3])} href="#">{t('menu.projects')}</a>
                     </DogEar>
                 </div>
             </div>
+
+            <DogEar corner={'top-right'} shadow={true} className={styles.lightDark}>
+                <div className={styles.greyContainer}>
+
+                </div>
+            </DogEar>
         </nav>
     )
 }
