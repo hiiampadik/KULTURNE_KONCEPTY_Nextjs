@@ -10,7 +10,8 @@
     align-items: flex-start;
     gap: 20px;
     z-index: 100;
-    padding: 50px 0;
+    padding: 50px 0 50px;
+    overflow-y: scroll;
 
     a {
         @include subtitle;
@@ -80,16 +81,6 @@
     .item3 {
         background: $red;
         padding: 20px 60px 15px 40px;
-    }
-}
-
-.lightDark {
-    margin-top: auto;
-
-    .greyContainer {
-        display: flex;
-        padding: 20px 60px 20px 40px;
-        background: black;
     }
 }
 

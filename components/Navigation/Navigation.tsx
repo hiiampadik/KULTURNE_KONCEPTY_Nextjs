@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from 'react'
 import {useTranslations} from 'next-intl'
 import {LocaleSwitcher} from './LocaleSwitcher'
+import {ThemeToggle} from './ThemeToggle'
 import {socialLinks} from '@/constants/site'
 import styles from './Navigation.module.scss'
 import {classNames} from '@/components/utils/classNames';
@@ -41,11 +42,8 @@ export const Navigation: FunctionComponent = () => {
                 </div>
             </div>
 
-            <DogEar corner={'top-right'} shadow={true} className={styles.lightDark}>
-                <div className={styles.greyContainer}>
 
-                </div>
-            </DogEar>
+            <ThemeToggle/>
         </nav>
     )
 }

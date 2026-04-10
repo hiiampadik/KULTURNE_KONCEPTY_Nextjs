@@ -1,0 +1,27 @@
+.button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+
+    margin-top: auto;
+    display: flex;
+    padding: 14px 30px 14px 60px;
+    position: relative;
+    left: -30px;
+    background: var(--toggle-container-bg);
+    transition: background 0.4s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+
+    @media (hover: hover) {
+        &:hover {
+            transform: translateX(30px);
+        }
+    }
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    filter: var(--toggle-icon-filter);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
