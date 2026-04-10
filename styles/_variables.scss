@@ -15,8 +15,13 @@ $text-primary-default: #000;
 $blue: #9BB5E1;
 $swamp: #B0A421;
 $red: #FF2000;
+$grey: #C1C1C1;
 
 
+
+@mixin shadow {
+  filter: drop-shadow(0 4px 22px rgba(0, 0, 0, 0.2));
+}
 
 @mixin title {
   font-family: 'AnoAngular', sans-serif;

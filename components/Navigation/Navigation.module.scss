@@ -4,83 +4,83 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 24px 20px;
-    color: black;
+    gap: 20px;
     z-index: 100;
-    width: 160px;
-}
+    padding: 50px 0;
 
-// — top block: lang + social + kontakty —
+    a {
+        @include subtitle;
+        text-decoration: none;
+    }
+}
 
 .top {
+    align-self: flex-start;
+    display: flex;
+    gap: 50px;
+    padding: 20px 40px 15px 40px;
+    background: $grey;
+    @include shadow;
+
+    .langSwitch {
+        width: 1.1em;
+    }
+
+    .social {
+        display: flex;
+        gap: 18px;
+    }
+}
+
+.bottom {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-}
+    align-items: flex-start;
 
-.langSwitch {
-    @include date;
-    color: currentColor;
-    text-decoration: none;
-    text-transform: uppercase;
+    .logo {
+        position: relative;
+        z-index: 4;
+        background: white;
+        @include shadow;
 
-    @media (hover: hover) {
-        &:hover {
-            opacity: 0.7;
+        .logoImage {
+            padding: 5px 40px 30px;
+            display: block;
+            width: 35em;
+            height: auto;
         }
     }
-}
 
-.social {
-    display: flex;
-    gap: 10px;
-}
+    .menu {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
 
-.socialLink,
-.contact {
-    color: black;
-    text-decoration: none;
-    @include date;
-    opacity: 0.7;
-
-    @media (hover: hover) {
-        &:hover {
-            opacity: 1;
-        }
+        > :nth-child(1) { z-index: 3; }
+        > :nth-child(2) { position: relative; z-index: 2; }
+        > :nth-child(3) { z-index: 1; }
     }
-}
 
-// — logo —
-
-.logo {
-    margin-top: 40px;
-    height: 48px;
-    // logo placeholder — doplnit <Image> až bude soubor
-}
-
-// — menu items —
-
-.menu {
-    margin-top: 32px;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.menuItem {
-    color: black;
-    text-decoration: none;
-    @include subtitle;
-    display: block;
-
-    @media (hover: hover) {
-        &:hover {
-            opacity: 0.7;
-        }
+    .menuItem {
+        @include subtitle;
     }
+
+    .item1 {
+        background: $blue;
+        padding: 20px 60px 15px 40px;
+    }
+    .item2 {
+        background: $swamp;
+        padding: 20px 40px 15px 40px;
+        @include shadow;
+    }
+    .item3 {
+        background: $red;
+        padding: 20px 60px 15px 40px;
+    }
+
+
 }
+

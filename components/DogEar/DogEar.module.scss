@@ -1,15 +1,12 @@
+@import '../../styles/variables';
+
 .dogEar {
     position: relative;
 
     &[data-corner='bottom-right'] {
         .inner {
-            clip-path: polygon(
-                0% 0%,
-                100% 0%,
-                100% calc(100% - var(--size)),
-                calc(100% - var(--size)) 100%,
-                0% 100%
-            );
+            /* noinspection CssInvalidPropertyValue */
+            clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - var(--size)), calc(100% - var(--size)) 100%, 0% 100%);
         }
 
         .triangle {
@@ -21,13 +18,8 @@
 
     &[data-corner='bottom-left'] {
         .inner {
-            clip-path: polygon(
-                0% 0%,
-                100% 0%,
-                100% 100%,
-                var(--size) 100%,
-                0% calc(100% - var(--size))
-            );
+            /* noinspection CssInvalidPropertyValue */
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, var(--size) 100%, 0% calc(100% - var(--size)));
         }
 
         .triangle {
@@ -39,13 +31,8 @@
 
     &[data-corner='top-right'] {
         .inner {
-            clip-path: polygon(
-                0% 0%,
-                calc(100% - var(--size)) 0%,
-                100% var(--size),
-                100% 100%,
-                0% 100%
-            );
+            /* noinspection CssInvalidPropertyValue */
+            clip-path: polygon(0% 0%, calc(100% - var(--size)) 0%, 100% var(--size), 100% 100%, 0% 100%);
         }
 
         .triangle {
@@ -57,13 +44,8 @@
 
     &[data-corner='top-left'] {
         .inner {
-            clip-path: polygon(
-                var(--size) 0%,
-                100% 0%,
-                100% 100%,
-                0% 100%,
-                0% var(--size)
-            );
+            /* noinspection CssInvalidPropertyValue */
+            clip-path: polygon(var(--size) 0%, 100% 0%, 100% 100%, 0% 100%, 0% var(--size));
         }
 
         .triangle {
@@ -74,10 +56,19 @@
     }
 }
 
+.shadow {
+    @include shadow;
+}
+
 .triangle {
     position: absolute;
     width: var(--size);
     height: var(--size);
     background: white;
     pointer-events: none;
+    z-index: 10;
+}
+
+.inner {
+    display: flex;
 }

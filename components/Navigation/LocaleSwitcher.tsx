@@ -6,11 +6,11 @@ import styles from './Navigation.module.scss'
 export function LocaleSwitcher() {
     const locale = useLocale()
     const pathname = usePathname()
-    const otherLocale = locale === 'sk' ? 'en' : 'sk'
+    const otherLocale = locale === 'sk' ? 'En' : 'Sk'
 
     return (
         <Link href={pathname} locale={otherLocale} className={styles.langSwitch}>
-            {otherLocale.toUpperCase()}
+            {otherLocale}
         </Link>
     )
 }

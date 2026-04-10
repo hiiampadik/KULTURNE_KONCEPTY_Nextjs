@@ -6,24 +6,26 @@ export type DogEarCorner = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-ri
 interface DogEarProps {
     corner?: DogEarCorner
     size?: number
+    shadow?: boolean
     children: React.ReactNode
 }
 
 export const DogEar: FunctionComponent<DogEarProps> = ({
     corner = 'bottom-right',
     size = 40,
+    shadow = false,
     children,
 }) => {
     return (
         <div
-            className={styles.dogEar}
+            className={`${styles.dogEar}${shadow ? ` ${styles.shadow}` : ''}`}
             data-corner={corner}
             style={{'--size': `${size}px`} as React.CSSProperties}
         >
             <div className={styles.inner}>
                 {children}
             </div>
-            <div className={styles.triangle} />
+            <div className={styles.triangle}/>
         </div>
     )
 }

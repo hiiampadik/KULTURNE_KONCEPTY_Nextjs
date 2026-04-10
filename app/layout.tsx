@@ -1,8 +1,9 @@
 import type {Metadata} from 'next'
 import {GeistMono} from 'geist/font/mono'
 import '../styles/globals.scss'
+import {siteUrl, socialLinks} from '@/constants/site'
 
-const baseURL = 'https://www.kulturnekoncepty.sk/'
+const baseURL = siteUrl
 const description = '' // TODO
 const keywords = '' // TODO
 
@@ -66,8 +67,8 @@ const jsonLd = {
             name: 'Kultúrne Koncepty',
             url: baseURL,
             sameAs: [
-                'https://www.facebook.com/people/Kult%C3%BArne-koncepty/61583921170526/',
-                'https://www.instagram.com/kulturne_koncepty/',
+                socialLinks.facebook,
+                socialLinks.instagram,
             ],
         },
         {
