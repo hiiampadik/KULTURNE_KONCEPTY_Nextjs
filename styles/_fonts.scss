@@ -1,41 +1,7 @@
-//@font-face {
-//  font-family: NHG;
-//  src: url(../public/fonts/NeueHaasGrotDisp-55Roman.woff2);
-//  font-weight: normal;
-//  font-style: normal;
-//}
-//
-//@font-face {
-//  font-family: NHG;
-//  src: url(../public/fonts/NeueHaasGrotDisp-65Medium.woff2);
-//  font-weight: 500;
-//  font-style: normal;
-//}
-//
-//@font-face {
-//  font-family: Rhymes;
-//  src: url(../public/fonts/Rhymes-RegularDisplay.woff2);
-//  font-weight: normal;
-//  font-style: normal;
-//}
-//
-//@font-face {
-//  font-family: Rhymes;
-//  src: url(../public/fonts/Rhymes-MediumDisplay.woff2);
-//  font-weight: 500;
-//  font-style: normal;
-//}
-//
-//@font-face {
-//  font-family: Rhymes;
-//  src: url(../public/fonts/Rhymes-MediumDisplayItalic.woff2);
-//  font-weight: 500;
-//  font-style: italic;
-//}
-//
-//@font-face {
-//  font-family: Rhymes;
-//  src: url(../public/fonts/Rhymes-BoldDisplay.woff2);
-//  font-weight: bold;
-//  font-style: normal;
-//}
+@font-face {
+  font-family: 'AnoAngular';
+  src: url('../public/fonts/AnoAngularDiacritics-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

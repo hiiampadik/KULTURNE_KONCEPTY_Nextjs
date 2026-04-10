@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import {GeistMono} from 'geist/font/mono'
 
 const baseURL = 'https://www.kulturnekoncepty.sk/'
 const description = '' // TODO
@@ -81,7 +82,10 @@ const jsonLd = {
 
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
-        <html lang="sk">
+        <html lang="sk" className={GeistMono.variable}>
+        <head>
+            <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
+        </head>
         <body>
         <script
             type="application/ld+json"

@@ -13,5 +13,41 @@ $text-secondary-default: #A4A4A4;
 $text-primary-default: #000;
 
 @mixin title {
+  font-family: 'AnoAngular', sans-serif;
+  font-size: 96px;
+  line-height: 110%;
+  font-weight: 300;
+  -webkit-text-stroke: 2px currentColor;
+  paint-order: stroke fill;
+}
 
+@mixin subtitle {
+  font-family: 'AnoAngular', sans-serif;
+  font-size: 44px;
+  line-height: 110%;
+  font-weight: 300;
+  -webkit-text-stroke: 2px currentColor;
+  paint-order: stroke fill;
+}
+
+@mixin body-text {
+  font-family: 'cy', serif;
+  font-size: 17px;
+  line-height: 120%;
+  font-weight: 600;
+}
+
+@mixin perex {
+  font-family: 'cy', serif;
+  font-size: 26px;
+  line-height: 120%;
+  font-weight: 600;
+}
+
+@mixin date {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 17px;
+  line-height: 110%;
+  font-weight: 400;
+  letter-spacing: 0.06em;
 }
