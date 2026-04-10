@@ -1,0 +1,61 @@
+@import '../../styles/variables';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  overflow-x: scroll;
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px);
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+
+  &.scrollable{
+    overflow-y: scroll;
+  }
+  &.notScrollable {
+    overflow-y: hidden;
+  }
+
+  @media (max-width: $breakpoint-md-max) {
+    padding: 0 16px;
+  }
+}
+
+
+
+
+.closeButton {
+  margin:  20px 0 10px;
+  font-size: 27px;
+  line-height: 33px;
+  font-family: Rhymes, serif;
+
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  align-self: flex-end;
+  color: $text-secondary-default;
+
+  @media (hover: hover) {
+    &:hover {
+      color: $text-primary-default;
+    }
+  }
+
+  @media (max-width: $breakpoint-md-max) {
+    margin:  16px 0 10px;
+    line-height: 120%;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: 18px;
+  }
+}
+

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@blueprintjs/core": "^6.12.0",
     "@sanity/asset-utils": "^2.3.0",
     "@sanity/image-url": "^2.1.1",
     "geist": "^1.7.0",
