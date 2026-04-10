@@ -62,7 +62,7 @@ export const ThemeToggle: FunctionComponent = () => {
     return (
         <button className={styles.button} onClick={toggle} aria-label="Toggle theme">
             <img
-                src={theme === 'light' ? '/sun.svg' : '/moon.svg'}
+                src={theme === 'light' ? '/moon.svg' : '/sun.svg'}
                 alt={theme === 'light' ? 'Light mode' : 'Dark mode'}
                 className={styles.icon}
             />

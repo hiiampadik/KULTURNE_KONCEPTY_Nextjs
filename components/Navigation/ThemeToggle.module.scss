@@ -6,7 +6,7 @@
 
     margin-top: auto;
     display: flex;
-    padding: 14px 30px 14px 60px;
+    padding: 10px 30px 10px 60px;
     position: relative;
     left: -30px;
     background: var(--toggle-container-bg);
@@ -20,8 +20,8 @@
 }
 
 .icon {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     filter: var(--toggle-icon-filter);
     transition: transform 0.4s ease, filter 0.4s ease;
 }
