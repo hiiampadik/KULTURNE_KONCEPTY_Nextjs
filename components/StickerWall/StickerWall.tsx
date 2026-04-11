@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FunctionComponent, useEffect, useRef, useSyncExternalStore, CSSProperties} from 'react'
+import React, {FunctionComponent, useEffect, useRef, useState, CSSProperties} from 'react'
 import {motion, useMotionValue, animate} from 'motion/react'
 import styles from './StickerWall.module.scss'
 
@@ -11,11 +11,6 @@ const STICKERS = [
     '/stickers/Vrstva_1-4.png',
     '/stickers/Vrstva_1.png',
 ]
-
-function seededRandom(seed: number): number {
-    const x = Math.sin(seed + 1) * 10000
-    return x - Math.floor(x)
-}
 
 interface StickerItemProps {
     src: string
@@ -94,20 +89,29 @@ const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotat
     )
 }
 
-const emptySubscribe = () => () => {}
-
 export const StickerWall: FunctionComponent = () => {
-    const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false)
+    const [stickerData, setStickerData] = useState<StickerItemProps[] | null>(null)
 
-    const stickerData = STICKERS.map((src, i) => ({
-        src,
-        left: seededRandom(i * 4) * 48 + 45,
-        top: seededRandom(i * 4 + 1) * 55 + 10,
-        rotation: (seededRandom(i * 4 + 2) - 0.5) * 30,
-        idleDelay: seededRandom(i * 4 + 3) * 2000,
-    }))
+    useEffect(() => {
+        const cols = 3
+        const rows = 2
+        const cellW = 70 / cols
+        const cellH = 80 / rows
+        const zones = STICKERS.map((_, i) => ({
+            col: i % cols,
+            row: Math.floor(i / cols),
+        }))
 
-    if (!mounted) return <div className={styles.wall} />
+        setStickerData(STICKERS.map((src, i) => ({
+            src,
+            left: 25 + zones[i].col * cellW + Math.random() * (cellW - 10),
+            top: 5 + zones[i].row * cellH + Math.random() * (cellH - 10),
+            rotation: (Math.random() - 0.5) * 30,
+            idleDelay: Math.random() * 2000,
+        })))
+    }, [])
+
+    if (!stickerData) return <div className={styles.wall} />
 
     return (
         <div className={styles.wall}>

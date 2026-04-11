@@ -12,11 +12,6 @@
     z-index: 999;
     padding: 50px 0 50px;
     overflow-y: clip;
-
-    .menuItem {
-        @include subtitle;
-        text-decoration: none;
-    }
 }
 
 .top {
@@ -91,8 +86,9 @@
 
     .menuItem {
         display: block;
-        @include subtitle;
-        padding: 20px 60px 15px 40px;
+        text-decoration: none;
+        @include title;
+        padding: 20px 60px 15px 37px;
     }
 
     .item1 {
