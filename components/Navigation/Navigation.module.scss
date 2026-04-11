@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 0;
     z-index: 999;
     padding: 50px 0 50px;
     overflow-y: clip;
@@ -23,7 +23,7 @@
     display: flex;
     gap: 36px;
     padding: 20px 60px 15px 40px;
-    background: $grey;
+    background: white;
     @include shadow;
 
     .langSwitch {
@@ -64,14 +64,18 @@
     .logo {
         position: relative;
         z-index: 4;
+        //background: #671010;
         background: white;
+
         @include shadow;
 
+
         .logoImage {
-            padding: 5px 40px 30px;
+            padding: 20px 40px 30px;
             display: block;
             width: 30em;
             height: auto;
+            opacity: 0.9;
         }
     }
 
