@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+
+.section {
+    position: relative;
+    isolation: isolate;
+    padding-bottom: 20px;
+    scroll-margin-top: 50px;
+}
+
+.header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: -20px;
+    display: inline-block;
+    max-width: 95%;
+    @include shadow;
+}
+
+.headerContent {
+    padding: 35px 60px 5px 30px;
+    display: block;
+
+    &[data-color='blue']  { background: $blue; }
+    &[data-color='swamp'] { background: $swamp; }
+    &[data-color='red']   { background: $red; }
+}
+
+.title {
+    margin-left: -5px;
+    @include title;
+    word-break: break-word;
+}
+
+.subtitle {
+    @include body-text;
+    white-space: pre-line;
+    margin-bottom: 20px;
+}
+
+.body {
+    position: relative;
+    z-index: 1;
+}

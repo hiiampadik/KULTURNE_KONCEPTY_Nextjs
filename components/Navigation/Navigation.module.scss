@@ -33,6 +33,11 @@
         display: flex;
         gap: 18px;
     }
+
+    a {
+        @include date;
+        -webkit-text-stroke: 0 currentColor;
+    }
 }
 
 .bottom {

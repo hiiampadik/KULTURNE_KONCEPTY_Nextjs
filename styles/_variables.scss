@@ -15,6 +15,8 @@ $text-primary-default: #000;
 $blue: #9BB5E1;
 $swamp: #B0A421;
 $red: #FF2000;
+$brown: #744428;
+$green: #3bff0e;
 $grey: #C1C1C1;
 
 
@@ -26,9 +28,9 @@ $grey: #C1C1C1;
 @mixin title {
   font-family: 'AnoAngular', sans-serif;
   font-size: 96px;
-  line-height: 110%;
+  line-height: 85%;
   font-weight: 300;
-  -webkit-text-stroke: 2px currentColor;
+  //-webkit-text-stroke: 1px currentColor;
   paint-order: stroke fill;
 }
 
@@ -37,14 +39,14 @@ $grey: #C1C1C1;
   font-size: 44px;
   line-height: 110%;
   font-weight: 300;
-  -webkit-text-stroke: 2px currentColor;
+  //-webkit-text-stroke: 2px currentColor;
   paint-order: stroke fill;
 }
 
 @mixin body-text {
   font-family: 'cy', serif;
   font-size: 17px;
-  line-height: 120%;
+  line-height: 125%;
   font-weight: 600;
 }
 

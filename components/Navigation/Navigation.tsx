@@ -33,11 +33,11 @@ export const Navigation: FunctionComponent = () => {
 
                 <div className={styles.menu}>
                     <DogEar corner={'bottom-right'} shadow={true}>
-                        <a className={classNames([styles.menuItem, styles.item1])} href="#">{t('menu.whoWeAre')}</a>
+                        <a className={classNames([styles.menuItem, styles.item1])} href="#who-we-are">{t('menu.whoWeAre')}</a>
                     </DogEar>
-                    <a className={classNames([styles.menuItem, styles.item2])} href="#">{t('menu.fields')}</a>
+                    <a className={classNames([styles.menuItem, styles.item2])} href="#fields">{t('menu.fields')}</a>
                     <DogEar corner={'bottom-right'} shadow={true}>
-                        <a className={classNames([styles.menuItem, styles.item3])} href="#">{t('menu.projects')}</a>
+                        <a className={classNames([styles.menuItem, styles.item3])} href="#projects">{t('menu.projects')}</a>
                     </DogEar>
                 </div>
             </div>
