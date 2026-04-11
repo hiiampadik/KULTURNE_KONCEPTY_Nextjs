@@ -4,6 +4,7 @@
     background: white;
     @include shadow;
     padding: 30px;
+    cursor: pointer;
 
     &:first-child {
         padding-top: 50px;

@@ -20,6 +20,11 @@
     "title": "Contact",
     "allRightsReserved": "All rights reserved"
   },
+  "OverlayProject": {
+    "active": "Active project",
+    "completed": "Completed project",
+    "location": "Location"
+  },
   "References": {
     "subtitle": "of the core KK team\nM. Bohumelová, B. Hromádková, A. Kusá\n(selection)"
   }

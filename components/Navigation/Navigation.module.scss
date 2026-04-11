@@ -59,16 +59,16 @@
     .logo {
         position: relative;
         z-index: 4;
-        //background: #671010;
         background: white;
 
         @include shadow;
 
 
         .logoImage {
+            @include title;
             padding: 20px 40px 30px;
             display: block;
-            width: 30em;
+            width: 6em;
             height: auto;
             opacity: 0.9;
         }

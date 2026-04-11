@@ -20,6 +20,11 @@
     "title": "Kontakt",
     "allRightsReserved": "Všetky práva vyhradené"
   },
+  "OverlayProject": {
+    "active": "Aktivný projekt",
+    "completed": "Dokončený projekt",
+    "location": "Miesto"
+  },
   "References": {
     "subtitle": "základného tímu KK\nM. Bohumelová, B. Hromádková, A. Kusá\n(výber)"
   }

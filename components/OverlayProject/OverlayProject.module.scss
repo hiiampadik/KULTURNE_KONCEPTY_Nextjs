@@ -1,0 +1,83 @@
+@import '../../styles/variables';
+
+.title {
+  @include title;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.badge {
+  @include date;
+  display: inline-block;
+  align-self: flex-start;
+  background: black;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 2px;
+}
+
+.date {
+  @include date;
+}
+
+.metaRow {
+  @include date;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.metaLabel {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.metaValue {
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  p {
+    @include date;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.perex {
+  @include perex;
+  max-width: 800px;
+}
+
+.description {
+  @include body-text;
+  max-width: 563px;
+  p {
+    margin-bottom: 8px;
+  }
+  :not(:first-child) {
+    //text-indent: 20px;
+  }
+}
+
+.gallery {
+  display: flex;
+  gap: 13px;
+  overflow-x: auto;
+}
+
+.galleryImage {
+  height: 350px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+}
