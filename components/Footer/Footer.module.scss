@@ -39,11 +39,10 @@
 .link {
     @include date;
     color: var(--footer-text);
-    text-decoration: none;
 
     @media (hover: hover) {
         &:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
     }
 }
