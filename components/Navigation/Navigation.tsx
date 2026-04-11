@@ -8,10 +8,12 @@ import styles from './Navigation.module.scss'
 import {classNames} from '@/components/utils/classNames';
 import {DogEar} from '@/components/DogEar/DogEar';
 import {OverlayContact} from '@/components/OverlayContact/OverlayContact';
+import {useDogEarSync} from '@/contexts/DogEarSync';
 
 export const Navigation: FunctionComponent = () => {
     const t = useTranslations('Navigation')
     const [contactOpen, setContactOpen] = useState(false)
+    const {hoveredSection, setHoveredSection} = useDogEarSync()
 
     return (
         <>
@@ -31,6 +33,7 @@ export const Navigation: FunctionComponent = () => {
                         <a href={socialLinks.facebook} className={styles.socialLink} target="_blank"
                            rel="noopener noreferrer">FB</a>
                     </div>
+                    <ThemeToggle/>
                 </div>
 
                 <div className={styles.bottom}>
@@ -39,20 +42,28 @@ export const Navigation: FunctionComponent = () => {
                     </a>
 
                     <div className={styles.menu}>
-                        <DogEar corner={'bottom-right'} shadow={true}>
+                        <DogEar corner={'bottom-right'} shadow={true}
+                            forceHover={hoveredSection === 'who-we-are'}
+                            onMouseEnter={() => setHoveredSection('who-we-are')}
+                            onMouseLeave={() => setHoveredSection(null)}>
                             <a className={classNames([styles.menuItem, styles.item1])} href="#who-we-are" onClick={() => setContactOpen(false)}>{t('menu.whoWeAre')}</a>
                         </DogEar>
-                        <DogEar corner={'bottom-right'} shadow={true}>
+                        <DogEar corner={'bottom-right'} shadow={true}
+                            forceHover={hoveredSection === 'fields'}
+                            onMouseEnter={() => setHoveredSection('fields')}
+                            onMouseLeave={() => setHoveredSection(null)}>
                             <a className={classNames([styles.menuItem, styles.item2])} href="#fields"
                                onClick={() => setContactOpen(false)}>{t('menu.fields')}</a>
                         </DogEar>
-                        <DogEar corner={'bottom-right'} shadow={true}>
+                        <DogEar corner={'bottom-right'} shadow={true}
+                            forceHover={hoveredSection === 'projects'}
+                            onMouseEnter={() => setHoveredSection('projects')}
+                            onMouseLeave={() => setHoveredSection(null)}>
                             <a className={classNames([styles.menuItem, styles.item3])} href="#projects" onClick={() => setContactOpen(false)}>{t('menu.projects')}</a>
                         </DogEar>
                     </div>
                 </div>
 
-                {/*<ThemeToggle/>*/}
             </nav>
 
             <OverlayContact isOpen={contactOpen} handleClose={() => setContactOpen(false)}/>

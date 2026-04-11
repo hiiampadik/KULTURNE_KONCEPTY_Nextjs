@@ -13,11 +13,11 @@
     padding: 50px 0 50px;
     overflow-y: clip;
 }
-
 .top {
     display: flex;
+    align-items: center;
     gap: 36px;
-    padding: 20px 60px 15px 40px;
+    padding: 20px 30px 15px 40px;
     background: white;
     @include shadow;
 

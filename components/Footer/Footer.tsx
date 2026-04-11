@@ -1,7 +1,7 @@
 'use client'
 import {FunctionComponent} from 'react'
 import {useTranslations} from 'next-intl'
-import {socialLinks} from '@/constants/site'
+import {socialLinks, contactInfo} from '@/constants/site'
 import styles from './Footer.module.scss'
 
 export const Footer: FunctionComponent = () => {
@@ -12,8 +12,8 @@ export const Footer: FunctionComponent = () => {
             <div className={styles.grid}>
                 <div className={styles.column}>
                     <h3 className={styles.heading}>{t('contact')}</h3>
-                    <a href="mailto:kulturnekoncepty@gmail.com" className={styles.link}>
-                        kulturnekoncepty@gmail.com
+                    <a href={`mailto:${contactInfo.email}`} className={styles.link}>
+                        {contactInfo.email}
                     </a>
                 </div>
 
@@ -35,14 +35,14 @@ export const Footer: FunctionComponent = () => {
 
                 <div className={styles.column}>
                     <div className={styles.address}>
-                        <p>Silvánska 459/21</p>
-                        <p>841 04 Bratislava</p>
+                        <p>{contactInfo.address.street}</p>
+                        <p>{contactInfo.address.city}</p>
                     </div>
-                    <p className={styles.detail}>IČO: 53 864 026</p>
+                    <p className={styles.detail}>IČO: {contactInfo.ico}</p>
                 </div>
 
                 <div className={styles.column}>
-                    <p className={styles.detail}>&copy; 2026 Kulturné Koncepty</p>
+                    <p className={styles.detail}>&copy; {contactInfo.copyrightYear} {contactInfo.companyName}</p>
                     <p className={styles.detail}>{t('allRightsReserved')}</p>
                 </div>
             </div>

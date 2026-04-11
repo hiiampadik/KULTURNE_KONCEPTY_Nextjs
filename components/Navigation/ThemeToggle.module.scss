@@ -1,27 +1,15 @@
+@import '../../styles/variables';
+
 .button {
-    background: none;
     border: none;
     cursor: pointer;
-    align-items: center;
-
-    margin-top: auto;
     display: flex;
-    padding: 10px 30px 10px 60px;
-    position: relative;
-    left: -30px;
-    background: var(--toggle-container-bg);
-    transition: background 0.4s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-
-    @media (hover: hover) {
-        &:hover {
-            transform: translateX(30px);
-        }
-    }
+    align-items: center;
+    background: none;
 }
 
 .icon {
-    width: 32px;
-    height: 32px;
-    filter: var(--toggle-icon-filter);
-    transition: transform 0.4s ease, filter 0.4s ease;
+    width: 28px;
+    height: 28px;
+    transition: filter 0.4s ease;
 }

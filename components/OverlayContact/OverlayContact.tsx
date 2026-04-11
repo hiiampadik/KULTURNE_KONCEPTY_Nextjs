@@ -2,7 +2,7 @@
 import {FunctionComponent} from 'react'
 import {useTranslations} from 'next-intl'
 import Overlay from '@/components/Overlay'
-import {socialLinks} from '@/constants/site'
+import {socialLinks, contactInfo} from '@/constants/site'
 import styles from './OverlayContact.module.scss'
 
 interface OverlayContactProps {
@@ -18,17 +18,17 @@ export const OverlayContact: FunctionComponent<OverlayContactProps> = ({isOpen, 
             <h2 className={styles.title}>{t('title')}</h2>
 
             <div className={styles.info}>
-                <a href="mailto:kulturnekoncepty@gmail.com" className={styles.email}>
-                    kulturnekoncepty@gmail.com
+                <a href={`mailto:${contactInfo.email}`} className={styles.email}>
+                    {contactInfo.email}
                 </a>
 
                 <div className={styles.address}>
-                    <p>Silvánska 459/21</p>
-                    <p>841 04 Bratislava</p>
+                    <p>{contactInfo.address.street}</p>
+                    <p>{contactInfo.address.city}</p>
                 </div>
 
-                <p className={styles.detail}>IČO: 53 864 026</p>
-                <p className={styles.detail}>© 2026 Kulturné Koncepty</p>
+                <p className={styles.detail}>IČO: {contactInfo.ico}</p>
+                <p className={styles.detail}>© {contactInfo.copyrightYear} {contactInfo.companyName}</p>
                 <p className={styles.detail}>{t('allRightsReserved')}</p>
 
                 <div className={styles.social}>

@@ -3,6 +3,7 @@ import {getMessages} from 'next-intl/server'
 import {routing} from '@/localization/routing'
 import {Navigation} from '@/components/Navigation/Navigation'
 import {Footer} from '@/components/Footer/Footer'
+import {DogEarSyncProvider} from '@/contexts/DogEarSync'
 
 export function generateStaticParams() {
     return routing.locales.map(locale => ({locale}))
@@ -12,10 +13,12 @@ export default async function LocaleLayout({children}: {children: React.ReactNod
     const messages = await getMessages()
     return (
         <NextIntlClientProvider messages={messages}>
-            <Navigation/>
-            <main>
-                {children}
-            </main>
+            <DogEarSyncProvider>
+                <Navigation/>
+                <main>
+                    {children}
+                </main>
+            </DogEarSyncProvider>
             <Footer/>
         </NextIntlClientProvider>
     )

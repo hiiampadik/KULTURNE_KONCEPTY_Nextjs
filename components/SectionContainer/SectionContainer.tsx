@@ -1,6 +1,8 @@
+'use client'
 import React, {FunctionComponent} from 'react'
 import {DogEar} from '@/components/DogEar/DogEar'
 import {classNames} from '@/components/utils/classNames'
+import {useDogEarSync} from '@/contexts/DogEarSync'
 import styles from './SectionContainer.module.scss'
 
 export type SectionColor = 'blue' | 'swamp' | 'red'
@@ -22,9 +24,14 @@ export const SectionContainer: FunctionComponent<SectionContainerProps> = ({
     children,
     className,
 }) => {
+    const {hoveredSection, setHoveredSection} = useDogEarSync()
+
     return (
         <section id={id} className={classNames([styles.section, className])}>
-            <DogEar corner="top-right" className={styles.header}>
+            <DogEar corner="top-right" className={styles.header}
+                forceHover={hoveredSection === id}
+                onMouseEnter={() => setHoveredSection(id)}
+                onMouseLeave={() => setHoveredSection(null)}>
                 <div className={styles.headerContent} data-color={color}>
                     <h2 className={styles.title}>
                         {title}
