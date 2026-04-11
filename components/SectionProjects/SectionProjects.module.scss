@@ -2,7 +2,6 @@
 
 .card {
     background: white;
-    @include shadow;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -22,7 +21,6 @@
     display: flex;
     gap: 15px;
     align-items: flex-start;
-    padding-bottom: 8px;
 }
 
 .cover {

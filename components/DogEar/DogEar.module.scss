@@ -5,9 +5,10 @@ $transition: 0.25s ease;
 .dogEar {
     position: relative;
     --hover-grow: 0px;
+    --hover-grow-target: 20px;
 
     &:hover {
-        --hover-grow: 20px;
+        --hover-grow: var(--hover-grow-target);
     }
 
     &[data-corner='bottom-right'] {
@@ -79,5 +80,9 @@ $transition: 0.25s ease;
     pointer-events: none;
     z-index: 10;
     transition: width $transition, height $transition;
+}
+
+.bgTriangle .triangle {
+    background: #EFEFEF;
 }
 

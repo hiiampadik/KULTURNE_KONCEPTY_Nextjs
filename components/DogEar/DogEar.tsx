@@ -7,7 +7,9 @@ export type DogEarCorner = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-ri
 interface DogEarProps {
     corner?: DogEarCorner
     size?: number
+    hoverSize?: number
     shadow?: boolean
+    bgTriangle?: boolean
     children: React.ReactNode
     className?: string
 }
@@ -15,14 +17,19 @@ interface DogEarProps {
 export const DogEar: FunctionComponent<DogEarProps> = ({
     corner = 'bottom-right',
     size = 40,
+    hoverSize,
     shadow = false,
+    bgTriangle = false,
     children, className,
 }) => {
     return (
         <div
-            className={classNames([styles.dogEar, shadow && styles.shadow, className])}
+            className={classNames([styles.dogEar, shadow && styles.shadow, bgTriangle && styles.bgTriangle, className])}
             data-corner={corner}
-            style={{'--size': `${size}px`} as React.CSSProperties}
+            style={{
+                '--size': `${size}px`,
+                ...(hoverSize != null ? {'--hover-grow-target': `${hoverSize}px`} as Record<string, string> : {}),
+            } as React.CSSProperties}
         >
             <div className={styles.inner}>
                 {children}

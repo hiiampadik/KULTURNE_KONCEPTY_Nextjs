@@ -20,7 +20,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: calc(100vw - 29em);
+  width: calc(100vw - 540px + 10px);
   z-index: 1200;
   background: white;
   @include shadow;

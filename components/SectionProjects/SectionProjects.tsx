@@ -2,14 +2,14 @@
 
 import React, {FunctionComponent, useState} from 'react'
 import {PortableText} from 'next-sanity'
-import {useTranslations} from 'next-intl'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
 import {Figure} from '@/components/Figure/Figure'
 import {OverlayProject, OverlayProjectData} from '@/components/OverlayProject/OverlayProject'
+import {DogEar} from '@/components/DogEar/DogEar'
 import styles from './SectionProjects.module.scss'
 import {ImageObject, LinkText, SimpleBlockContent} from '@/sanity/sanity.types'
 
-interface ProjectItem {
+export interface ProjectItem {
     _id: string
     active?: boolean | null
     title: string | null | undefined
@@ -25,53 +25,55 @@ interface ProjectItem {
 
 interface SectionProjectsProps {
     id: string
-    projects: ProjectItem[] | null | undefined
+    title: string
+    subtitle?: string
+    items: ProjectItem[] | null | undefined
 }
 
-export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, projects}) => {
-    const t = useTranslations('Sections')
-    const [selectedProject, setSelectedProject] = useState<OverlayProjectData | null>(null)
+export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, title, subtitle, items}) => {
+    const [selected, setSelected] = useState<OverlayProjectData | null>(null)
 
     return (
         <>
-            <SectionContainer id={id} color="red" title={t('projects')}>
-                {projects?.map((project) => (
-                    <article
-                        key={project._id}
-                        className={styles.card}
-                        onClick={() => setSelectedProject(project)}
-                    >
-                        {project.date && (
-                            <p className={styles.date}>{project.date}</p>
-                        )}
-                        <div className={styles.cardMain}>
-                            <div className={styles.cover}>
-                                {project.cover?.asset ? (
-                                    <Figure
-                                        image={project.cover}
-                                        alt={project.cover.altTextSk ?? project.title ?? ''}
-                                        sizes="88px"
-                                        className={styles.coverImage}
-                                    />
-                                ) : (
-                                    <div className={styles.coverPlaceholder}/>
-                                )}
+            <SectionContainer id={id} color="red" title={title} subtitle={subtitle}>
+                {items?.map((item) => (
+                    <DogEar key={item._id} corner="bottom-left" size={0} hoverSize={45} shadow bgTriangle>
+                        <article
+                            className={styles.card}
+                            onClick={() => setSelected(item)}
+                        >
+                            {item.date && (
+                                <p className={styles.date}>{item.date}</p>
+                            )}
+                            <div className={styles.cardMain}>
+                                <div className={styles.cover}>
+                                    {item.cover?.asset ? (
+                                        <Figure
+                                            image={item.cover}
+                                            alt={item.cover.altTextSk ?? item.title ?? ''}
+                                            sizes="88px"
+                                            className={styles.coverImage}
+                                        />
+                                    ) : (
+                                        <div className={styles.coverPlaceholder}/>
+                                    )}
+                                </div>
+                                <h3 className={styles.cardTitle}>{item.title}</h3>
                             </div>
-                            <h3 className={styles.cardTitle}>{project.title}</h3>
-                        </div>
-                        {project.subtitle && (
-                            <div className={styles.description}>
-                                <PortableText value={project.subtitle}/>
-                            </div>
-                        )}
-                    </article>
+                            {item.subtitle && (
+                                <div className={styles.description}>
+                                    <PortableText value={item.subtitle}/>
+                                </div>
+                            )}
+                        </article>
+                    </DogEar>
                 ))}
             </SectionContainer>
 
             <OverlayProject
-                isOpen={selectedProject !== null}
-                handleClose={() => setSelectedProject(null)}
-                project={selectedProject}
+                isOpen={selected !== null}
+                handleClose={() => setSelected(null)}
+                project={selected}
             />
         </>
     )
