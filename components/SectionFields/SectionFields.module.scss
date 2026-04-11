@@ -4,10 +4,6 @@
     background: white;
     @include shadow;
     padding: 30px;
-
-    &:first-child {
-        padding-top: 50px;
-    }
     display: flex;
     flex-direction: column;
     gap: 14px;

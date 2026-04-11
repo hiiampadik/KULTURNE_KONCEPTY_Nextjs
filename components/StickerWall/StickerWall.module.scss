@@ -3,10 +3,17 @@
 .wall {
     position: relative;
     width: 100%;
-    height: calc(100vh - 245px);
+    height: calc(100vh - 207px);
     overflow: visible;
     pointer-events: none;
     z-index: 1000;
+
+    @media (max-width: $breakpoint-lg-max) {
+        height: calc(100vh - 196px);
+    }
+    @media (max-width: $breakpoint-md-max) {
+        height: calc(100vh - 1px);
+    }
 }
 
 .stickerWrapper {

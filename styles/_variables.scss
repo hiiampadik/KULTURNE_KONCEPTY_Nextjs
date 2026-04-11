@@ -1,5 +1,4 @@
-$layout-padding-x: 30px;
-$layout-padding-top: 50px;
+$layout-padding-x: 30px; // fallback pro SCSS calc()
 
 $breakpoint-xs-max: 575px;
 $breakpoint-sm-min: 576px;
@@ -36,6 +35,16 @@ $grey: #C1C1C1;
   letter-spacing: -0.02em;
   //-webkit-text-stroke: 1px currentColor;
   paint-order: stroke fill;
+
+  @media (max-width: $breakpoint-lg-max) {
+    font-size: 60px;
+  }
+  @media (max-width: $breakpoint-sm-max) {
+    font-size: 48px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: 40px;
+  }
 }
 
 @mixin subtitle {
@@ -45,6 +54,16 @@ $grey: #C1C1C1;
   font-weight: 300;
   //-webkit-text-stroke: 2px currentColor;
   paint-order: stroke fill;
+
+  @media (max-width: $breakpoint-lg-max) {
+    font-size: 33px;
+  }
+  @media (max-width: $breakpoint-sm-max) {
+    font-size: 27px;
+  }
+  @media (max-width: $breakpoint-xs-max) {
+    font-size: 24px;
+  }
 }
 
 @mixin body-text {

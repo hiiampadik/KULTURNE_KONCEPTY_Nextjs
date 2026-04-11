@@ -15,10 +15,15 @@
 
 html {
   scroll-behavior: smooth;
+  --layout-padding-x: 30px;
   --bg: #EFEFEF;
   --toggle-container-bg: black;
   --toggle-icon-filter: invert(1);
   --footer-text: black;
+
+  @media (max-width: $breakpoint-lg-max) {
+    --layout-padding-x: 20px;
+  }
 
   &[data-theme="dark"] {
     --bg: black;
@@ -86,6 +91,22 @@ a {
 
 ::selection {
   background: $grey;
+}
+
+* {
+  scrollbar-color: var(--toggle-container-bg) transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: black;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 h1,

@@ -2,7 +2,7 @@
 
 .footer {
     width: 100%;
-    padding: 0 $layout-padding-x;
+    padding: 0 var(--layout-padding-x);
     pointer-events: auto;
 }
 
@@ -12,6 +12,15 @@
     gap: 30px;
     color: var(--footer-text);
     transition: color 0.5s ease;
+    padding-bottom: 100px;
+
+    @media (max-width: $breakpoint-lg-max) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $breakpoint-sm-max) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .column {
@@ -19,7 +28,7 @@
     flex-direction: column;
     gap: 10px;
     border-top: 1px solid var(--footer-text);
-    padding: 20px 0 100px;
+    padding: 20px 0 0;
 }
 
 .heading {

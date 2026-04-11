@@ -12,14 +12,23 @@
     z-index: 999;
     padding: 50px 0 50px;
     overflow-y: clip;
+
+    @media (max-width: $breakpoint-md-max) {
+        position: absolute;
+        left: var(--layout-padding-x);
+    }
 }
 .top {
     display: flex;
     align-items: center;
     gap: 36px;
-    padding: 20px 30px 15px 40px;
+    padding: 20px 25px 15px 40px;
     background: white;
     @include shadow;
+
+    @media (max-width: $breakpoint-lg-max) {
+        gap: 28px
+    }
 
     .langSwitch {
         width: 1.1em;
@@ -27,7 +36,10 @@
 
     .social {
         display: flex;
-        gap: 12px;
+        gap: 8px;
+        @media (max-width: $breakpoint-md-max) {
+            display: none;
+        }
     }
 
     a, .contact {
@@ -62,7 +74,6 @@
         background: white;
 
         @include shadow;
-
 
         .logoImage {
             @include title;
