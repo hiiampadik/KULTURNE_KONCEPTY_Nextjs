@@ -1,0 +1,61 @@
+@import '../../styles/variables';
+
+.footer {
+    width: 100%;
+    padding: 0 30px;
+    pointer-events: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    color: var(--footer-text);
+    transition: color 0.5s ease;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid var(--footer-text);
+    padding: 20px 0 100px;
+}
+
+.heading {
+    @include subtitle;
+    font-size: 44px;
+}
+
+.link {
+    @include date;
+    color: var(--footer-text);
+    text-decoration: none;
+
+    @media (hover: hover) {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.address {
+    p {
+        @include date;
+    }
+}
+
+.detail {
+    @include date;
+}
+
+.social {
+    display: flex;
+    gap: 6px;
+
+    a {
+        color: var(--footer-text);
+        display: block;
+        line-height: 0;
+    }
+}

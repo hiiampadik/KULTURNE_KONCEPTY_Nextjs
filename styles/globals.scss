@@ -18,11 +18,13 @@ html {
   --bg: #EFEFEF;
   --toggle-container-bg: black;
   --toggle-icon-filter: invert(1);
+  --footer-text: black;
 
   &[data-theme="dark"] {
     --bg: black;
     --toggle-container-bg: white;
     --toggle-icon-filter: invert(0);
+    --footer-text: white;
   }
 }
 

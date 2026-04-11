@@ -34,9 +34,9 @@ export const Navigation: FunctionComponent = () => {
                 </div>
 
                 <div className={styles.bottom}>
-                    <div className={styles.logo}>
+                    <a href="#" className={styles.logo} onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}) }}>
                         <img src="/KK_LOGO.svg" alt="Kultúrne Koncepty" className={styles.logoImage}/>
-                    </div>
+                    </a>
 
                     <div className={styles.menu}>
                         <DogEar corner={'bottom-right'} shadow={true}>
@@ -52,8 +52,7 @@ export const Navigation: FunctionComponent = () => {
                     </div>
                 </div>
 
-
-                <ThemeToggle/>
+                {/*<ThemeToggle/>*/}
             </nav>
 
             <OverlayContact isOpen={contactOpen} handleClose={() => setContactOpen(false)}/>

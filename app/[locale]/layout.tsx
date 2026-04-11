@@ -2,6 +2,7 @@ import {NextIntlClientProvider} from 'next-intl'
 import {getMessages} from 'next-intl/server'
 import {routing} from '@/localization/routing'
 import {Navigation} from '@/components/Navigation/Navigation'
+import {Footer} from '@/components/Footer/Footer'
 
 export function generateStaticParams() {
     return routing.locales.map(locale => ({locale}))
@@ -15,6 +16,7 @@ export default async function LocaleLayout({children}: {children: React.ReactNod
             <main>
                 {children}
             </main>
+            <Footer/>
         </NextIntlClientProvider>
     )
 }
