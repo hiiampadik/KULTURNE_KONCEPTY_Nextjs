@@ -9,11 +9,11 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    z-index: 100;
+    z-index: 999;
     padding: 50px 0 50px;
     overflow-y: scroll;
 
-    a {
+    .menuItem {
         @include subtitle;
         text-decoration: none;
     }
@@ -34,9 +34,17 @@
         gap: 18px;
     }
 
-    a {
+    a, .contact {
         @include date;
         -webkit-text-stroke: 0 currentColor;
+    }
+
+    .contact {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+        color: inherit;
     }
 }
 

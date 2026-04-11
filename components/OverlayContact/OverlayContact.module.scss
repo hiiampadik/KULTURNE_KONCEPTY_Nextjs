@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.title {
+  @include title;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.email {
+  @include date;
+  color: black;
+  text-decoration: underline;
+}
+
+.address {
+  @include date;
+
+  p {
+    font-size: inherit;
+    line-height: 110%;
+  }
+}
+
+.detail {
+  @include date;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+  padding-top: 16px;
+
+  a {
+    color: black;
+    display: block;
+    line-height: 0;
+  }
+}

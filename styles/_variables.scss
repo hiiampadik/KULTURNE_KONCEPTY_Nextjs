@@ -28,7 +28,7 @@ $grey: #C1C1C1;
 @mixin title {
   font-family: 'AnoAngular', sans-serif;
   font-size: 96px;
-  line-height: 85%;
+  line-height: 100%;
   font-weight: 300;
   //-webkit-text-stroke: 1px currentColor;
   paint-order: stroke fill;
