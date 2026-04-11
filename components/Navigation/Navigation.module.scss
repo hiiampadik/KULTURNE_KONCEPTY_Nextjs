@@ -66,7 +66,7 @@
 
         .logoImage {
             @include title;
-            padding: 20px 40px 30px;
+            padding: 20px 40px 30px 34px;
             display: block;
             width: 6em;
             height: auto;
@@ -88,7 +88,7 @@
         display: block;
         text-decoration: none;
         @include title;
-        padding: 20px 60px 15px 37px;
+        padding: 25px 60px 5px 30px;
     }
 
     .item1 {

@@ -42,20 +42,20 @@ export const Navigation: FunctionComponent = () => {
                     </a>
 
                     <div className={styles.menu}>
-                        <DogEar corner={'bottom-right'} shadow={true}
+                        <DogEar corner={'top-right'} shadow={true}
                             forceHover={hoveredSection === 'who-we-are'}
                             onMouseEnter={() => setHoveredSection('who-we-are')}
                             onMouseLeave={() => setHoveredSection(null)}>
                             <a className={classNames([styles.menuItem, styles.item1])} href="#who-we-are" onClick={() => setContactOpen(false)}>{t('menu.whoWeAre')}</a>
                         </DogEar>
-                        <DogEar corner={'bottom-right'} shadow={true}
+                        <DogEar corner={'top-right'} shadow={true}
                             forceHover={hoveredSection === 'fields'}
                             onMouseEnter={() => setHoveredSection('fields')}
                             onMouseLeave={() => setHoveredSection(null)}>
                             <a className={classNames([styles.menuItem, styles.item2])} href="#fields"
                                onClick={() => setContactOpen(false)}>{t('menu.fields')}</a>
                         </DogEar>
-                        <DogEar corner={'bottom-right'} shadow={true}
+                        <DogEar corner={'top-right'} shadow={true}
                             forceHover={hoveredSection === 'projects'}
                             onMouseEnter={() => setHoveredSection('projects')}
                             onMouseLeave={() => setHoveredSection(null)}>
