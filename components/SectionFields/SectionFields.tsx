@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {PortableText} from 'next-sanity'
+import {useTranslations} from 'next-intl'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
 import styles from './SectionFields.module.scss'
 import {SimpleBlockContent} from '@/sanity/sanity.types'
@@ -16,8 +17,10 @@ interface SectionFieldsProps {
 }
 
 export const SectionFields: FunctionComponent<SectionFieldsProps> = ({id, fields}) => {
+    const t = useTranslations('Sections')
+
     return (
-        <SectionContainer id={id} color="swamp" title="Oblasti">
+        <SectionContainer id={id} color="swamp" title={t('fields')}>
             {fields?.map((field) => (
                 <div key={field._id} className={styles.fieldItem}>
                     <h3 className={styles.fieldTitle}>{field.title}</h3>

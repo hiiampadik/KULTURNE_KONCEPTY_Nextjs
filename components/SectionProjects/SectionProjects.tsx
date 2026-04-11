@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react'
 import {PortableText} from 'next-sanity'
+import {useTranslations} from 'next-intl'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
 import {Figure} from '@/components/Figure/Figure'
 import styles from './SectionProjects.module.scss'
@@ -20,8 +21,10 @@ interface SectionProjectsProps {
 }
 
 export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, projects}) => {
+    const t = useTranslations('Sections')
+
     return (
-        <SectionContainer id={id} color="red" title="Odkúšané projekty">
+        <SectionContainer id={id} color="red" title={t('projects')}>
             {projects?.map((project) => (
                 <article key={project._id} className={styles.card}>
                     {project.date && (

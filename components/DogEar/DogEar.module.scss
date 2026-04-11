@@ -1,12 +1,19 @@
 @import '../../styles/variables';
 
+$transition: 0.25s ease;
+
 .dogEar {
     position: relative;
+    --hover-grow: 0px;
+
+    &:hover {
+        --hover-grow: 20px;
+    }
 
     &[data-corner='bottom-right'] {
         .inner {
             /* noinspection CssInvalidPropertyValue */
-            clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - var(--size)), calc(100% - var(--size)) 100%, 0% 100%);
+            clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - var(--size) - var(--hover-grow)), calc(100% - var(--size) - var(--hover-grow)) 100%, 0% 100%);
         }
 
         .triangle {
@@ -19,7 +26,7 @@
     &[data-corner='bottom-left'] {
         .inner {
             /* noinspection CssInvalidPropertyValue */
-            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, var(--size) 100%, 0% calc(100% - var(--size)));
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, calc(var(--size) + var(--hover-grow)) 100%, 0% calc(100% - var(--size) - var(--hover-grow)));
         }
 
         .triangle {
@@ -32,7 +39,7 @@
     &[data-corner='top-right'] {
         .inner {
             /* noinspection CssInvalidPropertyValue */
-            clip-path: polygon(0% 0%, calc(100% - var(--size)) 0%, 100% var(--size), 100% 100%, 0% 100%);
+            clip-path: polygon(0% 0%, calc(100% - var(--size) - var(--hover-grow)) 0%, 100% calc(var(--size) + var(--hover-grow)), 100% 100%, 0% 100%);
         }
 
         .triangle {
@@ -45,7 +52,7 @@
     &[data-corner='top-left'] {
         .inner {
             /* noinspection CssInvalidPropertyValue */
-            clip-path: polygon(var(--size) 0%, 100% 0%, 100% 100%, 0% 100%, 0% var(--size));
+            clip-path: polygon(calc(var(--size) + var(--hover-grow)) 0%, 100% 0%, 100% 100%, 0% 100%, 0% calc(var(--size) + var(--hover-grow)));
         }
 
         .triangle {
@@ -60,12 +67,17 @@
     @include shadow;
 }
 
+.inner {
+    transition: clip-path $transition;
+}
+
 .triangle {
     position: absolute;
-    width: var(--size);
-    height: var(--size);
+    width: calc(var(--size) + var(--hover-grow));
+    height: calc(var(--size) + var(--hover-grow));
     background: white;
     pointer-events: none;
     z-index: 10;
+    transition: width $transition, height $transition;
 }
 

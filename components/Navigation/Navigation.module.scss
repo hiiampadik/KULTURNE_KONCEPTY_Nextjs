@@ -11,7 +11,7 @@
     gap: 20px;
     z-index: 999;
     padding: 50px 0 50px;
-    overflow-y: scroll;
+    overflow-y: clip;
 
     .menuItem {
         @include subtitle;
@@ -21,9 +21,10 @@
 
 .top {
     display: flex;
-    gap: 40px;
+    gap: 36px;
     padding: 20px 60px 15px 40px;
     background: $grey;
+    @include shadow;
 
     .langSwitch {
         width: 1.1em;
@@ -31,12 +32,19 @@
 
     .social {
         display: flex;
-        gap: 18px;
+        gap: 12px;
     }
 
     a, .contact {
         @include date;
-        -webkit-text-stroke: 0 currentColor;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-color: black;
+            text-underline-offset: 3px;
+        }
     }
 
     .contact {
@@ -62,7 +70,7 @@
         .logoImage {
             padding: 5px 40px 30px;
             display: block;
-            width: 35em;
+            width: 30em;
             height: auto;
         }
     }
@@ -80,20 +88,17 @@
     .menuItem {
         display: block;
         @include subtitle;
+        padding: 20px 60px 15px 40px;
     }
 
     .item1 {
         background: $blue;
-        padding: 20px 60px 15px 40px;
     }
     .item2 {
         background: $swamp;
-        padding: 20px 40px 15px 40px;
-        @include shadow;
     }
     .item3 {
         background: $red;
-        padding: 20px 60px 15px 40px;
     }
 }
 

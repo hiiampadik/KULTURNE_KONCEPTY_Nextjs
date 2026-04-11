@@ -1,6 +1,6 @@
 {
   "Navigation": {
-    "contact": "Contacts",
+    "contact": "Contact",
     "menu": {
       "whoWeAre": "Who are we?",
       "fields": "Fields",
@@ -9,6 +9,16 @@
   },
   "Overlay": {
     "close": "Close"
+  },
+  "Sections": {
+    "whoWeAre": "Who are we?",
+    "fields": "Fields",
+    "projects": "Tested projects",
+    "references": "References"
+  },
+  "OverlayContact": {
+    "title": "Contact",
+    "allRightsReserved": "All rights reserved"
   },
   "References": {
     "subtitle": "of the core KK team\nM. Bohumelová, B. Hromádková, A. Kusá\n(selection)"

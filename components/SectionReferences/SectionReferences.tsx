@@ -21,10 +21,11 @@ interface SectionReferencesProps {
 }
 
 export const SectionReferences: FunctionComponent<SectionReferencesProps> = ({id, references}) => {
-    const t = useTranslations('References')
+    const t = useTranslations('Sections')
+    const tRef = useTranslations('References')
 
     return (
-        <SectionContainer id={id} color="red" title="Reference" subtitle={t('subtitle')}>
+        <SectionContainer id={id} color="red" title={t('references')} subtitle={tRef('subtitle')}>
             {references?.map((ref) => (
                 <article key={ref._id} className={styles.card}>
                     {ref.date && (

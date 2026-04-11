@@ -1,6 +1,6 @@
 {
   "Navigation": {
-    "contact": "Kontakty",
+    "contact": "Kontakt",
     "menu": {
       "whoWeAre": "Kdo sme?",
       "fields": "Oblasti",
@@ -9,6 +9,16 @@
   },
   "Overlay": {
     "close": "Zavrieť"
+  },
+  "Sections": {
+    "whoWeAre": "Kdo sme?",
+    "fields": "Oblasti",
+    "projects": "Odkúšané projekty",
+    "references": "Reference"
+  },
+  "OverlayContact": {
+    "title": "Kontakt",
+    "allRightsReserved": "Všetky práva vyhradené"
   },
   "References": {
     "subtitle": "základného tímu KK\nM. Bohumelová, B. Hromádková, A. Kusá\n(výber)"

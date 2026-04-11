@@ -27,7 +27,7 @@ $grey: #C1C1C1;
 
 @mixin title {
   font-family: 'AnoAngular', sans-serif;
-  font-size: 96px;
+  font-size: 75px;
   line-height: 100%;
   font-weight: 300;
   //-webkit-text-stroke: 1px currentColor;
@@ -36,7 +36,7 @@ $grey: #C1C1C1;
 
 @mixin subtitle {
   font-family: 'AnoAngular', sans-serif;
-  font-size: 44px;
+  font-size: 42px;
   line-height: 110%;
   font-weight: 300;
   //-webkit-text-stroke: 2px currentColor;
@@ -59,7 +59,7 @@ $grey: #C1C1C1;
 
 @mixin date {
   font-family: var(--font-geist-mono), monospace;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 110%;
   font-weight: 400;
   letter-spacing: 0.06em;
