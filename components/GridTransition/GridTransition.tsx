@@ -7,6 +7,43 @@ import styles from './GridTransition.module.scss'
 const TILE_W = 100
 const TILE_H = 150
 
+const variants = {
+    v1: {
+        FILLS_DURATION: 0.5,
+        STAGGER_AMOUNT: 0.5,
+        ROW_DELAY: 0.3,
+        MOVE_X: 1, // false
+        MOVE_Y: 0, // true
+    },
+    v2: {
+        FILLS_DURATION: 0.5,
+        STAGGER_AMOUNT: 0.5,
+        ROW_DELAY: 0.2,
+        MOVE_X: 0, // false
+        MOVE_Y: 1, // true
+    },
+    v3: {
+        FILLS_DURATION: 0.5,
+        STAGGER_AMOUNT: 1,
+        ROW_DELAY: 0,
+        MOVE_X: 0, // false
+        MOVE_Y: 1, // true
+    },
+    v4: {
+        FILLS_DURATION: 0.5,
+        STAGGER_AMOUNT: 1,
+        ROW_DELAY: 0,
+        MOVE_X: 1, // false
+        MOVE_Y: 0, // true
+    }
+}
+
+const variantKeys = Object.keys(variants) as (keyof typeof variants)[]
+
+function randomVariant() {
+    return variants[variantKeys[Math.floor(Math.random() * variantKeys.length)]]
+}
+
 export const GridTransition: FunctionComponent = () => {
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -20,8 +57,6 @@ export const GridTransition: FunctionComponent = () => {
 
         const GRID_LINE_LIGHT = 'rgba(200, 200, 200, 1)'
         const GRID_LINE_DARK = 'rgba(50, 50, 50, 1)'
-        const FILLS_DURATION = 0.45
-        const STAGGER_AMOUNT = 0.5
 
         const buildTiles = () => {
             if (fills.length) gsap.killTweensOf(fills)
@@ -57,47 +92,51 @@ export const GridTransition: FunctionComponent = () => {
             gsap.killTweensOf(fills)
             gsap.killTweensOf(container)
 
-            const totalDuration = FILLS_DURATION + STAGGER_AMOUNT
-            const totalDurationContainer = FILLS_DURATION + STAGGER_AMOUNT - 0.4
+            const v = randomVariant()
+            const totalDuration = v.FILLS_DURATION + v.STAGGER_AMOUNT
 
             if (to === 'dark') {
                 document.documentElement.dataset.theme = 'dark'
                 gsap.set(fills, { x: 0, y: 0 })
                 gsap.to(fills, {
-                    x: TILE_W,
-                    y: TILE_H,
-                    duration: FILLS_DURATION,
+                    x: TILE_W * v.MOVE_X,
+                    y: TILE_H * v.MOVE_Y,
+                    duration: v.FILLS_DURATION,
                     ease: 'power2.in',
-                    stagger: {
-                        amount: STAGGER_AMOUNT,
-                        from: 'start',
-                        grid: [rows, cols],
+                    stagger: (index: number) => {
+                        const col = index % cols
+                        const row = Math.floor(index / cols)
+                        return (col / cols) * v.STAGGER_AMOUNT + row * v.ROW_DELAY
+                    },
+                    onComplete: () => {
+                        window.dispatchEvent(new Event('theme-transition-end'))
                     },
                 })
                 gsap.to(container, {
                     backgroundColor: GRID_LINE_DARK,
-                    duration: totalDurationContainer,
+                    duration: totalDuration,
                     ease: 'none',
                 })
             } else {
-                gsap.set(fills, { x: TILE_W, y: TILE_H })
+                gsap.set(fills, { x: -TILE_W * v.MOVE_X, y: -TILE_H * v.MOVE_Y })
                 gsap.to(fills, {
                     x: 0,
                     y: 0,
-                    duration: FILLS_DURATION,
+                    duration: v.FILLS_DURATION,
                     ease: 'power2.out',
-                    stagger: {
-                        amount: STAGGER_AMOUNT,
-                        from: 'end',
-                        grid: [rows, cols],
+                    stagger: (index: number) => {
+                        const col = index % cols
+                        const row = Math.floor(index / cols)
+                        return (col / cols) * v.STAGGER_AMOUNT + row * v.ROW_DELAY
                     },
                     onComplete: () => {
                         document.documentElement.dataset.theme = 'light'
+                        window.dispatchEvent(new Event('theme-transition-end'))
                     },
                 })
                 gsap.to(container, {
                     backgroundColor: GRID_LINE_LIGHT,
-                    duration: totalDurationContainer,
+                    duration: totalDuration,
                     ease: 'none',
                 })
             }

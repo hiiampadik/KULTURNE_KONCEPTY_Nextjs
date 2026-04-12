@@ -2,6 +2,7 @@
 
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import styles from './ThemeToggle.module.scss'
+import {classNames} from '@/components/utils/classNames';
 
 type Theme = 'light' | 'dark'
 
@@ -38,12 +39,9 @@ function getDefaultTheme(): Theme {
     return hour >= sunrise && hour < sunset ? 'light' : 'dark'
 }
 
-function applyTheme(theme: Theme) {
-    document.documentElement.dataset.theme = theme
-}
-
 export const ThemeToggle: FunctionComponent = () => {
     const [theme, setTheme] = useState<Theme>('light')
+    const [transitioning, setTransitioning] = useState(false)
 
     useEffect(() => {
         const saved = sessionStorage.getItem('theme') as Theme | null
@@ -54,7 +52,15 @@ export const ThemeToggle: FunctionComponent = () => {
         }
     }, [])
 
+    useEffect(() => {
+        const onEnd = () => setTransitioning(false)
+        window.addEventListener('theme-transition-end', onEnd)
+        return () => window.removeEventListener('theme-transition-end', onEnd)
+    }, [])
+
     const toggle = () => {
+        if (transitioning) return
+        setTransitioning(true)
         const next: Theme = theme === 'light' ? 'dark' : 'light'
         setTheme(next)
         sessionStorage.setItem('theme', next)
@@ -62,7 +68,7 @@ export const ThemeToggle: FunctionComponent = () => {
     }
 
     return (
-        <button className={styles.button} onClick={toggle} aria-label="Toggle theme">
+        <button className={classNames([styles.button, transitioning && styles.transitioning])} onClick={toggle} disabled={transitioning} aria-label="Toggle theme">
             <img
                 src={theme === 'light' ? '/moon.svg' : '/sun.svg'}
                 alt={theme === 'light' ? 'Light mode' : 'Dark mode'}

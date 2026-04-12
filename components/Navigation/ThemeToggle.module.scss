@@ -13,6 +13,9 @@
         outline-offset: 4px;
         border-radius: 2px;
     }
+    &.transitioning {
+        cursor: wait;
+    }
 }
 
 .icon {

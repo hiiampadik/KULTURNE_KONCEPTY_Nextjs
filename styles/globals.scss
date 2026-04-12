@@ -71,7 +71,7 @@ body {
     background-image:
       linear-gradient(to right, rgba(200, 200, 200, 1) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(200, 200, 200, 1) 1px, transparent 1px);
-    background-size: 101px 151px;
+    background-size: calc(100px + 1px) calc(150px + 1px);
     pointer-events: none;
   }
 }
