@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     gap: 36px;
-    padding: 20px 25px 15px 40px;
+    padding: 20px 25px 15px var(--layout-padding-x);
     background: white;
     @include shadow;
 
@@ -46,11 +46,13 @@
         @include date;
         text-decoration: none;
 
-        &:hover {
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-decoration-color: black;
-            text-underline-offset: 1px;
+        @media (hover: hover) {
+            &:hover {
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+                text-decoration-color: black;
+                text-underline-offset: 1px;
+            }
         }
     }
 
@@ -77,11 +79,10 @@
 
         .logoImage {
             @include title;
-            padding: 20px 40px 30px 34px;
+            padding: 20px var(--layout-padding-x) 30px var(--layout-padding-x);
             display: block;
             width: 6em;
             height: auto;
-            opacity: 0.9;
         }
     }
 
@@ -99,7 +100,7 @@
         display: block;
         text-decoration: none;
         @include title;
-        padding: 25px 60px 5px 30px;
+        padding: 25px 60px 5px var(--layout-padding-x);
     }
 
     .item1 {

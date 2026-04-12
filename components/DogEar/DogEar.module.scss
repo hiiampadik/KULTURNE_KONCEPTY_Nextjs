@@ -7,8 +7,10 @@ $transition: 0.25s ease;
     --hover-grow: 0px;
     --hover-grow-target: 20px;
 
-    &:hover {
-        --hover-grow: var(--hover-grow-target);
+    @media (hover: hover) {
+        &:hover {
+            --hover-grow: var(--hover-grow-target);
+        }
     }
 
     &[data-corner='bottom-right'] {

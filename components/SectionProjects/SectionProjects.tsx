@@ -51,7 +51,7 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
                                         <Figure
                                             image={item.cover}
                                             alt={item.cover.altTextSk ?? item.title ?? ''}
-                                            sizes="88px"
+                                            sizes="108px"
                                             className={styles.coverImage}
                                         />
                                     ) : (

@@ -87,6 +87,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <html lang="sk" className={GeistMono.variable}>
         <head>
             <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
+            <title>Kulturné Koncepty</title>
         </head>
         <body>
         <script

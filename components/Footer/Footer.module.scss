@@ -59,11 +59,16 @@
 
 .social {
     display: flex;
-    gap: 6px;
+    gap: 10px;
 
     a {
         color: var(--footer-text);
         display: block;
         line-height: 0;
     }
+}
+
+.socialIcon {
+    width: 28px;
+    height: 28px;
 }

@@ -17,11 +17,14 @@
     display: flex;
     gap: 15px;
     align-items: flex-start;
+    @media (max-width: $breakpoint-xs-max) {
+        flex-direction: column;
+    }
 }
 
 .cover {
     flex-shrink: 0;
-    width: 88px;
+    width: 108px;
     height: 74px;
     overflow: hidden;
 }
@@ -33,7 +36,7 @@
 }
 
 .coverPlaceholder {
-    width: 88px;
+    width: 108px;
     height: 74px;
     background: #ddd;
 }

@@ -1,0 +1,147 @@
+@import '../../styles/variables';
+
+.bar {
+  display: none;
+
+  @media (max-width: $breakpoint-md-max) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    background: white;
+    padding: var(--layout-padding-x) var(--layout-padding-x) 20px;
+    @media (max-width: $breakpoint-sm-max) {
+      padding: var(--layout-padding-x) var(--layout-padding-x) 18px;
+    }
+    @include shadow;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+}
+
+.barVisible {
+  @media (max-width: $breakpoint-md-max) {
+    transform: translateY(0);
+  }
+}
+
+.logoLink {
+  display: block;
+  line-height: 0;
+}
+
+.logo {
+  @include title;
+  margin-top: -12px;
+  width: 10em;
+  @media (max-width: $breakpoint-sm-max) {
+    width: 6em;
+    margin-top: -0.28em;
+  }
+  display: block;
+}
+
+.logoHorizontal {
+  display: block;
+
+  @media (max-width: $breakpoint-sm-max) {
+    display: none;
+  }
+}
+
+.logoSquare {
+  display: none;
+
+  @media (max-width: $breakpoint-sm-max) {
+    display: block;
+  }
+}
+
+.hamburger {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  line-height: 0;
+  padding: 0;
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.menuItem {
+  display: block;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  @include title;
+  padding: 25px 60px 5px var(--layout-padding-x);
+}
+
+.item1 {
+  background: $blue;
+}
+
+.item2 {
+  background: $swamp;
+}
+
+.item3 {
+  background: $red;
+}
+
+.menuContact {
+  margin-bottom: 20px;
+}
+
+.contactTitle {
+  @include title;
+  margin-bottom: 12px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactEmail {
+  @include date;
+  color: black;
+}
+
+.contactAddress {
+  p {
+    @include date;
+  }
+}
+
+.contactDetail {
+  @include date;
+}
+
+.contactSocial {
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+
+  a {
+    display: block;
+    line-height: 0;
+  }
+}
+
+.socialIcon {
+  width: 28px;
+  height: 28px;
+}

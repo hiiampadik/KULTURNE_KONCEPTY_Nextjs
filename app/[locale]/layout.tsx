@@ -2,6 +2,7 @@ import {NextIntlClientProvider} from 'next-intl'
 import {getMessages} from 'next-intl/server'
 import {routing} from '@/localization/routing'
 import {Navigation} from '@/components/Navigation/Navigation'
+import {MobileNav} from '@/components/MobileNav/MobileNav'
 import {Footer} from '@/components/Footer/Footer'
 import {DogEarSyncProvider} from '@/contexts/DogEarSync'
 
@@ -15,6 +16,7 @@ export default async function LocaleLayout({children}: {children: React.ReactNod
         <NextIntlClientProvider messages={messages}>
             <DogEarSyncProvider>
                 <Navigation/>
+                <MobileNav/>
                 <main>
                     {children}
                 </main>

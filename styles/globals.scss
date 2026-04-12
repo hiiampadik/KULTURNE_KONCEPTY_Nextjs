@@ -25,6 +25,14 @@ html {
     --layout-padding-x: 20px;
   }
 
+  @media (max-width: $breakpoint-md-max) {
+    --layout-padding-x: 18px;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    --layout-padding-x: 14px;
+  }
+
   &[data-theme="dark"] {
     --bg: black;
     --toggle-container-bg: white;
