@@ -6,6 +6,7 @@ import {Navigation} from '@/components/Navigation/Navigation'
 import {MobileNav} from '@/components/MobileNav/MobileNav'
 import {Footer} from '@/components/Footer/Footer'
 import {DogEarSyncProvider} from '@/contexts/DogEarSync'
+import {GridTransition} from '@/components/GridTransition/GridTransition'
 import {siteUrl, socialLinks} from '@/constants/site'
 
 const baseURL = siteUrl
@@ -53,6 +54,7 @@ export default async function LocaleLayout({
                 <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
             </head>
             <body>
+                <GridTransition/>
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}

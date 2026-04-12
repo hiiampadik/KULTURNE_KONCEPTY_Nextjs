@@ -1,6 +1,6 @@
 'use client'
 
-import React, {CSSProperties, FunctionComponent, useEffect, useLayoutEffect, useRef, useState} from 'react'
+import React, {CSSProperties, FunctionComponent, startTransition, useEffect, useLayoutEffect, useRef, useState} from 'react'
 import {gsap} from 'gsap'
 import {InertiaPlugin} from 'gsap/InertiaPlugin'
 import {Draggable} from './gsapDraggable'
@@ -36,10 +36,25 @@ const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotat
         const el = elementRef.current
         if (!el) return
 
+        const offset = Math.random() * 2
+        const floatTween = gsap.to(el, {
+            y: `+=${6 + Math.random() * 6}`,
+            x: `+=${6 + Math.random() * 6}`,
+            rotation: `+=${(Math.random() - 0.5) * 4}`,
+            duration: 1.8 + Math.random() * 1.2,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+            delay: offset,
+        })
+
         InertiaPlugin.track(el, 'x,y')
 
         const [draggable] = Draggable.create(el, {
             type: 'x,y',
+            onDragStart() {
+                floatTween.pause()
+            },
             onDragEnd() {
                 const vx = InertiaPlugin.getVelocity(el, 'x')
                 const vy = InertiaPlugin.getVelocity(el, 'y')
@@ -50,11 +65,15 @@ const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotat
                         resistance: 2500,
                         duration: {min: 0.1, max: 0.4},
                     },
+                    onComplete() {
+                        floatTween.resume()
+                    },
                 })
             },
         })
 
         return () => {
+            floatTween.kill()
             InertiaPlugin.untrack(el)
             draggable.kill()
         }
@@ -85,12 +104,14 @@ export const StickerWall: FunctionComponent = () => {
             row: Math.floor(i / cols),
         }))
 
-        setStickerData(STICKERS.map((src, i) => ({
-            src,
-            left: 25 + zones[i].col * cellW + Math.random() * (cellW - 10),
-            top: 5 + zones[i].row * cellH + Math.random() * (cellH - 10),
-            rotation: (Math.random() - 0.5) * 30,
-        })))
+        startTransition(() => {
+            setStickerData(STICKERS.map((src, i) => ({
+                src,
+                left: 25 + zones[i].col * cellW + Math.random() * (cellW - 10),
+                top: 5 + zones[i].row * cellH + Math.random() * (cellH - 10),
+                rotation: (Math.random() - 0.5) * 30,
+            })))
+        })
     }, [])
 
     if (!stickerData) return <div className={styles.wall} aria-hidden="true" />

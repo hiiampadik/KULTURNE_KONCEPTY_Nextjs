@@ -49,14 +49,16 @@ export const ThemeToggle: FunctionComponent = () => {
         const saved = sessionStorage.getItem('theme') as Theme | null
         const initial = saved ?? getDefaultTheme()
         setTheme(initial)
-        applyTheme(initial)
+        if (initial === 'dark') {
+            window.dispatchEvent(new CustomEvent('theme-transition', { detail: { to: 'dark' } }))
+        }
     }, [])
 
     const toggle = () => {
         const next: Theme = theme === 'light' ? 'dark' : 'light'
         setTheme(next)
-        applyTheme(next)
         sessionStorage.setItem('theme', next)
+        window.dispatchEvent(new CustomEvent('theme-transition', { detail: { to: next } }))
     }
 
     return (
