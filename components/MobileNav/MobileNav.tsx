@@ -58,7 +58,7 @@ export const MobileNav: FunctionComponent = () => {
                     onClick={() => setMenuOpen(true)}
                     aria-label="Open menu"
                 >
-                    <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <line x1="0" y1="1" x2="30" y2="1" stroke="currentColor" strokeWidth="1.5"/>
                         <line x1="0" y1="13" x2="30" y2="13" stroke="currentColor" strokeWidth="1.5"/>
                         <line x1="0" y1="25" x2="30" y2="25" stroke="currentColor" strokeWidth="1.5"/>
@@ -106,10 +106,10 @@ export const MobileNav: FunctionComponent = () => {
                     <div className={styles.contactInfo}>
                         <div className={styles.contactSocial}>
                             <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <img src="/fb.svg" alt="Facebook" className={styles.socialIcon}/>
+                                <img src="/fb.svg" alt="" aria-hidden="true" className={styles.socialIcon}/>
                             </a>
                             <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                <img src="/ig.svg" alt="Instagram" className={styles.socialIcon}/>
+                                <img src="/ig.svg" alt="" aria-hidden="true" className={styles.socialIcon}/>
                             </a>
                         </div>
                     </div>

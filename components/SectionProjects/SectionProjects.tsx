@@ -38,7 +38,8 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
             <SectionContainer id={id} color="red" title={title} subtitle={subtitle}>
                 {items?.map((item) => (
                     <DogEar key={item._id} corner="bottom-left" size={0} hoverSize={45} shadow bgTriangle>
-                        <article
+                        <button
+                            type="button"
                             className={styles.card}
                             onClick={() => setSelected(item)}
                         >
@@ -58,14 +59,14 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
                                         <div className={styles.coverPlaceholder}/>
                                     )}
                                 </div>
-                                <h3 className={styles.cardTitle}>{item.title}</h3>
+                                <h2 className={styles.cardTitle}>{item.title}</h2>
                             </div>
                             {item.subtitle && (
                                 <div className={styles.description}>
                                     <PortableText value={item.subtitle}/>
                                 </div>
                             )}
-                        </article>
+                        </button>
                     </DogEar>
                 ))}
             </SectionContainer>

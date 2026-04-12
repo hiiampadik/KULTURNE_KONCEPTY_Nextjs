@@ -15,6 +15,10 @@
 
 html {
   scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
   --layout-padding-x: 30px;
   --bg: #EFEFEF;
   --toggle-container-bg: black;
@@ -81,7 +85,11 @@ main {
   justify-content: flex-start;
   min-height: 100vh;
   position: relative;
-  pointer-events: none;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 a {

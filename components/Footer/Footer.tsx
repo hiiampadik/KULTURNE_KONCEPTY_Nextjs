@@ -11,20 +11,20 @@ export const Footer: FunctionComponent = () => {
         <footer className={styles.footer}>
             <div className={styles.grid}>
                 <div className={styles.column}>
-                    <h3 className={styles.heading}>{t('contact')}</h3>
+                    <h2 className={styles.heading}>{t('contact')}</h2>
                     <a href={`mailto:${contactInfo.email}`} className={styles.link}>
                         {contactInfo.email}
                     </a>
                 </div>
 
                 <div className={styles.column}>
-                    <h3 className={styles.heading}>{t('followUs')}</h3>
+                    <h2 className={styles.heading}>{t('followUs')}</h2>
                     <div className={styles.social}>
                         <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                            <img src="/fb.svg" alt="Facebook" className={styles.socialIcon}/>
+                            <img src="/fb.svg" alt="" aria-hidden="true" className={styles.socialIcon}/>
                         </a>
                         <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <img src="/ig.svg" alt="Instagram" className={styles.socialIcon}/>
+                            <img src="/ig.svg" alt="" aria-hidden="true" className={styles.socialIcon}/>
                         </a>
                     </div>
                 </div>

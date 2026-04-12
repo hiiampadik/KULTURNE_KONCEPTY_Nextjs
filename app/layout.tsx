@@ -1,5 +1,4 @@
 import type {Metadata} from 'next'
-import {GeistMono} from 'geist/font/mono'
 import '../styles/globals.scss'
 import {siteUrl, socialLinks} from '@/constants/site'
 
@@ -58,44 +57,6 @@ export const metadata: Metadata = {
     manifest: '/favicon/site.webmanifest',
 }
 
-const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-        {
-            '@type': 'Organization',
-            '@id': `${baseURL}#organization`,
-            name: 'Kultúrne Koncepty',
-            url: baseURL,
-            sameAs: [
-                socialLinks.facebook,
-                socialLinks.instagram,
-            ],
-        },
-        {
-            '@type': 'WebSite',
-            '@id': `${baseURL}#website`,
-            url: baseURL,
-            name: 'Kultúrne Koncepty',
-            publisher: {'@id': `${baseURL}#organization`},
-            description,
-        },
-    ],
-}
-
 export default function RootLayout({children}: { children: React.ReactNode }) {
-    return (
-        <html lang="sk" className={GeistMono.variable}>
-        <head>
-            <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
-            <title>Kulturné Koncepty</title>
-        </head>
-        <body>
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
-        />
-        {children}
-        </body>
-        </html>
-    )
+    return children
 }

@@ -111,10 +111,10 @@ export const StickerWall: FunctionComponent = () => {
         })))
     }, [])
 
-    if (!stickerData) return <div className={styles.wall} />
+    if (!stickerData) return <div className={styles.wall} aria-hidden="true" />
 
     return (
-        <div className={styles.wall}>
+        <div className={styles.wall} aria-hidden="true">
             {stickerData.map((data) => (
                 <StickerItem key={data.src} {...data}/>
             ))}
