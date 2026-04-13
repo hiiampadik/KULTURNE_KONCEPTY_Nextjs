@@ -41,7 +41,6 @@ export const SectionContainer: FunctionComponent<SectionContainerProps> = ({
 
         gsap.set(el, {
             visibility: 'visible',
-            yPercent: 100,
             clipPath: 'inset(100% 0 0 0)',
             filter: 'drop-shadow(0 0 0px rgba(0, 0, 0, 0))',
         })
@@ -57,7 +56,6 @@ export const SectionContainer: FunctionComponent<SectionContainerProps> = ({
         })
 
         tl.to(el, {
-            yPercent: 0,
             clipPath: 'inset(0% 0 0 0)',
             duration: 0.6,
             ease: 'power3.out',

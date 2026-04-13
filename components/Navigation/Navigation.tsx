@@ -37,7 +37,6 @@ export const Navigation: FunctionComponent = () => {
 
         gsap.set(items, {
             visibility: 'visible',
-            yPercent: 100,
             clipPath: 'inset(100% 0 0 0)',
             filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0))',
         })
@@ -47,7 +46,6 @@ export const Navigation: FunctionComponent = () => {
         const tl = gsap.timeline()
 
         tl.to(items, {
-            yPercent: 0,
             clipPath: 'inset(0% 0 0 0)',
             duration: 0.6,
             ease: 'power3.out',
@@ -61,7 +59,12 @@ export const Navigation: FunctionComponent = () => {
             filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
             duration: 0.4,
             onComplete: () => {
-                gsap.set(items, {clearProps: 'filter'})
+                items.forEach(el => {
+                    if (el) {
+                        gsap.set(el, {clearProps: 'all'})
+                        el.classList.remove(styles.navRevealItem)
+                    }
+                })
                 gsap.set(innerShadowEls, {clearProps: 'filter'})
             },
         })
