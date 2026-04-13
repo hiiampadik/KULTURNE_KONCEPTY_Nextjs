@@ -8,6 +8,7 @@ import {Footer} from '@/components/Footer/Footer'
 import {DogEarSyncProvider} from '@/contexts/DogEarSync'
 import {GridTransition} from '@/components/GridTransition/GridTransition'
 import {siteUrl, socialLinks} from '@/constants/site'
+import {AnimatedFavicon} from '@/components/AnimatedFavicon/AnimatedFavicon'
 
 const baseURL = siteUrl
 
@@ -54,6 +55,7 @@ export default async function LocaleLayout({
                 <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
             </head>
             <body>
+                <AnimatedFavicon/>
                 <GridTransition/>
                 <script
                     type="application/ld+json"
