@@ -1,5 +1,6 @@
 'use client'
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent, useEffect, useRef, useState} from 'react'
+import {gsap} from 'gsap'
 import {useTranslations} from 'next-intl'
 import {LocaleSwitcher} from './LocaleSwitcher'
 import {ThemeToggle} from './ThemeToggle'
@@ -15,11 +16,56 @@ export const Navigation: FunctionComponent = () => {
     const [contactOpen, setContactOpen] = useState(false)
     const {hoveredSection, setHoveredSection} = useDogEarSync()
 
+    const topRef = useRef<HTMLDivElement>(null)
+    const logoRef = useRef<HTMLAnchorElement>(null)
+    const menuItem1Ref = useRef<HTMLDivElement>(null)
+    const menuItem2Ref = useRef<HTMLDivElement>(null)
+    const menuItem3Ref = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const items = [
+            topRef.current,
+            logoRef.current,
+            menuItem1Ref.current,
+            menuItem2Ref.current,
+            menuItem3Ref.current,
+        ].filter(Boolean)
+
+        gsap.set(items, {
+            visibility: 'visible',
+            yPercent: 100,
+            clipPath: 'inset(100% 0 0 0)',
+            filter: 'drop-shadow(0 0 0px rgba(0, 0, 0, 0))',
+        })
+
+        const tl = gsap.timeline()
+
+        tl.to(items, {
+            yPercent: 0,
+            clipPath: 'inset(0% 0 0 0)',
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.08,
+            onComplete: () => {
+                gsap.set(items, {clearProps: 'clipPath'})
+            },
+        })
+
+        tl.to(items, {
+            filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
+            duration: 0.4,
+            ease: 'power2.out',
+            onComplete: () => {
+                gsap.set(items, {clearProps: 'filter'})
+            },
+        })
+    }, [])
+
     return (
         <>
             <nav className={styles.nav}>
 
-                <div className={styles.top}>
+                <div ref={topRef} className={classNames([styles.top, styles.navRevealItem])}>
                     <LocaleSwitcher/>
                     <button
                         className={styles.contact}
@@ -37,30 +83,36 @@ export const Navigation: FunctionComponent = () => {
                 </div>
 
                 <div className={styles.bottom}>
-                    <a href="#" className={styles.logo} onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}) }}>
+                    <a ref={logoRef} href="#" className={classNames([styles.logo, styles.navRevealItem])} onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}) }}>
                         <img src="/KK_LOGO.svg" alt="Kultúrne Koncepty" className={styles.logoImage}/>
                     </a>
 
                     <div className={styles.menu}>
-                        <DogEar corner={'top-right'} shadow={true}
-                            forceHover={hoveredSection === 'who-we-are'}
-                            onMouseEnter={() => setHoveredSection('who-we-are')}
-                            onMouseLeave={() => setHoveredSection(null)}>
-                            <a className={classNames([styles.menuItem, styles.item1])} href="#who-we-are" onClick={() => setContactOpen(false)}>{t('menu.whoWeAre')}</a>
-                        </DogEar>
-                        <DogEar corner={'top-right'} shadow={true}
-                            forceHover={hoveredSection === 'fields'}
-                            onMouseEnter={() => setHoveredSection('fields')}
-                            onMouseLeave={() => setHoveredSection(null)}>
-                            <a className={classNames([styles.menuItem, styles.item2])} href="#fields"
-                               onClick={() => setContactOpen(false)}>{t('menu.fields')}</a>
-                        </DogEar>
-                        <DogEar corner={'top-right'} shadow={true}
-                            forceHover={hoveredSection === 'projects'}
-                            onMouseEnter={() => setHoveredSection('projects')}
-                            onMouseLeave={() => setHoveredSection(null)}>
-                            <a className={classNames([styles.menuItem, styles.item3])} href="#projects" onClick={() => setContactOpen(false)}>{t('menu.projects')}</a>
-                        </DogEar>
+                        <div ref={menuItem1Ref} className={styles.navRevealItem}>
+                            <DogEar corner={'top-right'} shadow={true}
+                                forceHover={hoveredSection === 'who-we-are'}
+                                onMouseEnter={() => setHoveredSection('who-we-are')}
+                                onMouseLeave={() => setHoveredSection(null)}>
+                                <a className={classNames([styles.menuItem, styles.item1])} href="#who-we-are" onClick={() => setContactOpen(false)}>{t('menu.whoWeAre')}</a>
+                            </DogEar>
+                        </div>
+                        <div ref={menuItem2Ref} className={styles.navRevealItem}>
+                            <DogEar corner={'top-right'} shadow={true}
+                                forceHover={hoveredSection === 'fields'}
+                                onMouseEnter={() => setHoveredSection('fields')}
+                                onMouseLeave={() => setHoveredSection(null)}>
+                                <a className={classNames([styles.menuItem, styles.item2])} href="#fields"
+                                   onClick={() => setContactOpen(false)}>{t('menu.fields')}</a>
+                            </DogEar>
+                        </div>
+                        <div ref={menuItem3Ref} className={styles.navRevealItem}>
+                            <DogEar corner={'top-right'} shadow={true}
+                                forceHover={hoveredSection === 'projects'}
+                                onMouseEnter={() => setHoveredSection('projects')}
+                                onMouseLeave={() => setHoveredSection(null)}>
+                                <a className={classNames([styles.menuItem, styles.item3])} href="#projects" onClick={() => setContactOpen(false)}>{t('menu.projects')}</a>
+                            </DogEar>
+                        </div>
                     </div>
                 </div>
 

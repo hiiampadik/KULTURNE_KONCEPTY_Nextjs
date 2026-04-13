@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 
 .footer {
+    position: relative;
+    z-index: 1;
     width: 100%;
     padding: 0 var(--layout-padding-x);
     pointer-events: auto;
@@ -39,6 +41,7 @@
 .link {
     @include date;
     color: var(--footer-text);
+    text-decoration-color: var(--footer-text);
 
     @media (hover: hover) {
         &:hover {
@@ -63,6 +66,7 @@
 
     a {
         color: var(--footer-text);
+        text-decoration-color: var(--footer-text);
         display: block;
         line-height: 0;
     }
@@ -71,4 +75,9 @@
 .socialIcon {
     width: 28px;
     height: 28px;
+    transition: filter 0.5s ease;
+
+    [data-theme="dark"] & {
+        filter: invert(1);
+    }
 }
