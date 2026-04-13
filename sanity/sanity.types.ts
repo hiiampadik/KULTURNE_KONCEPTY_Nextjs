@@ -15,6 +15,13 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type SanityImageAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+}
+
 export type FieldReference = {
   _ref: string
   _type: 'reference'
@@ -35,6 +42,14 @@ export type Homepage = {
   _createdAt: string
   _updatedAt: string
   _rev: string
+  stickers: Array<{
+    asset: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+    _key: string
+  }>
   aboutUs: InternationalizedArrayBlockContentWithHeadings
   fields: Array<
     {
@@ -58,6 +73,22 @@ export type InternationalizedArrayBlockContentWithHeadings = Array<
     _key: string
   } & InternationalizedArrayBlockContentWithHeadingsValue
 >
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
 
 export type Project = {
   _id: string
@@ -98,13 +129,6 @@ export type InternationalizedArrayLinkText = Array<
   } & InternationalizedArrayLinkTextValue
 >
 
-export type SanityImageAssetReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-}
-
 export type ImageObject = {
   _type: 'imageObject'
   asset: SanityImageAssetReference
@@ -129,23 +153,14 @@ export type Field = {
   _updatedAt: string
   _rev: string
   title: InternationalizedArrayString
+  icon: {
+    asset: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
   body: InternationalizedArraySimpleBlockContent
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top: number
-  bottom: number
-  left: number
-  right: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x: number
-  y: number
-  height: number
-  width: number
 }
 
 export type LinkText = Array<{
@@ -339,19 +354,19 @@ export type Slug = {
 }
 
 export type AllSanitySchemaTypes =
+  | SanityImageAssetReference
   | FieldReference
   | ProjectReference
   | Homepage
   | InternationalizedArrayBlockContentWithHeadings
+  | SanityImageCrop
+  | SanityImageHotspot
   | Project
   | InternationalizedArraySimpleBlockContent
   | InternationalizedArrayLinkText
-  | SanityImageAssetReference
   | ImageObject
   | InternationalizedArrayString
   | Field
-  | SanityImageCrop
-  | SanityImageHotspot
   | LinkText
   | WebInput
   | BlockContentWithHeadings

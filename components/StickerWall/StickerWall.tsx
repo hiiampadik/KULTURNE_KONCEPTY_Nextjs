@@ -8,19 +8,15 @@ import styles from './StickerWall.module.scss'
 
 gsap.registerPlugin(InertiaPlugin, Draggable)
 
-const STICKERS = [
-    '/stickers/Group 14.png',
-    '/stickers/Vrstva_1-2.png',
-    '/stickers/Vrstva_1-3.png',
-    '/stickers/Vrstva_1-4.png',
-    '/stickers/Vrstva_1.png',
-]
-
 interface StickerItemProps {
     src: string
     left: number
     top: number
     rotation: number
+}
+
+interface StickerWallProps {
+    stickers: string[]
 }
 
 const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotation}) => {
@@ -91,28 +87,30 @@ const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotat
     )
 }
 
-export const StickerWall: FunctionComponent = () => {
+export const StickerWall: FunctionComponent<StickerWallProps> = ({stickers}) => {
     const [stickerData, setStickerData] = useState<StickerItemProps[] | null>(null)
 
     useEffect(() => {
+        if (!stickers.length) return
+
         const cols = 3
-        const rows = 2
+        const rows = Math.max(1, Math.ceil(stickers.length / cols))
         const cellW = 70 / cols
         const cellH = 80 / rows
-        const zones = STICKERS.map((_, i) => ({
+        const zones = stickers.map((_, i) => ({
             col: i % cols,
             row: Math.floor(i / cols),
         }))
 
         startTransition(() => {
-            setStickerData(STICKERS.map((src, i) => ({
+            setStickerData(stickers.map((src, i) => ({
                 src,
                 left: 25 + zones[i].col * cellW + Math.random() * (cellW - 10),
                 top: 5 + zones[i].row * cellH + Math.random() * (cellH - 10),
                 rotation: (Math.random() - 0.5) * 30,
             })))
         })
-    }, [])
+    }, [stickers])
 
     if (!stickerData) return <div className={styles.wall} aria-hidden="true" />
 

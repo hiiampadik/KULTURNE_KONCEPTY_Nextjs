@@ -8,6 +8,7 @@ import {OverlayProject, OverlayProjectData} from '@/components/OverlayProject/Ov
 import {DogEar} from '@/components/DogEar/DogEar'
 import styles from './SectionProjects.module.scss'
 import {ImageObject, LinkText, SimpleBlockContent} from '@/sanity/sanity.types'
+import {classNames} from '@/components/utils/classNames';
 
 export interface ProjectItem {
     _id: string
@@ -36,11 +37,11 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
     return (
         <>
             <SectionContainer id={id} color="red" title={title} subtitle={subtitle}>
-                {items?.map((item) => (
+                {items?.map((item, index) => (
                     <DogEar key={item._id} corner="bottom-left" size={0} hoverSize={45} shadow bgTriangle>
                         <button
                             type="button"
-                            className={styles.card}
+                            className={classNames([styles.card, index === 0 && styles.firstCard])}
                             onClick={() => setSelected(item)}
                         >
                             {item.date && (

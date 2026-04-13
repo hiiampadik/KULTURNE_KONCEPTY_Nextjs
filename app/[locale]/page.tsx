@@ -15,7 +15,7 @@ export default async function Home() {
 
     return (
         <>
-            <StickerWall/>
+            <StickerWall stickers={(data?.stickers ?? []).map((s: any) => s.asset?.url).filter(Boolean)}/>
             <div className={styles.page}>
                 <SectionWhoWeAre id="who-we-are" aboutUs={data?.aboutUs}/>
                 <SectionFields id="fields" fields={data?.fields}/>
