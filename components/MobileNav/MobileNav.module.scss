@@ -15,7 +15,7 @@
     background: white;
     padding: var(--layout-padding-x) var(--layout-padding-x) 20px;
     @media (max-width: $breakpoint-sm-max) {
-      padding: var(--layout-padding-x) var(--layout-padding-x) 18px;
+      padding: var(--layout-padding-x) var(--layout-padding-x) 14px;
     }
     @include shadow;
     transform: translateY(-100%);
@@ -39,8 +39,8 @@
   margin-top: -12px;
   width: 10em;
   @media (max-width: $breakpoint-sm-max) {
-    width: 6em;
-    margin-top: -0.28em;
+    width: 5em;
+    margin-top: -0.23em;
   }
   display: block;
 }

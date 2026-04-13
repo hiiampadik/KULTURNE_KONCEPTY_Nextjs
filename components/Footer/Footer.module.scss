@@ -33,6 +33,13 @@
     padding: 20px 0 0;
 }
 
+.columnContent {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .heading {
     @include subtitle;
     font-size: 44px;

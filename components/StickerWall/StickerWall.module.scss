@@ -40,6 +40,18 @@
 .image {
     display: block;
     height: 200px;
+    max-width: 300px;
     width: auto;
     pointer-events: none;
+    object-fit: contain;
+
+    @media (max-width: $breakpoint-md-max) {
+        height: 150px;
+        max-width: 150px;
+    }
+    @media (max-width: $breakpoint-sm-max) {
+        height: 120px;
+        max-width: 120px;
+
+    }
 }
