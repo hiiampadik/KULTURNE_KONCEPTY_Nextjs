@@ -1,5 +1,6 @@
 'use client'
-import {FunctionComponent, PropsWithChildren, useEffect, useRef} from 'react'
+import {FunctionComponent, PropsWithChildren, useCallback, useEffect, useRef, useState} from 'react'
+import {gsap} from 'gsap'
 import styles from './index.module.scss'
 import {classNames} from '@/components/utils/classNames'
 
@@ -10,25 +11,80 @@ interface OverlayProps {
     readonly iconUrls?: string[]
 }
 
+const MOBILE_BREAKPOINT = 991
+
 const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, iconUrls}) => {
     const closeButtonRef = useRef<HTMLButtonElement>(null)
+    const backdropRef = useRef<HTMLDivElement>(null)
+    const panelRef = useRef<HTMLDivElement>(null)
+    const tweenRef = useRef<gsap.core.Timeline | null>(null)
+    const [isVisible, setIsVisible] = useState(false)
+
+    const isMobile = useCallback(() => window.innerWidth <= MOBILE_BREAKPOINT, [])
 
     useEffect(() => {
         const html = document.documentElement
         const body = document.body
+
+        tweenRef.current?.kill()
+
         if (isOpen) {
+            setIsVisible(true)
             html.style.overflow = 'hidden'
             body.style.overflow = 'hidden'
             closeButtonRef.current?.focus()
+
+            const mobile = isMobile()
+            const tl = gsap.timeline()
+            tl.to(backdropRef.current, {
+                opacity: 1,
+                duration: 0.3,
+                ease: 'power2.out',
+                onStart() {
+                    if (backdropRef.current) backdropRef.current.style.pointerEvents = 'auto'
+                },
+            }, 0)
+            tl.fromTo(panelRef.current, {
+                x: mobile ? 0 : '100%',
+                y: mobile ? '100%' : 0,
+            }, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: 'power3.out',
+            }, 0)
+            tweenRef.current = tl
         } else {
-            html.style.overflow = ''
-            body.style.overflow = ''
+            const mobile = isMobile()
+            const tl = gsap.timeline({
+                onComplete() {
+                    html.style.overflow = ''
+                    body.style.overflow = ''
+                    setIsVisible(false)
+                },
+            })
+            tl.to(backdropRef.current, {
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.in',
+                onComplete() {
+                    if (backdropRef.current) backdropRef.current.style.pointerEvents = 'none'
+                },
+            }, 0)
+            tl.to(panelRef.current, {
+                x: mobile ? 0 : '100%',
+                y: mobile ? '100%' : 0,
+                duration: 0.4,
+                ease: 'power2.in',
+            }, 0)
+            tweenRef.current = tl
         }
+
         return () => {
             html.style.overflow = ''
             body.style.overflow = ''
         }
-    }, [isOpen])
+    }, [isOpen, isMobile])
 
     useEffect(() => {
         if (!isOpen) return
@@ -42,12 +98,14 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
     return (
         <>
             <div
-                className={classNames([styles.backdrop, isOpen && styles.open])}
+                ref={backdropRef}
+                className={styles.backdrop}
                 onClick={handleClose}
                 aria-hidden="true"
             />
             <div
-                className={classNames([styles.panel, isOpen && styles.open, className])}
+                ref={panelRef}
+                className={classNames([styles.panel, className])}
                 role="dialog"
                 aria-modal="true"
                 aria-label="Panel"

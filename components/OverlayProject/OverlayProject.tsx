@@ -1,5 +1,5 @@
 'use client'
-import {FunctionComponent} from 'react'
+import {FunctionComponent, useRef} from 'react'
 import {PortableText} from 'next-sanity'
 import {useTranslations} from 'next-intl'
 import Overlay from '@/components/Overlay'
@@ -28,62 +28,69 @@ interface OverlayProjectProps {
 
 export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, handleClose, project, fieldIconMap = {}}) => {
     const t = useTranslations('OverlayProject')
+    const lastProjectRef = useRef<OverlayProjectData | null>(null)
 
-    const iconUrls = project?.fields
+    if (project) {
+        lastProjectRef.current = project
+    }
+
+    const displayProject = project ?? lastProjectRef.current
+
+    const iconUrls = displayProject?.fields
         ?.map(f => fieldIconMap[f._id])
         .filter(Boolean) ?? []
 
     return (
         <Overlay isOpen={isOpen} handleClose={handleClose} iconUrls={iconUrls}>
-            {project && (
+            {displayProject && (
                 <>
-                    <h2 className={styles.title}>{project.title}</h2>
+                    <h2 className={styles.title}>{displayProject.title}</h2>
 
                     <div className={styles.meta}>
-                        {project.active != null && (
+                        {displayProject.active != null && (
                             <span className={styles.badge}>
-                                {project.active ? t('active') : t('completed')}
+                                {displayProject.active ? t('active') : t('completed')}
                             </span>
                         )}
-                        {project.date && (
-                            <p className={styles.date}>{project.date}</p>
+                        {displayProject.date && (
+                            <p className={styles.date}>{displayProject.date}</p>
                         )}
-                        {project.web && (
+                        {displayProject.web && (
                             <div className={styles.metaRow}>
                                 <span className={styles.metaLabel}>WEB:</span>
                                 <span className={styles.metaValue}>
-                                    <PortableText value={project.web}/>
+                                    <PortableText value={displayProject.web}/>
                                 </span>
                             </div>
                         )}
-                        {project.location && (
+                        {displayProject.location && (
                             <div className={styles.metaRow}>
                                 <span className={styles.metaLabel}>{t('location')}:</span>
                                 <span className={styles.metaValue}>
-                                    <PortableText value={project.location}/>
+                                    <PortableText value={displayProject.location}/>
                                 </span>
                             </div>
                         )}
                     </div>
 
-                    {(project.subtitle || project.description) && (
+                    {(displayProject.subtitle || displayProject.description) && (
                         <div className={styles.body}>
-                            {project.subtitle && (
+                            {displayProject.subtitle && (
                                 <div className={styles.perex}>
-                                    <PortableText value={project.subtitle}/>
+                                    <PortableText value={displayProject.subtitle}/>
                                 </div>
                             )}
-                            {project.description && (
+                            {displayProject.description && (
                                 <div className={styles.description}>
-                                    <PortableText value={project.description}/>
+                                    <PortableText value={displayProject.description}/>
                                 </div>
                             )}
                         </div>
                     )}
 
-                    {project.gallery && project.gallery.length > 0 && (
+                    {displayProject.gallery && displayProject.gallery.length > 0 && (
                         <div className={styles.gallery}>
-                            {project.gallery.map((image) => (
+                            {displayProject.gallery.map((image) => (
                                 image.asset && (
                                     <Figure
                                         key={image._key}

@@ -7,12 +7,6 @@
   background: rgba(0, 0, 0, 0.2);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
-
-  &.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
 }
 
 .panel {
@@ -25,15 +19,10 @@
   background: white;
   @include shadow;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   overflow-y: auto;
   padding: var(--layout-padding-x);
   display: flex;
   flex-direction: column;
-
-  &.open {
-    transform: translateX(0);
-  }
 
   @media (max-width: $breakpoint-lg-max) {
     width: calc(100vw - 425px - var(--layout-padding-x));
@@ -45,10 +34,6 @@
     left: 0;
     height: 100vh;
     transform: translateY(100%);
-
-    &.open {
-      transform: translateY(0);
-    }
   }
 }
 

@@ -8,29 +8,40 @@ import styles from './StickerWall.module.scss'
 
 gsap.registerPlugin(InertiaPlugin, Draggable)
 
-interface StickerItemProps {
+interface StickerData {
     src: string
     left: number
     top: number
     rotation: number
 }
 
+interface StickerItemProps extends StickerData {
+    index: number
+}
+
 interface StickerWallProps {
     stickers: string[]
 }
 
-const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotation}) => {
+const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotation, index}) => {
     const elementRef = useRef<HTMLDivElement>(null)
 
     useLayoutEffect(() => {
         const el = elementRef.current
         if (!el) return
-        gsap.set(el, {rotate: rotation})
+        gsap.set(el, {rotate: rotation, scale: 0})
     }, [rotation])
 
     useEffect(() => {
         const el = elementRef.current
         if (!el) return
+
+        gsap.to(el, {
+            scale: 1,
+            duration: 0.6,
+            ease: 'back.out(1.7)',
+            delay: index * 0.08,
+        })
 
         const offset = Math.random() * 2
         const floatTween = gsap.to(el, {
@@ -88,7 +99,7 @@ const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotat
 }
 
 export const StickerWall: FunctionComponent<StickerWallProps> = ({stickers}) => {
-    const [stickerData, setStickerData] = useState<StickerItemProps[] | null>(null)
+    const [stickerData, setStickerData] = useState<StickerData[] | null>(null)
 
     useEffect(() => {
         if (!stickers.length) return
@@ -116,8 +127,8 @@ export const StickerWall: FunctionComponent<StickerWallProps> = ({stickers}) => 
 
     return (
         <div className={styles.wall} aria-hidden="true">
-            {stickerData.map((data) => (
-                <StickerItem key={data.src} {...data}/>
+            {stickerData.map((data, i) => (
+                <StickerItem key={data.src} {...data} index={i}/>
             ))}
         </div>
     )
