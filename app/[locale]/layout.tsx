@@ -8,7 +8,6 @@ import {Footer} from '@/components/Footer/Footer'
 import {DogEarSyncProvider} from '@/contexts/DogEarSync'
 import {GridTransition} from '@/components/GridTransition/GridTransition'
 import {siteUrl, socialLinks} from '@/constants/site'
-import {AnimatedFavicon} from '@/components/AnimatedFavicon/AnimatedFavicon'
 
 const baseURL = siteUrl
 
@@ -52,15 +51,15 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={GeistMono.variable}>
             <head>
+                <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
             </head>
             <body>
-                <AnimatedFavicon/>
-                <GridTransition/>
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
                 />
+                <GridTransition/>
                 <NextIntlClientProvider messages={messages}>
                     <DogEarSyncProvider>
                         <Navigation/>
