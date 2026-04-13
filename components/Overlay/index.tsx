@@ -3,16 +3,14 @@ import {FunctionComponent, PropsWithChildren, useEffect, useRef} from 'react'
 import styles from './index.module.scss'
 import {classNames} from '@/components/utils/classNames'
 
-export type OverlayIcon = 'architecture' | 'culture' | 'urbanism' | 'design' // TODO: přiřadit SVG ikonám
-
 interface OverlayProps {
     readonly isOpen: boolean
     readonly handleClose: () => void
     readonly className?: string
-    readonly icons?: OverlayIcon[]
+    readonly iconUrls?: string[]
 }
 
-const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, icons}) => {
+const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, iconUrls}) => {
     const closeButtonRef = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
@@ -62,11 +60,10 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
                             <line x1="28" y1="2" x2="2" y2="28" stroke="currentColor" strokeWidth="1.5"/>
                         </svg>
                     </button>
-                    {icons && icons.length > 0 && (
+                    {iconUrls && iconUrls.length > 0 && (
                         <div className={styles.icons}>
-                            {/* TODO: nahradit skutečnými SVG ikonami */}
-                            {icons.map(icon => (
-                                <span key={icon} className={styles.icon} data-icon={icon}/>
+                            {iconUrls.map(url => (
+                                <img key={url} src={url} alt="" className={styles.icon}/>
                             ))}
                         </div>
                     )}

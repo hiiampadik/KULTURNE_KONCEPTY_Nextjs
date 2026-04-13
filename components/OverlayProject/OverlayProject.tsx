@@ -16,19 +16,25 @@ export interface OverlayProjectData {
     subtitle?: SimpleBlockContent | null
     description?: SimpleBlockContent | null
     gallery?: Array<{_key: string} & ImageObject> | null
+    fields?: Array<{_id: string; title: string | null | undefined}> | null
 }
 
 interface OverlayProjectProps {
     readonly isOpen: boolean
     readonly handleClose: () => void
     readonly project: OverlayProjectData | null
+    readonly fieldIconMap?: Record<string, string>
 }
 
-export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, handleClose, project}) => {
+export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, handleClose, project, fieldIconMap = {}}) => {
     const t = useTranslations('OverlayProject')
 
+    const iconUrls = project?.fields
+        ?.map(f => fieldIconMap[f._id])
+        .filter(Boolean) ?? []
+
     return (
-        <Overlay isOpen={isOpen} handleClose={handleClose}>
+        <Overlay isOpen={isOpen} handleClose={handleClose} iconUrls={iconUrls}>
             {project && (
                 <>
                     <h2 className={styles.title}>{project.title}</h2>

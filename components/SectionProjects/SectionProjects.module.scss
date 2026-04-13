@@ -22,8 +22,26 @@
     }
 }
 
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .date {
     @include date;
+}
+
+.fieldIcons {
+    display: flex;
+    gap: 2px;
+}
+
+.fieldIcon {
+    width: 50px;
+    height: 60px;
+    object-fit: contain;
 }
 
 .cardMain {

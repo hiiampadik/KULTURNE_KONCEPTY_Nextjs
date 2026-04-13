@@ -13,14 +13,21 @@ export default async function Home() {
     const t = await getTranslations('Sections')
     const tRef = await getTranslations('References')
 
+    const fieldIconMap: Record<string, string> = {}
+    for (const field of data?.fields ?? []) {
+        if (field._id && field.icon?.asset?.url) {
+            fieldIconMap[field._id] = field.icon.asset.url
+        }
+    }
+
     return (
         <>
             <StickerWall stickers={(data?.stickers ?? []).map((s: any) => s.asset?.url).filter(Boolean)}/>
             <div className={styles.page}>
                 <SectionWhoWeAre id="who-we-are" aboutUs={data?.aboutUs}/>
                 <SectionFields id="fields" fields={data?.fields}/>
-                <SectionProjects id="projects" title={t('projects')} items={data?.projects}/>
-                <SectionProjects id="references" title={t('references')} subtitle={tRef('subtitle')} items={data?.references}/>
+                <SectionProjects id="projects" title={t('projects')} items={data?.projects} fieldIconMap={fieldIconMap}/>
+                <SectionProjects id="references" title={t('references')} subtitle={tRef('subtitle')} items={data?.references} fieldIconMap={fieldIconMap}/>
             </div>
         </>
     )

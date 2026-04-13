@@ -5,6 +5,19 @@
     @include shadow;
     padding: 30px;
     display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.fieldIcon {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.fieldContent {
+    display: flex;
     flex-direction: column;
     gap: 14px;
 }

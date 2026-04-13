@@ -21,7 +21,7 @@ export interface ProjectItem {
     web: LinkText | null | undefined
     location: LinkText | null | undefined
     gallery: Array<{_key: string} & ImageObject> | null | undefined
-    fields: Array<{title: string | null | undefined}> | null | undefined
+    fields: Array<{_id: string; title: string | null | undefined}> | null | undefined
 }
 
 interface SectionProjectsProps {
@@ -29,53 +29,70 @@ interface SectionProjectsProps {
     title: string
     subtitle?: string
     items: ProjectItem[] | null | undefined
+    fieldIconMap?: Record<string, string>
 }
 
-export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, title, subtitle, items}) => {
+export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, title, subtitle, items, fieldIconMap = {}}) => {
     const [selected, setSelected] = useState<OverlayProjectData | null>(null)
 
     return (
         <>
             <SectionContainer id={id} color="red" title={title} subtitle={subtitle}>
-                {items?.map((item, index) => (
-                    <DogEar key={item._id} corner="bottom-left" size={0} hoverSize={45} shadow bgTriangle>
-                        <button
-                            type="button"
-                            className={classNames([styles.card, index === 0 && styles.firstCard])}
-                            onClick={() => setSelected(item)}
-                        >
-                            {item.date && (
-                                <p className={styles.date}>{item.date}</p>
-                            )}
-                            <div className={styles.cardMain}>
-                                <div className={styles.cover}>
-                                    {item.cover?.asset ? (
-                                        <Figure
-                                            image={item.cover}
-                                            alt={item.cover.altTextSk ?? item.title ?? ''}
-                                            sizes="108px"
-                                            className={styles.coverImage}
-                                        />
-                                    ) : (
-                                        <div className={styles.coverPlaceholder}/>
+                {items?.map((item, index) => {
+                    const icons = item.fields
+                        ?.map(f => fieldIconMap[f._id])
+                        .filter(Boolean) ?? []
+
+                    return (
+                        <DogEar key={item._id} corner="bottom-left" size={0} hoverSize={45} shadow bgTriangle>
+                            <button
+                                type="button"
+                                className={classNames([styles.card, index === 0 && styles.firstCard])}
+                                onClick={() => setSelected(item)}
+                            >
+                                <div className={styles.cardHeader}>
+                                    {item.date && (
+                                        <p className={styles.date}>{item.date}</p>
+                                    )}
+                                    {icons.length > 0 && (
+                                        <div className={styles.fieldIcons}>
+                                            {icons.map(url => (
+                                                <img key={url} src={url} alt="" className={styles.fieldIcon}/>
+                                            ))}
+                                        </div>
                                     )}
                                 </div>
-                                <h2 className={styles.cardTitle}>{item.title}</h2>
-                            </div>
-                            {item.subtitle && (
-                                <div className={styles.description}>
-                                    <PortableText value={item.subtitle}/>
+                                <div className={styles.cardMain}>
+                                    <div className={styles.cover}>
+                                        {item.cover?.asset ? (
+                                            <Figure
+                                                image={item.cover}
+                                                alt={item.cover.altTextSk ?? item.title ?? ''}
+                                                sizes="108px"
+                                                className={styles.coverImage}
+                                            />
+                                        ) : (
+                                            <div className={styles.coverPlaceholder}/>
+                                        )}
+                                    </div>
+                                    <h2 className={styles.cardTitle}>{item.title}</h2>
                                 </div>
-                            )}
-                        </button>
-                    </DogEar>
-                ))}
+                                {item.subtitle && (
+                                    <div className={styles.description}>
+                                        <PortableText value={item.subtitle}/>
+                                    </div>
+                                )}
+                            </button>
+                        </DogEar>
+                    )
+                })}
             </SectionContainer>
 
             <OverlayProject
                 isOpen={selected !== null}
                 handleClose={() => setSelected(null)}
                 project={selected}
+                fieldIconMap={fieldIconMap}
             />
         </>
     )

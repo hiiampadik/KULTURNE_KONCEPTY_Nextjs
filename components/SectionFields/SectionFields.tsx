@@ -9,6 +9,7 @@ interface FieldItem {
     _id: string
     title: string | null | undefined
     body: SimpleBlockContent | null | undefined
+    icon?: { asset?: { url?: string } | null } | null
 }
 
 interface SectionFieldsProps {
@@ -23,12 +24,17 @@ export const SectionFields: FunctionComponent<SectionFieldsProps> = ({id, fields
         <SectionContainer id={id} color="swamp" title={t('fields')}>
             {fields?.map((field) => (
                 <div key={field._id} className={styles.fieldItem}>
-                    <h3 className={styles.fieldTitle}>{field.title}</h3>
-                    {field.body && (
-                        <div className={styles.fieldBody}>
-                            <PortableText value={field.body}/>
-                        </div>
+                    {field.icon?.asset?.url && (
+                        <img src={field.icon.asset.url} alt="" className={styles.fieldIcon}/>
                     )}
+                    <div className={styles.fieldContent}>
+                        <h3 className={styles.fieldTitle}>{field.title}</h3>
+                        {field.body && (
+                            <div className={styles.fieldBody}>
+                                <PortableText value={field.body}/>
+                            </div>
+                        )}
+                    </div>
                 </div>
             ))}
         </SectionContainer>
