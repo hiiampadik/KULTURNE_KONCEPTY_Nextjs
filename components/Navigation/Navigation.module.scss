@@ -9,6 +9,7 @@
     top: 0;
     left: 0;
     max-height: 100vh;
+    max-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -20,6 +21,8 @@
     @media (max-width: $breakpoint-md-max) {
         position: absolute;
         left: var(--layout-padding-x);
+        top: var(--layout-padding-x);
+        padding: 0;
     }
 }
 .top {
@@ -32,6 +35,9 @@
 
     @media (max-width: $breakpoint-lg-max) {
         gap: 28px
+    }
+    @media (max-width: $breakpoint-md-max) {
+        padding: 15px var(--layout-padding-x) 10px var(--layout-padding-x);
     }
 
     .langSwitch {
@@ -89,7 +95,7 @@
 
         .logoImage {
             @include title;
-            padding: 20px var(--layout-padding-x) 30px var(--layout-padding-x);
+            padding: 0.2em var(--layout-padding-x) 0.3em var(--layout-padding-x);
             display: block;
             width: 6em;
             height: auto;

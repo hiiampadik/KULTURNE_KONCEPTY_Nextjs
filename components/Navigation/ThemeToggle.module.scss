@@ -22,11 +22,12 @@
     width: 20px;
     height: 20px;
 
-    transition: transform 0.3s ease, filter 0.4s ease;
+    transition: opacity 0.3s ease, filter 0.4s ease;
 
     @media (hover: hover) {
         &:hover {
-            transform: rotate(90deg);
+            //transform: rotate(90deg);
+            opacity: 0.5;
         }
     }
 }

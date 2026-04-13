@@ -32,7 +32,7 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
             setIsVisible(true)
             html.style.overflow = 'hidden'
             body.style.overflow = 'hidden'
-            closeButtonRef.current?.focus()
+            panelRef.current?.focus()
 
             const mobile = isMobile()
             const tl = gsap.timeline()
@@ -109,6 +109,7 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
                 role="dialog"
                 aria-modal="true"
                 aria-label="Panel"
+                tabIndex={-1}
                 inert={!isOpen}
             >
                 <div className={styles.toolbar}>

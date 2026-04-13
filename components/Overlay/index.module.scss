@@ -10,6 +10,7 @@
 }
 
 .panel {
+  outline: none;
   position: fixed;
   top: 0;
   right: 0;
@@ -33,6 +34,7 @@
     right: 0;
     left: 0;
     height: 100vh;
+    height: 100dvh;
     transform: translateY(100%);
   }
 }
