@@ -3,23 +3,32 @@
 .fieldItem {
     background: white;
     @include shadow;
-    padding: 30px;
+    padding: 30px 30px 30px 20px;
     display: flex;
     gap: 10px;
     align-items: flex-start;
+
+    @media (max-width: $breakpoint-xs-max) {
+        flex-direction: column;
+    }
+
+    &:first-child {
+        padding-top: 50px;
+    }
 }
 
 .fieldIcon {
-    width: 80px;
-    height: 60px;
+    width: 70px;
+    height: 50px;
     flex-shrink: 0;
     object-fit: contain;
 }
 
 .fieldContent {
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
 }
 
 .fieldTitle {
