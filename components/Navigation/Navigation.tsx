@@ -31,12 +31,18 @@ export const Navigation: FunctionComponent = () => {
             menuItem3Ref.current,
         ].filter(Boolean)
 
+        // Find DogEar elements inside menu items that have their own CSS shadow
+        const menuItems = [menuItem1Ref.current, menuItem2Ref.current, menuItem3Ref.current].filter(Boolean)
+        const innerShadowEls = menuItems.map(el => el!.querySelector(':scope > [class*="shadow"]')).filter(Boolean)
+
         gsap.set(items, {
             visibility: 'visible',
             yPercent: 100,
             clipPath: 'inset(100% 0 0 0)',
-            filter: 'drop-shadow(0 0 0px rgba(0, 0, 0, 0))',
+            filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0))',
         })
+
+        gsap.set(innerShadowEls, {filter: 'none'})
 
         const tl = gsap.timeline()
 
@@ -54,9 +60,9 @@ export const Navigation: FunctionComponent = () => {
         tl.to(items, {
             filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
             duration: 0.4,
-            ease: 'power2.out',
             onComplete: () => {
                 gsap.set(items, {clearProps: 'filter'})
+                gsap.set(innerShadowEls, {clearProps: 'filter'})
             },
         })
     }, [])

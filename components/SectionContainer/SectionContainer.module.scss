@@ -6,10 +6,14 @@
     scroll-margin-top: 50px;
 }
 
-.header {
+.headerReveal {
+    visibility: hidden;
     position: relative;
     z-index: 2;
     margin-bottom: -20px;
+}
+
+.header {
     display: inline-block;
     max-width: 95%;
     @include shadow;
