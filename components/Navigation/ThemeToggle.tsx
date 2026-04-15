@@ -48,7 +48,7 @@ export const ThemeToggle: FunctionComponent = () => {
         const initial = saved ?? getDefaultTheme()
         setTheme(initial)
         if (initial === 'dark') {
-            window.dispatchEvent(new CustomEvent('theme-transition', { detail: { to: 'dark' } }))
+            window.dispatchEvent(new CustomEvent('theme-transition', { detail: { to: 'dark', initial: true } }))
         }
     }, [])
 

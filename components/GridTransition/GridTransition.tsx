@@ -86,8 +86,12 @@ export const GridTransition: FunctionComponent = () => {
             gsap.set(container, { backgroundColor: dark ? GRID_LINE_DARK : GRID_LINE_LIGHT, visibility: 'visible' })
         }
 
+        const INITIAL_DELAY = 1
+
         const handleTransition = (e: Event) => {
-            const to = (e as CustomEvent<{ to: 'dark' | 'light' }>).detail.to
+            const detail = (e as CustomEvent<{ to: 'dark' | 'light'; initial?: boolean }>).detail
+            const to = detail.to
+            const delay = detail.initial ? INITIAL_DELAY : 0
             if (!fills.length) return
             gsap.killTweensOf(fills)
             gsap.killTweensOf(container)
@@ -102,6 +106,7 @@ export const GridTransition: FunctionComponent = () => {
                     x: TILE_W * v.MOVE_X,
                     y: TILE_H * v.MOVE_Y,
                     duration: v.FILLS_DURATION,
+                    delay,
                     ease: 'power2.in',
                     stagger: (index: number) => {
                         const col = index % cols
@@ -114,6 +119,7 @@ export const GridTransition: FunctionComponent = () => {
                 })
                 gsap.to(container, {
                     backgroundColor: GRID_LINE_DARK,
+                    delay,
                     duration: totalDuration,
                     ease: 'none',
                 })
