@@ -1,4 +1,0 @@
-- [x] Vytáhnout stringy z Footeru a overlay contacts do proměných, ať jsou použité pouze jednou.
-- [x] Když se animuje rožek v navigaci u kto jsme, tak se automaticky zanimuje i rožek na stránce u headru sekce kto jsme, jako kdyby byl taky překrytý. Překrytí funguje i naopak tzn překrytí na stránce a animace rožku vyvolá animaci v navigaci. Možná na to bude potřeba kontext, ale nechám to na tobě. Další dvojice, které se animují současně budou oblasti a potom projekty v navigaci budou spárované pouze ze sekcí Odzkoušené projekty. Sekce reference nebude mít dvojici v navigaci.
-- [x] Vytáhneme hlavní paddingy kolem kontentu a kolem footeru do proměnné, ať se dají jednoduše měnit až budeme řešit responzivitu.
-- [x] V navigaci obalíme top kontejner ještě jedním kontejnerem. top kontejner bude mít jako sourozence přepínání light a dark módu. Zarované kontejnery budou horizontálně. Přepínač módu bude stejný jako top kontejner, pouze bude měnit barvu. Animaci odstraníme.

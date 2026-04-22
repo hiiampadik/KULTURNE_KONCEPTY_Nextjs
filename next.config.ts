@@ -3,15 +3,25 @@ import type {NextConfig} from 'next'
 
 const withNextIntl = createNextIntlPlugin('./localization/request.ts')
 
+const isGithubPages = process.env.GITHUB_PAGES === 'true'
+
 const nextConfig: NextConfig = {
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'cdn.sanity.io',
-            },
-        ],
-    },
+    ...(isGithubPages && {
+        output: 'export',
+        images: {
+            unoptimized: true,
+        },
+    }),
+    ...(!isGithubPages && {
+        images: {
+            remotePatterns: [
+                {
+                    protocol: 'https',
+                    hostname: 'cdn.sanity.io',
+                },
+            ],
+        },
+    }),
     logging: {
         fetches: {
             fullUrl: true,
