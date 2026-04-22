@@ -9,6 +9,8 @@ import {DogEarSyncProvider} from '@/contexts/DogEarSync'
 import {GridTransition} from '@/components/GridTransition/GridTransition'
 import {siteUrl, socialLinks} from '@/constants/site'
 
+export const dynamic = 'force-static'
+
 const baseURL = siteUrl
 
 const jsonLd = {
