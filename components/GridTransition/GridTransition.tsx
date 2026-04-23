@@ -40,8 +40,11 @@ const variants = {
 
 const variantKeys = Object.keys(variants) as (keyof typeof variants)[]
 
-function randomVariant() {
-    return variants[variantKeys[Math.floor(Math.random() * variantKeys.length)]]
+let variantIndex = 0
+function nextVariant() {
+    const v = variants[variantKeys[variantIndex % variantKeys.length]]
+    variantIndex++
+    return v
 }
 
 export const GridTransition: FunctionComponent = () => {
@@ -96,7 +99,7 @@ export const GridTransition: FunctionComponent = () => {
             gsap.killTweensOf(fills)
             gsap.killTweensOf(container)
 
-            const v = randomVariant()
+            const v = nextVariant()
             const totalDuration = v.FILLS_DURATION + v.STAGGER_AMOUNT
 
             if (to === 'dark') {
