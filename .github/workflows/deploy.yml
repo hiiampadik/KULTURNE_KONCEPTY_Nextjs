@@ -1,9 +1,16 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
     branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+  # Triggered by Sanity webhook
+  repository_dispatch:
+    types: [sanity-update]
 
 permissions:
   contents: read
