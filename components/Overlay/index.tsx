@@ -95,6 +95,8 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
         return () => document.removeEventListener('keydown', onKeyDown)
     }, [isOpen, handleClose])
 
+    if (!isVisible && !isOpen) return null
+
     return (
         <>
             <div

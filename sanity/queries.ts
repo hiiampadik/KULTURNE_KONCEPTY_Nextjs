@@ -1,5 +1,18 @@
 import {groq} from 'next-sanity'
 
+export const footerQuery = groq`*[_type == "footer"][0]{
+  "contacts": contacts[language == $locale][0].value,
+  "info": info[language == $locale][0].value,
+  items[] {
+    _key,
+    title,
+    "url": document.asset->url,
+    "originalFilename": document.asset->originalFilename,
+    "size": document.asset->size,
+    "extension": document.asset->extension,
+  },
+}`
+
 export const homepageQuery = groq`*[_type == "homepage"][0]{
   "aboutUs": aboutUs[language == $locale][0].value,
   stickers[] {

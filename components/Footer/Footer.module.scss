@@ -37,7 +37,14 @@
     visibility: hidden;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+
+    @include date;
+    p {
+        @include date;
+        &:not(:last-child) {
+            margin-bottom: 1em;
+        }
+    }
 }
 
 .heading {
@@ -55,16 +62,6 @@
             text-decoration: none;
         }
     }
-}
-
-.address {
-    p {
-        @include date;
-    }
-}
-
-.detail {
-    @include date;
 }
 
 .social {
@@ -86,5 +83,56 @@
 
     [data-theme="dark"] & {
         filter: invert(1);
+    }
+}
+
+.documentsButton {
+    @include date;
+    margin: 0;
+    margin-top: 1em;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--footer-text);
+    text-decoration: underline;
+    text-decoration-color: var(--footer-text);
+    text-align: left;
+    cursor: pointer;
+
+    @media (hover: hover) {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.documentsTitle {
+    @include title;
+}
+
+.documentsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.documentItem {
+    @include date;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.documentLink {
+    color: black;
+    text-decoration: underline;
+
+    @media (hover: hover) {
+        &:hover {
+            text-decoration: none;
+        }
     }
 }

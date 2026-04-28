@@ -131,6 +131,10 @@
   @include date;
 }
 
+.contactBlock {
+  @include date;
+}
+
 .contactSocial {
   display: flex;
   gap: 10px;

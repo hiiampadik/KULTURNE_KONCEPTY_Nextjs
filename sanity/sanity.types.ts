@@ -15,6 +15,38 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type SanityFileAssetReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset'
+}
+
+export type Footer = {
+  _id: string
+  _type: 'footer'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  items?: Array<{
+    document: {
+      asset: SanityFileAssetReference
+      media?: unknown
+      _type: 'file'
+    }
+    title: string
+    _key: string
+  }>
+  info?: InternationalizedArraySimpleBlockContent
+  contacts?: InternationalizedArraySimpleBlockContent
+}
+
+export type InternationalizedArraySimpleBlockContent = Array<
+  {
+    _key: string
+  } & InternationalizedArraySimpleBlockContentValue
+>
+
 export type SanityImageAssetReference = {
   _ref: string
   _type: 'reference'
@@ -116,12 +148,6 @@ export type Project = {
     } & ImageObject
   >
 }
-
-export type InternationalizedArraySimpleBlockContent = Array<
-  {
-    _key: string
-  } & InternationalizedArraySimpleBlockContentValue
->
 
 export type InternationalizedArrayLinkText = Array<
   {
@@ -354,6 +380,9 @@ export type Slug = {
 }
 
 export type AllSanitySchemaTypes =
+  | SanityFileAssetReference
+  | Footer
+  | InternationalizedArraySimpleBlockContent
   | SanityImageAssetReference
   | FieldReference
   | ProjectReference
@@ -362,7 +391,6 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Project
-  | InternationalizedArraySimpleBlockContent
   | InternationalizedArrayLinkText
   | ImageObject
   | InternationalizedArrayString

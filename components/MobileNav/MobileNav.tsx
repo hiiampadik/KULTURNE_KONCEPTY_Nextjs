@@ -1,13 +1,20 @@
 'use client'
 import {FunctionComponent, useEffect, useState} from 'react'
+import {PortableText} from 'next-sanity'
 import {useTranslations} from 'next-intl'
 import {contactInfo, socialLinks} from '@/constants/site'
+import type {SimpleBlockContent} from '@/sanity/sanity.types'
 import {classNames} from '@/components/utils/classNames'
 import Overlay from '@/components/Overlay'
 import {DogEar} from '@/components/DogEar/DogEar'
 import styles from './MobileNav.module.scss'
 
-export const MobileNav: FunctionComponent = () => {
+interface MobileNavProps {
+    readonly contacts?: SimpleBlockContent
+    readonly info?: SimpleBlockContent
+}
+
+export const MobileNav: FunctionComponent<MobileNavProps> = ({contacts, info}) => {
     const t = useTranslations('Navigation')
     const tContact = useTranslations('OverlayContact')
     const [visible, setVisible] = useState(false)
@@ -88,16 +95,32 @@ export const MobileNav: FunctionComponent = () => {
                 <div className={styles.menuContact}>
                     <h2 className={styles.contactTitle}>{tContact('title')}</h2>
                     <div className={styles.contactInfo}>
-                        <a href={`mailto:${contactInfo.email}`} className={styles.contactEmail}>
-                            {contactInfo.email}
-                        </a>
-                        <div className={styles.contactAddress}>
-                            <p>{contactInfo.address.street}</p>
-                            <p>{contactInfo.address.city}</p>
-                        </div>
-                        <p className={styles.contactDetail}>IČO: {contactInfo.ico}</p>
-                        <p className={styles.contactDetail}>© {contactInfo.copyrightYear} {contactInfo.companyName}</p>
-                        <p className={styles.contactDetail}>{tContact('allRightsReserved')}</p>
+                        {contacts ? (
+                            <div className={styles.contactBlock}>
+                                <PortableText value={contacts}/>
+                            </div>
+                        ) : (
+                            <>
+                                <a href={`mailto:${contactInfo.email}`} className={styles.contactEmail}>
+                                    {contactInfo.email}
+                                </a>
+                                <div className={styles.contactAddress}>
+                                    <p>{contactInfo.address.street}</p>
+                                    <p>{contactInfo.address.city}</p>
+                                </div>
+                            </>
+                        )}
+                        {info ? (
+                            <div className={styles.contactBlock}>
+                                <PortableText value={info}/>
+                            </div>
+                        ) : (
+                            <>
+                                <p className={styles.contactDetail}>IČO: {contactInfo.ico}</p>
+                                <p className={styles.contactDetail}>© {contactInfo.copyrightYear} {contactInfo.companyName}</p>
+                                <p className={styles.contactDetail}>{tContact('allRightsReserved')}</p>
+                            </>
+                        )}
                     </div>
                 </div>
 

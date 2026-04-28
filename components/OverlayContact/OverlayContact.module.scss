@@ -8,24 +8,18 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-}
-
-.email {
-  @include date;
-  color: black;
-}
-
-.address {
-  @include date;
-
   p {
     @include date;
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
   }
 }
 
-.detail {
-  @include date;
+.email {
+  color: black;
 }
+
 
 .social {
   display: flex;

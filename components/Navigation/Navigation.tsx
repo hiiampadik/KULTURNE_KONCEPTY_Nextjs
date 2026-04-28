@@ -5,13 +5,19 @@ import {useTranslations} from 'next-intl'
 import {LocaleSwitcher} from './LocaleSwitcher'
 import {ThemeToggle} from './ThemeToggle'
 import {socialLinks} from '@/constants/site'
+import type {SimpleBlockContent} from '@/sanity/sanity.types'
 import styles from './Navigation.module.scss'
 import {classNames} from '@/components/utils/classNames';
 import {DogEar} from '@/components/DogEar/DogEar';
 import {OverlayContact} from '@/components/OverlayContact/OverlayContact';
 import {useDogEarSync} from '@/contexts/DogEarSync';
 
-export const Navigation: FunctionComponent = () => {
+interface NavigationProps {
+    readonly contacts?: SimpleBlockContent
+    readonly info?: SimpleBlockContent
+}
+
+export const Navigation: FunctionComponent<NavigationProps> = ({contacts, info}) => {
     const t = useTranslations('Navigation')
     const [contactOpen, setContactOpen] = useState(false)
     const {hoveredSection, setHoveredSection} = useDogEarSync()
@@ -127,7 +133,7 @@ export const Navigation: FunctionComponent = () => {
 
             </nav>
 
-            <OverlayContact isOpen={contactOpen} handleClose={() => setContactOpen(false)}/>
+            <OverlayContact isOpen={contactOpen} handleClose={() => setContactOpen(false)} contacts={contacts} info={info}/>
         </>
     )
 }

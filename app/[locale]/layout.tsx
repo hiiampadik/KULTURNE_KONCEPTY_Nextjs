@@ -8,6 +8,9 @@ import {Footer} from '@/components/Footer/Footer'
 import {DogEarSyncProvider} from '@/contexts/DogEarSync'
 import {GridTransition} from '@/components/GridTransition/GridTransition'
 import {siteUrl, socialLinks} from '@/constants/site'
+import {sanityFetch} from '@/sanity/client'
+import {footerQuery} from '@/sanity/queries'
+import type {SimpleBlockContent} from '@/sanity/sanity.types'
 
 export const dynamic = 'force-static'
 
@@ -51,6 +54,11 @@ export default async function LocaleLayout({
     const {locale} = await params
     setRequestLocale(locale)
     const messages = await getMessages({locale})
+    const footerData = await sanityFetch({query: footerQuery, params: {locale}}) as {
+        contacts?: SimpleBlockContent
+        info?: SimpleBlockContent
+        items?: Array<{_key: string; title: string; url: string; originalFilename?: string; size?: number; extension?: string}>
+    } | null
     return (
         <html lang={locale} className={GeistMono.variable}>
             <head>
@@ -69,13 +77,13 @@ export default async function LocaleLayout({
                 <GridTransition/>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <DogEarSyncProvider>
-                        <Navigation/>
-                        <MobileNav/>
+                        <Navigation contacts={footerData?.contacts} info={footerData?.info}/>
+                        <MobileNav contacts={footerData?.contacts} info={footerData?.info}/>
                         <main>
                             {children}
                         </main>
                     </DogEarSyncProvider>
-                    <Footer/>
+                    <Footer contacts={footerData?.contacts} info={footerData?.info} items={footerData?.items}/>
                 </NextIntlClientProvider>
             </body>
         </html>
