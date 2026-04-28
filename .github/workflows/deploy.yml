@@ -53,6 +53,21 @@ jobs:
         env:
           GITHUB_PAGES: "true"
 
+      - name: Generate sitemap
+        run: npx next-sitemap
+
+      - name: Add trailing-slash redirects
+        run: |
+          find ./out -name '*.html' ! -name 'index.html' ! -name '404.html' | while read file; do
+            dir="${file%.html}"
+            target="/${dir#./out/}"
+            if [ -d "$dir" ]; then
+              if [ ! -f "$dir/index.html" ]; then
+                echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://www.kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
+              fi
+            fi
+          done
+
       - name: Add .nojekyll
         run: touch ./out/.nojekyll
 

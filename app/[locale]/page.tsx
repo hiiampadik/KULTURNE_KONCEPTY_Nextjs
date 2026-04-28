@@ -1,4 +1,4 @@
-import {getLocale, getTranslations} from 'next-intl/server'
+import {getTranslations, setRequestLocale} from 'next-intl/server'
 import {sanityFetch} from '@/sanity/client'
 import {homepageQuery} from '@/sanity/queries'
 import {StickerWall} from '@/components/StickerWall/StickerWall'
@@ -7,11 +7,12 @@ import {SectionFields} from '@/components/SectionFields/SectionFields'
 import {SectionProjects} from '@/components/SectionProjects/SectionProjects'
 import styles from './page.module.scss'
 
-export default async function Home() {
-    const locale = await getLocale()
+export default async function Home({params}: {params: Promise<{locale: string}>}) {
+    const {locale} = await params
+    setRequestLocale(locale)
     const data = await sanityFetch({query: homepageQuery, params: {locale}})
-    const t = await getTranslations('Sections')
-    const tRef = await getTranslations('References')
+    const t = await getTranslations({locale, namespace: 'Sections'})
+    const tRef = await getTranslations({locale, namespace: 'References'})
 
     const fieldIconMap: Record<string, string> = {}
     for (const field of data?.fields ?? []) {

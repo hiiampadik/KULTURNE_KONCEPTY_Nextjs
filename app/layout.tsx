@@ -8,7 +8,6 @@ const keywords = '' // TODO
 
 export const metadata: Metadata = {
     metadataBase: new URL(baseURL),
-    alternates: {canonical: baseURL},
     title: 'Kultúrne Koncepty',
     description: description,
     keywords: keywords,

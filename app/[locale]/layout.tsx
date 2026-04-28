@@ -1,6 +1,6 @@
 import {GeistMono} from 'geist/font/mono'
 import {NextIntlClientProvider} from 'next-intl'
-import {getMessages} from 'next-intl/server'
+import {getMessages, setRequestLocale} from 'next-intl/server'
 import {routing} from '@/localization/routing'
 import {Navigation} from '@/components/Navigation/Navigation'
 import {MobileNav} from '@/components/MobileNav/MobileNav'
@@ -49,10 +49,15 @@ export default async function LocaleLayout({
     params: Promise<{locale: string}>,
 }) {
     const {locale} = await params
-    const messages = await getMessages()
+    setRequestLocale(locale)
+    const messages = await getMessages({locale})
     return (
         <html lang={locale} className={GeistMono.variable}>
             <head>
+                <link rel="canonical" href={`${baseURL}${locale}`} />
+                <link rel="alternate" href={`${baseURL}sk`} hrefLang="sk" />
+                <link rel="alternate" href={`${baseURL}en`} hrefLang="en" />
+                <link rel="alternate" href={`${baseURL}sk`} hrefLang="x-default" />
                 <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
                 <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
             </head>
@@ -62,7 +67,7 @@ export default async function LocaleLayout({
                     dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
                 />
                 <GridTransition/>
-                <NextIntlClientProvider messages={messages}>
+                <NextIntlClientProvider locale={locale} messages={messages}>
                     <DogEarSyncProvider>
                         <Navigation/>
                         <MobileNav/>
