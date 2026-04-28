@@ -8,6 +8,7 @@ const isGithubPages = process.env.GITHUB_PAGES === 'true'
 const nextConfig: NextConfig = {
     ...(isGithubPages && {
         output: 'export',
+        basePath: '/KULTURNE_KONCEPTY_Nextjs', // To be removed in future when using custom domain
         images: {
             unoptimized: true,
         },
