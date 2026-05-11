@@ -2,20 +2,18 @@
 
 .wall {
     position: relative;
-    width: 100%;
-    height: calc(100vh - 207px);
-    height: calc(100dvh - 207px);
+    width: 100vw;
     overflow: visible;
+    overflow-x: hidden;
+    height: calc(100vh - 207px);
     pointer-events: none;
     z-index: 1000;
 
     @media (max-width: $breakpoint-lg-max) {
         height: calc(100vh - 196px);
-        height: calc(100dvh - 196px);
     }
     @media (max-width: $breakpoint-md-max) {
-        height: calc(100vh - 1px);
-        height: calc(100dvh - 1px);
+        height: calc(100vh + 5px);
     }
 }
 

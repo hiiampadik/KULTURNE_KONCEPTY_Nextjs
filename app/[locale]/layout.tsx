@@ -61,18 +61,22 @@ export default async function LocaleLayout({
     } | null
     return (
         <html lang={locale} className={GeistMono.variable}>
-            <head>
-                <link rel="canonical" href={`${baseURL}${locale}`} />
-                <link rel="alternate" href={`${baseURL}sk`} hrefLang="sk" />
-                <link rel="alternate" href={`${baseURL}en`} hrefLang="en" />
-                <link rel="alternate" href={`${baseURL}sk`} hrefLang="x-default" />
-                <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/>
-                <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
-            </head>
-            <body>
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+        <head>
+            <link rel="canonical" href={`${baseURL}${locale}`}/>
+            <link rel="alternate" href={`${baseURL}sk`} hrefLang="sk"/>
+            <link rel="alternate" href={`${baseURL}en`} hrefLang="en"/>
+            <link rel="alternate" href={`${baseURL}sk`} hrefLang="x-default"/>
+            <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2"
+                  crossOrigin="anonymous"/>
+            {/*<link rel="stylesheet" href="https://use.typekit.net/hcm5cdz.css"/>*/}
+            <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
+
+
+        </head>
+        <body>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
                 />
                 <GridTransition/>
                 <NextIntlClientProvider locale={locale} messages={messages}>

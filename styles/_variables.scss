@@ -67,14 +67,14 @@ $grey: #C1C1C1;
 }
 
 @mixin body-text {
-  font-family: 'cy', serif;
+  font-family: 'cy', sans-serif;
   font-size: 17px;
   line-height: 130%;
   font-weight: 600;
 }
 
 @mixin perex {
-  font-family: 'cy', serif;
+  font-family: 'cy', sans-serif;
   font-size: 26px;
   line-height: 120%;
   font-weight: 600;

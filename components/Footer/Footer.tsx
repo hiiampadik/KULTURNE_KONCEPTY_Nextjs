@@ -143,7 +143,7 @@ export const Footer: FunctionComponent<FooterProps> = ({contacts, info, items}) 
             <Overlay isOpen={documentsOpen} handleClose={() => setDocumentsOpen(false)}>
                 <h2 className={styles.documentsTitle}>{t('documents')}</h2>
                 <ul className={styles.documentsList}>
-                    {items.map(item => (
+                    {[...items].sort((a, b) => a.title.localeCompare(b.title)).map(item => (
                         <li key={item._key} className={styles.documentItem}>
                             <a
                                 href={`${item.url}?dl=${item.originalFilename || item.title}`}

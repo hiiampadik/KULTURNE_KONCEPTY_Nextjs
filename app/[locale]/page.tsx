@@ -24,11 +24,13 @@ export default async function Home({params}: {params: Promise<{locale: string}>}
     return (
         <>
             <StickerWall stickers={(data?.stickers ?? []).map((s: any) => s.asset?.url).filter(Boolean)}/>
-            <div className={styles.page}>
-                <SectionWhoWeAre id="who-we-are" aboutUs={data?.aboutUs}/>
-                <SectionFields id="fields" fields={data?.fields}/>
-                <SectionProjects id="projects" title={t('projects')} items={data?.projects} fieldIconMap={fieldIconMap}/>
-                <SectionProjects id="references" title={t('references')} subtitle={tRef('subtitle')} items={data?.references} fieldIconMap={fieldIconMap}/>
+            <div className={styles.wrap}>
+                <div className={styles.page}>
+                    <SectionWhoWeAre id="who-we-are" aboutUs={data?.aboutUs}/>
+                    <SectionFields id="fields" fields={data?.fields}/>
+                    <SectionProjects id="projects" title={t('projects')} items={data?.projects} fieldIconMap={fieldIconMap}/>
+                    <SectionProjects id="references" title={t('references')} subtitle={tRef('subtitle')} items={data?.references} fieldIconMap={fieldIconMap}/>
+                </div>
             </div>
         </>
     )
