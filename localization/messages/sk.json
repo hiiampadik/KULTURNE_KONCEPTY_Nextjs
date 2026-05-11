@@ -21,6 +21,10 @@
     "followUs": "Sledujte nás",
     "allRightsReserved": "Všetky práva vyhradené"
   },
+  "OverlaySupport": {
+    "title": "Podporte nás",
+    "close": "Zavrieť"
+  },
   "OverlayProject": {
     "active": "Aktivný projekt",
     "completed": "Dokončený projekt",

@@ -123,7 +123,7 @@ export const StickerWall: FunctionComponent<StickerWallProps> = ({stickers}) => 
         })
     }, [stickers])
 
-    if (!stickerData) return <div className={styles.wall} aria-hidden="true" />
+    if (!stickerData) return <div className={styles.wall} aria-hidden="true"/>
 
     return (
         <div className={styles.wall} aria-hidden="true">

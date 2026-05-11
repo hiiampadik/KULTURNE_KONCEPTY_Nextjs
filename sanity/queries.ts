@@ -3,6 +3,7 @@ import {groq} from 'next-sanity'
 export const footerQuery = groq`*[_type == "footer"][0]{
   "contacts": contacts[language == $locale][0].value,
   "info": info[language == $locale][0].value,
+  "support": support[language == $locale][0].value,
   items[] {
     _key,
     title,

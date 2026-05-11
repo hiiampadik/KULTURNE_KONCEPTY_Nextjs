@@ -57,6 +57,7 @@ export default async function LocaleLayout({
     const footerData = await sanityFetch({query: footerQuery, params: {locale}}) as {
         contacts?: SimpleBlockContent
         info?: SimpleBlockContent
+        support?: SimpleBlockContent
         items?: Array<{_key: string; title: string; url: string; originalFilename?: string; size?: number; extension?: string}>
     } | null
     return (
@@ -81,7 +82,7 @@ export default async function LocaleLayout({
                 <GridTransition/>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <DogEarSyncProvider>
-                        <Navigation contacts={footerData?.contacts} info={footerData?.info}/>
+                        <Navigation contacts={footerData?.contacts} info={footerData?.info} support={footerData?.support}/>
                         <MobileNav contacts={footerData?.contacts} info={footerData?.info}/>
                         <main>
                             {children}

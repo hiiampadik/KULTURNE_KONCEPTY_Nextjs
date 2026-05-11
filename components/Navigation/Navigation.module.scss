@@ -4,6 +4,28 @@
     visibility: hidden;
 }
 
+.supportCorner {
+    z-index: 999;
+    margin-top: calc(2*var(--layout-padding-x));
+    @include shadow;
+}
+
+.supportButton {
+    border: none;
+    background: $grey;
+    cursor: pointer;
+    padding: 20px 45px 20px var(--layout-padding-x);
+    @include date;
+    color: black;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s ease;
+
+    &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: -6px;
+    }
+}
+
 .nav {
     position: fixed;
     top: 0;

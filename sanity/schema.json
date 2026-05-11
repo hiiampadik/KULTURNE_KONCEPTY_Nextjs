@@ -133,6 +133,14 @@
         },
         "optional": true
       },
+      "support": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "internationalizedArraySimpleBlockContent"
+        },
+        "optional": true
+      },
       "contacts": {
         "type": "objectAttribute",
         "value": {

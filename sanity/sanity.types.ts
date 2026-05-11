@@ -38,6 +38,7 @@ export type Footer = {
     _key: string
   }>
   info?: InternationalizedArraySimpleBlockContent
+  support?: InternationalizedArraySimpleBlockContent
   contacts?: InternationalizedArraySimpleBlockContent
 }
 

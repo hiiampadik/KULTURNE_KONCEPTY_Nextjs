@@ -21,6 +21,10 @@
     "followUs": "Follow us",
     "allRightsReserved": "All rights reserved"
   },
+  "OverlaySupport": {
+    "title": "Support us",
+    "close": "Close"
+  },
   "OverlayProject": {
     "active": "Active project",
     "completed": "Completed project",

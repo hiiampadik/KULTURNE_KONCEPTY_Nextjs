@@ -3,8 +3,8 @@
 .wall {
     position: relative;
     width: 100vw;
-    overflow: visible;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     height: calc(100vh - 207px);
     pointer-events: none;
     z-index: 1000;
