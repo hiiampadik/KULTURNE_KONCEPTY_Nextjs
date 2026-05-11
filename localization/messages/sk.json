@@ -28,7 +28,8 @@
   "OverlayProject": {
     "active": "Aktivný projekt",
     "completed": "Dokončený projekt",
-    "location": "Miesto"
+    "location": "Miesto",
+    "copyLink": "Kopírovať odkaz"
   },
   "References": {
     "subtitle": "základného tímu KK\nM. Bohumelová, B. Hromádková, A. Kusá\n(výber)"

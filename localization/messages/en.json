@@ -28,7 +28,8 @@
   "OverlayProject": {
     "active": "Active project",
     "completed": "Completed project",
-    "location": "Location"
+    "location": "Location",
+    "copyLink": "Copy link"
   },
   "References": {
     "subtitle": "of the core KK team\nM. Bohumelová, B. Hromádková, A. Kusá\n(selection)"

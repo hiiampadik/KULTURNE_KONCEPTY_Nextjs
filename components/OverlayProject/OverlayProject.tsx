@@ -1,5 +1,5 @@
 'use client'
-import {FunctionComponent, useRef} from 'react'
+import {FunctionComponent, useState} from 'react'
 import {PortableText} from 'next-sanity'
 import {useTranslations} from 'next-intl'
 import Overlay from '@/components/Overlay'
@@ -8,6 +8,7 @@ import {ImageObject, LinkText, SimpleBlockContent} from '@/sanity/sanity.types'
 import styles from './OverlayProject.module.scss'
 
 export interface OverlayProjectData {
+    id?: string
     title: string | null | undefined
     active?: boolean | null
     date?: string | null
@@ -28,20 +29,31 @@ interface OverlayProjectProps {
 
 export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, handleClose, project, fieldIconMap = {}}) => {
     const t = useTranslations('OverlayProject')
-    const lastProjectRef = useRef<OverlayProjectData | null>(null)
+    const [lastProject, setLastProject] = useState<OverlayProjectData | null>(project)
 
-    if (project) {
-        lastProjectRef.current = project
+    if (project && project !== lastProject) {
+        setLastProject(project)
     }
 
-    const displayProject = project ?? lastProjectRef.current
+    const displayProject = project ?? lastProject
 
     const iconUrls = displayProject?.fields
         ?.map(f => fieldIconMap[f._id])
         .filter(Boolean) ?? []
 
+    const handleCopyLink = () => {
+        if (typeof window === 'undefined') return
+        navigator.clipboard?.writeText(window.location.href)
+    }
+
+    const linkButton = displayProject?.id ? (
+        <button type="button" className={styles.linkButton} onClick={handleCopyLink} aria-label={t('copyLink')}>
+            <img src="/link.svg" alt="" aria-hidden="true"/>
+        </button>
+    ) : null
+
     return (
-        <Overlay isOpen={isOpen} handleClose={handleClose} iconUrls={iconUrls}>
+        <Overlay isOpen={isOpen} handleClose={handleClose} iconUrls={iconUrls} toolbarExtras={linkButton}>
             {displayProject && (
                 <>
                     <h2 className={styles.title}>{displayProject.title}</h2>

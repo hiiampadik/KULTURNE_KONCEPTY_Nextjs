@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FunctionComponent, useState} from 'react'
+import React, {FunctionComponent, useEffect, useState} from 'react'
 import {PortableText} from 'next-sanity'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
 import {Figure} from '@/components/Figure/Figure'
@@ -32,8 +32,39 @@ interface SectionProjectsProps {
     fieldIconMap?: Record<string, string>
 }
 
+const PROJECT_PARAM = 'project'
+
 export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, title, subtitle, items, fieldIconMap = {}}) => {
     const [selected, setSelected] = useState<OverlayProjectData | null>(null)
+
+    const setUrlParam = (projectId: string | null) => {
+        const url = new URL(window.location.href)
+        if (projectId) {
+            url.searchParams.set(PROJECT_PARAM, projectId)
+        } else {
+            url.searchParams.delete(PROJECT_PARAM)
+        }
+        window.history.replaceState(null, '', url.toString())
+    }
+
+    const openProject = (item: ProjectItem) => {
+        setSelected({...item, id: item._id})
+        setUrlParam(item._id)
+    }
+
+    const closeProject = () => {
+        setSelected(null)
+        setUrlParam(null)
+    }
+
+    useEffect(() => {
+        if (!items) return
+        const params = new URLSearchParams(window.location.search)
+        const projectId = params.get(PROJECT_PARAM)
+        if (!projectId) return
+        const found = items.find(item => item._id === projectId)
+        if (found) setSelected({...found, id: found._id})
+    }, [items])
 
     return (
         <>
@@ -48,7 +79,7 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
                             <button
                                 type="button"
                                 className={classNames([styles.card, index === 0 && styles.firstCard])}
-                                onClick={() => setSelected(item)}
+                                onClick={() => openProject(item)}
                             >
                                 <div className={styles.cardHeader}>
                                     {item.date && (
@@ -90,7 +121,7 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
 
             <OverlayProject
                 isOpen={selected !== null}
-                handleClose={() => setSelected(null)}
+                handleClose={closeProject}
                 project={selected}
                 fieldIconMap={fieldIconMap}
             />

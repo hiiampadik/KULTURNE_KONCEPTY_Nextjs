@@ -6,8 +6,13 @@
 
 .supportCorner {
     z-index: 999;
-    margin-top: calc(2*var(--layout-padding-x));
+    margin-top: auto;
     @include shadow;
+
+    @media (max-width: $breakpoint-md-max) {
+        margin-top: var(--layout-padding-x);
+    }
+
 }
 
 .supportButton {
@@ -30,20 +35,22 @@
     position: fixed;
     top: 0;
     left: 0;
-    max-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
     z-index: 999;
     padding: 50px 0 50px;
-    overflow-y: clip;
+    overflow-y: scroll;
 
     @media (max-width: $breakpoint-md-max) {
         position: absolute;
         left: var(--layout-padding-x);
         top: var(--layout-padding-x);
         padding: 0;
+
+        height: calc(100vh - 50px);
     }
 }
 .top {

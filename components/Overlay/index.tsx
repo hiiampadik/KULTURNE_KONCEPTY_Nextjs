@@ -1,5 +1,5 @@
 'use client'
-import {FunctionComponent, PropsWithChildren, useCallback, useEffect, useRef, useState} from 'react'
+import {FunctionComponent, PropsWithChildren, ReactNode, useCallback, useEffect, useRef, useState} from 'react'
 import {gsap} from 'gsap'
 import styles from './index.module.scss'
 import {classNames} from '@/components/utils/classNames'
@@ -9,11 +9,12 @@ interface OverlayProps {
     readonly handleClose: () => void
     readonly className?: string
     readonly iconUrls?: string[]
+    readonly toolbarExtras?: ReactNode
 }
 
 const MOBILE_BREAKPOINT = 991
 
-const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, iconUrls}) => {
+const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, iconUrls, toolbarExtras}) => {
     const closeButtonRef = useRef<HTMLButtonElement>(null)
     const backdropRef = useRef<HTMLDivElement>(null)
     const panelRef = useRef<HTMLDivElement>(null)
@@ -115,12 +116,15 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
                 inert={!isOpen}
             >
                 <div className={styles.toolbar}>
-                    <button ref={closeButtonRef} className={styles.closeButton} onClick={handleClose} aria-label="Close">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <line x1="2" y1="2" x2="28" y2="28" stroke="currentColor" strokeWidth="1.5"/>
-                            <line x1="28" y1="2" x2="2" y2="28" stroke="currentColor" strokeWidth="1.5"/>
-                        </svg>
-                    </button>
+                    <div className={styles.closeGroup}>
+                        <button ref={closeButtonRef} className={styles.closeButton} onClick={handleClose} aria-label="Close">
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <line x1="2" y1="2" x2="28" y2="28" stroke="currentColor" strokeWidth="1.5"/>
+                                <line x1="28" y1="2" x2="2" y2="28" stroke="currentColor" strokeWidth="1.5"/>
+                            </svg>
+                        </button>
+                        {toolbarExtras}
+                    </div>
                     {iconUrls && iconUrls.length > 0 && (
                         <div className={styles.icons}>
                             {iconUrls.map(url => (

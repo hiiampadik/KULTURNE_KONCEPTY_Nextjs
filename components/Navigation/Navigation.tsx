@@ -144,7 +144,7 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, info, 
                 </div>
 
                 <div ref={supportCornerRef} className={classNames([styles.supportCorner, styles.navRevealItem])}>
-                    <DogEar corner="top-right" size={35} hoverSize={10}>
+                    <DogEar corner="bottom-right" size={35} hoverSize={10}>
                         <button
                             type="button"
                             className={styles.supportButton}

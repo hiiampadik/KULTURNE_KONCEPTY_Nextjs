@@ -49,6 +49,16 @@
   }
 }
 
+.closeGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: $breakpoint-md-max) {
+    flex-direction: row-reverse;
+  }
+}
+
 .closeButton {
   border: none;
   background: none;
