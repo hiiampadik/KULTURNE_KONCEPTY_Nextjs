@@ -69,8 +69,7 @@ export default async function LocaleLayout({
             <link rel="alternate" href={`${baseURL}sk`} hrefLang="x-default"/>
             <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2"
                   crossOrigin="anonymous"/>
-            {/*<link rel="stylesheet" href="https://use.typekit.net/hcm5cdz.css"/>*/}
-            <link rel="stylesheet" href="https://use.typekit.net/qcq1nxm.css"/>
+            <link rel="stylesheet" href="https://use.typekit.net/hcm5cdz.css"/>
 
 
         </head>
