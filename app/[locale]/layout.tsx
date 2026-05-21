@@ -13,6 +13,7 @@ import {footerQuery} from '@/sanity/queries'
 import type {SimpleBlockContent} from '@/sanity/sanity.types'
 
 export const dynamic = 'force-static'
+export const revalidate = 60
 
 const baseURL = siteUrl
 
