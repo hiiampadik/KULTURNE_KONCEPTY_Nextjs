@@ -22,19 +22,21 @@ export const SectionFields: FunctionComponent<SectionFieldsProps> = ({id, fields
 
     return (
         <SectionContainer id={id} color="swamp" title={t('fields')}>
-            {fields?.map((field) => (
-                <div key={field._id} className={styles.fieldItem}>
-                    {field.icon?.asset?.url && (
-                        <img src={field.icon.asset.url} alt="" className={styles.fieldIcon}/>
-                    )}
-                    <div className={styles.fieldContent}>
+            {fields?.map((field, index) => (
+                <div key={field._id} className={`${styles.fieldItem} ${index === 0 ? styles.firstItem : ''}`}>
+                    <div className={styles.itemMain}>
+                        <div className={styles.iconWrapper}>
+                            {field.icon?.asset?.url && (
+                                <img src={field.icon.asset.url} alt="" className={styles.fieldIcon}/>
+                            )}
+                        </div>
                         <h3 className={styles.fieldTitle}>{field.title}</h3>
-                        {field.body && (
-                            <div className={styles.fieldBody}>
-                                <PortableText value={field.body}/>
-                            </div>
-                        )}
                     </div>
+                    {field.body && (
+                        <div className={styles.fieldBody}>
+                            <PortableText value={field.body}/>
+                        </div>
+                    )}
                 </div>
             ))}
         </SectionContainer>
