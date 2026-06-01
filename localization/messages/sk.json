@@ -2,8 +2,8 @@
   "Navigation": {
     "contact": "Kontakt",
     "menu": {
-      "whoWeAre": "Kdo sme?",
-      "fields": "Oblasti",
+      "whoWeAre": "Kto sme?",
+      "fields": "Čo ponúkame?",
       "projects": "Projekty"
     }
   },
@@ -11,10 +11,10 @@
     "close": "Zavrieť"
   },
   "Sections": {
-    "whoWeAre": "Kdo sme?",
-    "fields": "Oblasti",
-    "projects": "Odkúšané projekty",
-    "references": "Reference"
+    "whoWeAre": "Kto sme?",
+    "fields": "Čo ponúkame?",
+    "projects": "Realizované projekty",
+    "references": "Ohlasy"
   },
   "OverlayContact": {
     "title": "Kontakt",
@@ -39,5 +39,10 @@
     "followUs": "Sledujte nás",
     "allRightsReserved": "Všetky práva vyhradené",
     "documents": "Dokumenty"
+  },
+  "NotFound": {
+    "title": "Stránka neexistuje",
+    "description": "Ľutujeme, požadovanú stránku sa nepodarilo nájsť.",
+    "backHome": "Vrátiť sa na úvod"
   }
 }

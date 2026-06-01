@@ -14,17 +14,29 @@
     }
 }
 
-
 .page {
     display: flex;
     flex-direction: column;
-    gap: 60px;
-    padding: 0 var(--layout-padding-x) 20px var(--layout-padding-x);
+    gap: 24px;
+    padding: 120px var(--layout-padding-x) 60px var(--layout-padding-x);
     width: 1000px;
     max-width: 100%;
     pointer-events: auto;
+    text-align: center;
+}
 
-    @media (max-width: $breakpoint-md-max) {
-        gap: var(--layout-padding-x);
-    }
+.title {
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.link {
+    align-self: center;
+    text-decoration: underline;
+    font-size: 18px;
 }

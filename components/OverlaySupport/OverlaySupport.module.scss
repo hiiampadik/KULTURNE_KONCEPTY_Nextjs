@@ -73,4 +73,12 @@
 .body {
     margin: 0;
     @include body-text;
+
+    p {
+        margin: 0 0 1em 0;
+        em {
+            font-style: normal;
+            @include date;
+        }
+    }
 }

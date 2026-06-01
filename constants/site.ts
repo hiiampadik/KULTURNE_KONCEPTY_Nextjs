@@ -13,5 +13,5 @@ export const contactInfo = {
     },
     ico: '53 864 026',
     copyrightYear: '2026',
-    companyName: 'Kulturné Koncepty',
+    companyName: 'Kultúrne Koncepty',
 }

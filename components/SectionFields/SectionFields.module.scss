@@ -3,7 +3,7 @@
 .fieldItem {
     background: white;
     @include shadow;
-    padding: 30px 30px 30px 20px;
+    padding: 30px;
     display: flex;
     gap: 10px;
     align-items: flex-start;
@@ -15,12 +15,14 @@
     &:first-child {
         padding-top: 50px;
     }
+    max-width: calc(540px + 2 * 30px);
 }
 
 .fieldIcon {
     width: 70px;
     height: 50px;
     flex-shrink: 0;
+    margin-left: -10px;
     object-fit: contain;
 }
 
@@ -29,6 +31,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
 }
 
 .fieldTitle {
@@ -37,7 +40,6 @@
 
 .fieldBody {
     @include body-text;
-    max-width: 600px;
 
     p {
         font-size: 17px;

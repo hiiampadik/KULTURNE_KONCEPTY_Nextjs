@@ -8,11 +8,11 @@
     background: white;
     @include shadow;
     padding: 30px;
+    max-width: calc(540px + 2 * 30px);
 }
 
 .content {
     @include body-text;
-    max-width: 520px;
 
     p {
         font-size: 17px;

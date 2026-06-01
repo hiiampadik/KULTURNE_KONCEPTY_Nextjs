@@ -15,11 +15,14 @@ $text-secondary-default: #A4A4A4;
 $text-primary-default: #000;
 
 $blue: #9BB5E1;
+$blueText: #6b94d3;
 $swamp: #B0A421;
+$swampText: #B0A421;
 $red: #FF2000;
 $brown: #744428;
 $green: #3bff0e;
 $grey: #C1C1C1;
+$greyText: #e4e4e4;
 
 
 
@@ -32,7 +35,7 @@ $grey: #C1C1C1;
   font-size: 75px;
   line-height: 100%;
   font-weight: 300;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   //-webkit-text-stroke: 1px currentColor;
   paint-order: stroke fill;
 

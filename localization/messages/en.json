@@ -4,7 +4,7 @@
     "menu": {
       "whoWeAre": "Who are we?",
       "fields": "Fields",
-      "projects": "Projects"
+      "projects": "Realized projects"
     }
   },
   "Overlay": {
@@ -13,7 +13,7 @@
   "Sections": {
     "whoWeAre": "Who are we?",
     "fields": "Fields",
-    "projects": "Tested projects",
+    "projects": "Realized projects",
     "references": "References"
   },
   "OverlayContact": {
@@ -39,5 +39,10 @@
     "followUs": "Follow us",
     "allRightsReserved": "All rights reserved",
     "documents": "Documents"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "Sorry, we couldn't find the page you were looking for.",
+    "backHome": "Back to home"
   }
 }

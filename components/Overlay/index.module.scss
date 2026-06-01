@@ -15,7 +15,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: calc(100vw - 510px - var(--layout-padding-x));
+  width: calc(100vw - 580px - var(--layout-padding-x));
   z-index: 1200;
   background: white;
   @include shadow;
@@ -26,7 +26,7 @@
   flex-direction: column;
 
   @media (max-width: $breakpoint-lg-max) {
-    width: calc(100vw - 425px - var(--layout-padding-x));
+    width: calc(100vw - 480px - var(--layout-padding-x));
   }
   @media (max-width: $breakpoint-md-max) {
     width: 100vw;
