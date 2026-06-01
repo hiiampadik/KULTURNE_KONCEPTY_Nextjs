@@ -5,12 +5,18 @@
     width: 100vw;
     overflow-x: clip;
     overflow-y: visible;
-    height: calc(100vh - 400px);
+    height: calc(100vh - 140px);
     pointer-events: none;
     z-index: 1000;
 
     @media (max-width: 1900px) {
-        height: calc(100vh - 260px);
+        height: calc(100vh - 130px);
+    }
+    @media (max-width: $breakpoint-xl-max) {
+        height: calc(100vh - 110px);
+    }
+    @media (max-width: $breakpoint-lg-max) {
+        height: calc(100vh - 100px);
     }
     @media (max-width: $breakpoint-md-max) {
         height: calc(100vh);
@@ -23,8 +29,8 @@
 .stickerWrapper {
     --pad-top: 20px;
     --pad-right: 20px;
-    --pad-bottom: 20px;
-    --pad-left: 250px;
+    --pad-bottom: 100px;
+    --pad-left: 350px;
 
     position: absolute;
     left: calc(var(--pad-left) + (100% - var(--pad-left) - var(--pad-right)) * var(--sx));
