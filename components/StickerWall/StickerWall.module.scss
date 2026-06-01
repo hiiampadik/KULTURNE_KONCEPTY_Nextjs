@@ -15,18 +15,32 @@
     @media (max-width: $breakpoint-md-max) {
         height: calc(100vh + 5px);
     }
+    @media (max-width: $breakpoint-xs-max) {
+        z-index: 1;
+    }
 }
 
 .stickerWrapper {
+    --pad-top: 20px;
+    --pad-right: 20px;
+    --pad-bottom: 20px;
+    --pad-left: 250px;
+
     position: absolute;
-    left: var(--sx);
-    top: var(--sy);
+    left: calc(var(--pad-left) + (100% - var(--pad-left) - var(--pad-right)) * var(--sx));
+    top: calc(var(--pad-top) + (100% - var(--pad-top) - var(--pad-bottom)) * var(--sy));
+
+    @media (max-width: $breakpoint-md-max) {
+        --pad-left: 20px;
+    }
 
     @media (hover: hover) {
-        &:hover {
-            .image {
-                filter: blur(0);
-            }
+        .image {
+            filter: blur(6px);
+        }
+
+        &:hover .image {
+            filter: blur(0);
         }
     }
 }
@@ -41,6 +55,10 @@
     &:active {
         cursor: grabbing;
     }
+
+    @media (max-width: $breakpoint-xs-max) {
+        pointer-events: none;
+    }
 }
 
 .image {
@@ -50,7 +68,6 @@
     width: auto;
     pointer-events: none;
     object-fit: contain;
-    filter: blur(6px);
     transition: filter 0.4s ease;
 
     @media (max-width: $breakpoint-md-max) {

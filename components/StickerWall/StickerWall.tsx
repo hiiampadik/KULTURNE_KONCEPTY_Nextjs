@@ -89,7 +89,7 @@ const StickerItem: FunctionComponent<StickerItemProps> = ({src, left, top, rotat
     return (
         <div
             className={styles.stickerWrapper}
-            style={{'--sx': `${left}%`, '--sy': `${top}%`} as CSSProperties}
+            style={{'--sx': left, '--sy': top} as CSSProperties}
         >
             <div ref={elementRef} className={styles.sticker}>
                 <img src={src} alt="" className={styles.image} draggable={false}/>
@@ -106,20 +106,21 @@ export const StickerWall: FunctionComponent<StickerWallProps> = ({stickers}) => 
 
         const cols = 3
         const rows = Math.max(1, Math.ceil(stickers.length / cols))
-        const cellW = 70 / cols
-        const cellH = 80 / rows
-        const zones = stickers.map((_, i) => ({
-            col: i % cols,
-            row: Math.floor(i / cols),
-        }))
+        const cellW = 1 / cols
+        const cellH = 1 / rows
+        const jitter = 0.7
 
         startTransition(() => {
-            setStickerData(stickers.map((src, i) => ({
-                src,
-                left: 25 + zones[i].col * cellW + Math.random() * (cellW - 10),
-                top: 5 + zones[i].row * cellH + Math.random() * (cellH - 10),
-                rotation: (Math.random() - 0.5) * 30,
-            })))
+            setStickerData(stickers.map((src, i) => {
+                const col = i % cols
+                const row = Math.floor(i / cols)
+                return {
+                    src,
+                    left: col * cellW + cellW * (1 - jitter) / 2 + Math.random() * cellW * jitter,
+                    top: row * cellH + cellH * (1 - jitter) / 2 + Math.random() * cellH * jitter,
+                    rotation: (Math.random() - 0.5) * 30,
+                }
+            }))
         })
     }, [stickers])
 

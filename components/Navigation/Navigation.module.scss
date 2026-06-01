@@ -7,6 +7,7 @@
 .supportCorner {
     z-index: 999;
     margin-top: auto;
+    margin-bottom: var(--layout-padding-x);
     @include shadow;
 
     @media (max-width: $breakpoint-md-max) {
@@ -20,6 +21,9 @@
     background: $grey;
     cursor: pointer;
     padding: 20px 45px 20px var(--layout-padding-x);
+    @media (max-width: $breakpoint-md-max) {
+        padding: 14px 45px 14px var(--layout-padding-x);
+    }
     @include date;
     color: black;
     letter-spacing: 0.05em;
@@ -41,16 +45,35 @@
     align-items: flex-start;
     gap: 0;
     z-index: 999;
-    padding: 50px 0 50px;
+    padding: var(--layout-padding-x) 0 0;
     overflow-y: scroll;
+
+    @media (max-height: 700px) and (min-width: $breakpoint-xl-min) {
+        .supportCorner {
+            display: none;
+        }
+    }
+    @media (max-height: 580px) and (min-width: $breakpoint-md-min) {
+        .supportCorner {
+            display: none;
+        }
+    }
+    @media (max-height: 500px) and (min-width: $breakpoint-sm-min) {
+        .supportCorner {
+            display: none;
+        }
+    }
+
+    @media (max-height: 440px) {
+        .supportCorner {
+            display: none;
+        }
+    }
 
     @media (max-width: $breakpoint-md-max) {
         position: absolute;
-        left: var(--layout-padding-x);
-        top: var(--layout-padding-x);
-        padding: 0;
-
-        height: calc(100vh - 50px);
+        padding: var(--layout-padding-x) 0;
+        height: auto;
     }
 }
 .top {
