@@ -3,7 +3,7 @@
 .fieldItem {
     background: white;
     @include shadow;
-    padding: 30px;
+    padding: var(--padding-content-box);
     display: flex;
     gap: 10px;
     align-items: flex-start;
@@ -14,7 +14,7 @@
     }
 
     &:first-child {
-        padding-top: 50px;
+        padding-top: calc(var(--padding-content-box) * 2);
     }
 }
 

@@ -33,10 +33,6 @@
     flex-direction: column;
     gap: 16px;
     opacity: 0;
-
-    @media (max-width: $breakpoint-sm-max) {
-        padding: 30px;
-    }
 }
 
 .closeButton {

@@ -3,15 +3,8 @@
 .wrap {
     display: flex;
     flex-direction: column;
-    padding-left: 580px;
+    padding-left: var(--padding-body-left);
     align-items: center;
-
-    @media (max-width: $breakpoint-lg-max) {
-        padding-left: 480px;
-    }
-    @media (max-width: $breakpoint-md-max) {
-        padding-left: 0;
-    }
 }
 
 
@@ -20,11 +13,12 @@
     flex-direction: column;
     gap: 60px;
     padding: 0 var(--layout-padding-x) 20px var(--layout-padding-x);
-    width: 1000px;
-    max-width: 100%;
+    max-width: 1000px;
+    width: 100%;
     pointer-events: auto;
 
     @media (max-width: $breakpoint-md-max) {
         gap: var(--layout-padding-x);
+        max-width: 800px;
     }
 }

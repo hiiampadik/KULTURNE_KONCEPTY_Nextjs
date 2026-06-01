@@ -3,15 +3,8 @@
 .wrap {
     display: flex;
     flex-direction: column;
-    padding-left: 580px;
+    padding-left: var(--padding-body-left);
     align-items: center;
-
-    @media (max-width: $breakpoint-lg-max) {
-        padding-left: 480px;
-    }
-    @media (max-width: $breakpoint-md-max) {
-        padding-left: 0;
-    }
 }
 
 .page {

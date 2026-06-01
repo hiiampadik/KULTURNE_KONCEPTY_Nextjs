@@ -15,21 +15,17 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: calc(100vw - 580px - var(--layout-padding-x));
+  width: calc(100vw - var(--padding-body-left));
   z-index: 1200;
   background: white;
   @include shadow;
   transform: translateX(100%);
   overflow-y: auto;
-  padding: var(--layout-padding-x);
+  padding: var(--padding-content-box);
   display: flex;
   flex-direction: column;
 
-  @media (max-width: $breakpoint-lg-max) {
-    width: calc(100vw - 480px - var(--layout-padding-x));
-  }
   @media (max-width: $breakpoint-md-max) {
-    width: 100vw;
     top: auto;
     right: 0;
     left: 0;

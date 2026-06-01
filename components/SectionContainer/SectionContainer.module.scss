@@ -28,7 +28,7 @@
 }
 
 .headerContent {
-    padding: 25px 60px 5px 30px;
+    padding: var(--padding-big-box);
     display: block;
 
     &[data-color='blue']  { background: $blue; }
@@ -37,8 +37,8 @@
 }
 
 .title {
-    margin-left: -5px;
     @include title;
+    margin-left: -0.05em;
     word-break: break-word;
 }
 

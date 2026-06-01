@@ -19,22 +19,52 @@ html {
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
   }
-  --layout-padding-x: 30px;
+
+  --layout-padding-x: 50px;
+  --padding-overlay: 50px;
+  --padding-big-box: 32px 80px 8px 32px;
+  --padding-content-box: 32px;
+  --padding-body-left: 580px;
+
   --bg: #EFEFEF;
   --toggle-container-bg: black;
   --toggle-icon-filter: invert(1);
   --footer-text: black;
 
+
+
+  @media (max-width: 1920px) {
+    --padding-big-box: 28px 70px 7px 28px;
+    --padding-content-box: 28px;
+  }
+  @media (max-width: $breakpoint-xl-max) {
+    --layout-padding-x: 40px;
+    --padding-big-box: 24px 60px 6px 24px;
+    --padding-content-box: 24px;
+  }
+
   @media (max-width: $breakpoint-lg-max) {
-    --layout-padding-x: 20px;
+    --layout-padding-x: 30px;
+    --padding-big-box: 22px 56px 5px 22px;
+    --padding-content-box: 22px;
+    --padding-body-left: 480px;
   }
 
   @media (max-width: $breakpoint-md-max) {
-    --layout-padding-x: 18px;
+    --layout-padding-x: 30px;
+    --padding-body-left: 0px;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    --layout-padding-x: 20px;
+    --padding-big-box: 20px 48px 5px 20px;
+    --padding-content-box: 20px;
   }
 
   @media (max-width: $breakpoint-xs-max) {
-    --layout-padding-x: 14px;
+    --layout-padding-x: 15px;
+    --padding-big-box: 15px 40px 4px 15px;
+    --padding-content-box: 15px;
   }
 
   &[data-theme="dark"] {

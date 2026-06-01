@@ -20,10 +20,13 @@
     border: none;
     background: $grey;
     cursor: pointer;
-    padding: 20px 45px 20px var(--layout-padding-x);
-    @media (max-width: $breakpoint-md-max) {
-        padding: 14px 45px 14px var(--layout-padding-x);
+    padding: var(--padding-content-box);
+
+    @media (min-width: $breakpoint-xl-min) {
+        padding-top: calc(var(--padding-content-box) / 1.5);
+        padding-bottom: calc(var(--padding-content-box) / 1.5);
     }
+
     @include date;
     color: black;
     letter-spacing: 0.05em;
@@ -80,15 +83,16 @@
     display: flex;
     align-items: center;
     gap: 36px;
-    padding: 20px 25px 15px var(--layout-padding-x);
+    padding: var(--padding-content-box);
+    @media (min-width: $breakpoint-xl-min) {
+        padding-top: calc(var(--padding-content-box) /2);
+        padding-bottom: calc(var(--padding-content-box) /2);
+    }
     background: white;
     @include shadow;
 
     @media (max-width: $breakpoint-lg-max) {
         gap: 28px
-    }
-    @media (max-width: $breakpoint-md-max) {
-        padding: 15px var(--layout-padding-x) 10px var(--layout-padding-x);
     }
 
     .langSwitch {
@@ -146,7 +150,9 @@
 
         .logoImage {
             @include title;
-            padding: 0.2em var(--layout-padding-x) 0.3em var(--layout-padding-x);
+            margin-top: -0.15em;
+            margin-left: 0.04em;
+            padding: var(--padding-content-box);
             display: block;
             width: 6em;
             height: auto;
@@ -167,7 +173,7 @@
         display: block;
         text-decoration: none;
         @include title;
-        padding: 25px 60px 5px var(--layout-padding-x);
+        padding: var(--padding-big-box);
 
         &:focus-visible {
             outline: 3px solid currentColor;

@@ -144,15 +144,13 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, info, 
                 </div>
 
                 <div ref={supportCornerRef} className={classNames([styles.supportCorner, styles.navRevealItem])}>
-                    <DogEar corner="bottom-right" size={35} hoverSize={10}>
-                        <button
-                            type="button"
-                            className={styles.supportButton}
-                            onClick={() => setSupportOpen(true)}
-                        >
-                            {tSupport('title')}
-                        </button>
-                    </DogEar>
+                    <button
+                        type="button"
+                        className={styles.supportButton}
+                        onClick={() => setSupportOpen(true)}
+                    >
+                        {tSupport('title')}
+                    </button>
                 </div>
 
             </nav>
