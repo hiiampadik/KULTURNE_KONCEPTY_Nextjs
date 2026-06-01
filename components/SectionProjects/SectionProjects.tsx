@@ -7,7 +7,7 @@ import {Figure} from '@/components/Figure/Figure'
 import {OverlayProject, OverlayProjectData} from '@/components/OverlayProject/OverlayProject'
 import {DogEar} from '@/components/DogEar/DogEar'
 import styles from './SectionProjects.module.scss'
-import {ImageObject, LinkText, SimpleBlockContent} from '@/sanity/sanity.types'
+import {ImageObject, LinkText, SimpleBlockContent, SimpleBlockContentWithLists} from '@/sanity/sanity.types'
 import {classNames} from '@/components/utils/classNames';
 
 export interface ProjectItem {
@@ -17,9 +17,10 @@ export interface ProjectItem {
     date: string | null | undefined
     cover: ImageObject | null | undefined
     subtitle: SimpleBlockContent | null | undefined
-    description: SimpleBlockContent | null | undefined
+    description: SimpleBlockContentWithLists | null | undefined
     web: LinkText | null | undefined
     location: LinkText | null | undefined
+    partners: Array<{_key: string; link: LinkText | null | undefined}> | null | undefined
     gallery: Array<{_key: string} & ImageObject> | null | undefined
     fields: Array<{_id: string; title: string | null | undefined}> | null | undefined
 }

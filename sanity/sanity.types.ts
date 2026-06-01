@@ -138,17 +138,28 @@ export type Project = {
     } & FieldReference
   >
   cover?: ImageObject
+  partners?: Array<{
+    link?: InternationalizedArrayLinkText
+    _type: 'partner'
+    _key: string
+  }>
   web?: InternationalizedArrayLinkText
   location?: InternationalizedArrayLinkText
   youtube?: string
   subtitle?: InternationalizedArraySimpleBlockContent
-  description: InternationalizedArraySimpleBlockContent
+  description?: InternationalizedArraySimpleBlockContentWithLists
   gallery?: Array<
     {
       _key: string
     } & ImageObject
   >
 }
+
+export type InternationalizedArraySimpleBlockContentWithLists = Array<
+  {
+    _key: string
+  } & InternationalizedArraySimpleBlockContentWithListsValue
+>
 
 export type InternationalizedArrayLinkText = Array<
   {
@@ -234,6 +245,25 @@ export type BlockContentWithHeadings = Array<{
   _key: string
 }>
 
+export type SimpleBlockContentWithLists = Array<{
+  children?: Array<{
+    marks?: Array<string>
+    text?: string
+    _type: 'span'
+    _key: string
+  }>
+  style?: 'normal'
+  listItem?: 'bullet'
+  markDefs?: Array<{
+    href?: string
+    _type: 'link'
+    _key: string
+  }>
+  level?: number
+  _type: 'block'
+  _key: string
+}>
+
 export type SimpleBlockContent = Array<{
   children?: Array<{
     marks?: Array<string>
@@ -262,6 +292,12 @@ export type InternationalizedArrayLinkTextValue = {
 export type InternationalizedArrayBlockContentWithHeadingsValue = {
   _type: 'internationalizedArrayBlockContentWithHeadingsValue'
   value?: BlockContentWithHeadings
+  language: string
+}
+
+export type InternationalizedArraySimpleBlockContentWithListsValue = {
+  _type: 'internationalizedArraySimpleBlockContentWithListsValue'
+  value?: SimpleBlockContentWithLists
   language: string
 }
 
@@ -392,6 +428,7 @@ export type AllSanitySchemaTypes =
   | SanityImageCrop
   | SanityImageHotspot
   | Project
+  | InternationalizedArraySimpleBlockContentWithLists
   | InternationalizedArrayLinkText
   | ImageObject
   | InternationalizedArrayString
@@ -399,9 +436,11 @@ export type AllSanitySchemaTypes =
   | LinkText
   | WebInput
   | BlockContentWithHeadings
+  | SimpleBlockContentWithLists
   | SimpleBlockContent
   | InternationalizedArrayLinkTextValue
   | InternationalizedArrayBlockContentWithHeadingsValue
+  | InternationalizedArraySimpleBlockContentWithListsValue
   | InternationalizedArraySimpleBlockContentValue
   | InternationalizedArrayStringValue
   | SanityImagePaletteSwatch

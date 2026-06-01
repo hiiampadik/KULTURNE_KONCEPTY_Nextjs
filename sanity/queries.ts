@@ -39,6 +39,10 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
     "description": description[language == $locale][0].value,
     "web": web[language == $locale][0].value,
     "location": location[language == $locale][0].value,
+    partners[] {
+      _key,
+      "link": link[language == $locale][0].value
+    },
     gallery,
     "fields": fields[]->{ _id, "title": title[language == $locale][0].value }
   },
@@ -52,6 +56,10 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
     "description": description[language == $locale][0].value,
     "web": web[language == $locale][0].value,
     "location": location[language == $locale][0].value,
+    partners[] {
+      _key,
+      "link": link[language == $locale][0].value
+    },
     gallery,
     "fields": fields[]->{ _id, "title": title[language == $locale][0].value }
   }

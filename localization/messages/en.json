@@ -29,7 +29,8 @@
     "active": "Active project",
     "completed": "Completed project",
     "location": "Location",
-    "copyLink": "Copy link"
+    "copyLink": "Copy link",
+    "partners": "{count, plural, one {Partner} other {Partners}}"
   },
   "References": {
     "subtitle": "of the core KK team\nM. Bohumelová, B. Hromádková, A. Kusá\n(selection)"

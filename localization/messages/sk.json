@@ -29,7 +29,8 @@
     "active": "Aktivný projekt",
     "completed": "Dokončený projekt",
     "location": "Miesto",
-    "copyLink": "Kopírovať odkaz"
+    "copyLink": "Kopírovať odkaz",
+    "partners": "{count, plural, one {Partner} other {Partneri}}"
   },
   "References": {
     "subtitle": "základného tímu KK\nM. Bohumelová, B. Hromádková, A. Kusá\n(výber)"

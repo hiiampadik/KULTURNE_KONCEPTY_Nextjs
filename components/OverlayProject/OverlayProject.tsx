@@ -4,7 +4,7 @@ import {PortableText} from 'next-sanity'
 import {useTranslations} from 'next-intl'
 import Overlay from '@/components/Overlay'
 import {Figure} from '@/components/Figure/Figure'
-import {ImageObject, LinkText, SimpleBlockContent} from '@/sanity/sanity.types'
+import {ImageObject, LinkText, SimpleBlockContent, SimpleBlockContentWithLists} from '@/sanity/sanity.types'
 import styles from './OverlayProject.module.scss'
 
 export interface OverlayProjectData {
@@ -15,7 +15,8 @@ export interface OverlayProjectData {
     web?: LinkText | null
     location?: LinkText | null
     subtitle?: SimpleBlockContent | null
-    description?: SimpleBlockContent | null
+    description?: SimpleBlockContentWithLists | null
+    partners?: Array<{_key: string; link: LinkText | null | undefined}> | null
     gallery?: Array<{_key: string} & ImageObject> | null
     fields?: Array<{_id: string; title: string | null | undefined}> | null
 }
@@ -80,6 +81,18 @@ export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, 
                                 <span className={styles.metaLabel}>{t('location')}:</span>
                                 <span className={styles.metaValue}>
                                     <PortableText value={displayProject.location}/>
+                                </span>
+                            </div>
+                        )}
+                        {displayProject.partners && displayProject.partners.length > 0 && (
+                            <div className={styles.metaRow}>
+                                <span className={styles.metaLabel}>{t('partners', {count: displayProject.partners.length})}:</span>
+                                <span className={styles.metaValue}>
+                                    {displayProject.partners.map((partner) => (
+                                        partner.link && (
+                                            <PortableText key={partner._key} value={partner.link}/>
+                                        )
+                                    ))}
                                 </span>
                             </div>
                         )}
