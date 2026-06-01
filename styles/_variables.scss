@@ -74,6 +74,8 @@ $greyText: #e4e4e4;
   font-size: 17px;
   line-height: 130%;
   font-weight: 600;
+  font-feature-settings: 'liga' off, 'clig' off, 'calt' off;
+
 }
 
 @mixin perex {
