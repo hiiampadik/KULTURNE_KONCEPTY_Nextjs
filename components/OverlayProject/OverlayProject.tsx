@@ -38,9 +38,9 @@ export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, 
 
     const displayProject = project ?? lastProject
 
-    const iconUrls = displayProject?.fields
-        ?.map(f => fieldIconMap[f._id])
-        .filter(Boolean) ?? []
+    const icons = displayProject?.fields
+        ?.map(f => ({url: fieldIconMap[f._id], title: f.title}))
+        .filter(item => Boolean(item.url)) ?? []
 
     const handleCopyLink = () => {
         if (typeof window === 'undefined') return
@@ -54,19 +54,21 @@ export const OverlayProject: FunctionComponent<OverlayProjectProps> = ({isOpen, 
     ) : null
 
     return (
-        <Overlay isOpen={isOpen} handleClose={handleClose} iconUrls={iconUrls} toolbarExtras={linkButton}>
+        <Overlay isOpen={isOpen} handleClose={handleClose} icons={icons} toolbarExtras={linkButton}>
             {displayProject && (
                 <>
                     <h2 className={styles.title}>{displayProject.title}</h2>
 
                     <div className={styles.meta}>
-                        {displayProject.active != null && (
-                            <span className={styles.badge}>
-                                {displayProject.active ? t('active') : t('completed')}
-                            </span>
-                        )}
-                        {displayProject.date && (
-                            <p className={styles.date}>{displayProject.date}</p>
+                        {(displayProject.active === true || displayProject.date) && (
+                            <div className={styles.dateGroup}>
+                                {displayProject.active === true && (
+                                    <span className={styles.badge}>{t('active')}</span>
+                                )}
+                                {displayProject.date && (
+                                    <p className={styles.date}>{displayProject.date}</p>
+                                )}
+                            </div>
                         )}
                         {displayProject.web && (
                             <div className={styles.metaRow}>

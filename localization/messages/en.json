@@ -27,7 +27,6 @@
   },
   "OverlayProject": {
     "active": "Active project",
-    "completed": "Completed project",
     "location": "Location",
     "copyLink": "Copy link",
     "partners": "{count, plural, one {Partner} other {Partners}}"

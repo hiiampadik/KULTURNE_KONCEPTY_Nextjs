@@ -8,13 +8,13 @@ interface OverlayProps {
     readonly isOpen: boolean
     readonly handleClose: () => void
     readonly className?: string
-    readonly iconUrls?: string[]
+    readonly icons?: Array<{url: string; title?: string | null}>
     readonly toolbarExtras?: ReactNode
 }
 
 const MOBILE_BREAKPOINT = 991
 
-const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, iconUrls, toolbarExtras}) => {
+const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, handleClose, children, className, icons, toolbarExtras}) => {
     const closeButtonRef = useRef<HTMLButtonElement>(null)
     const backdropRef = useRef<HTMLDivElement>(null)
     const panelRef = useRef<HTMLDivElement>(null)
@@ -125,10 +125,13 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
                         </button>
                         {toolbarExtras}
                     </div>
-                    {iconUrls && iconUrls.length > 0 && (
+                    {icons && icons.length > 0 && (
                         <div className={styles.icons}>
-                            {iconUrls.map(url => (
-                                <img key={url} src={url} alt="" className={styles.icon}/>
+                            {icons.map(({url, title}) => (
+                                <div key={url} className={styles.iconItem}>
+                                    <img src={url} alt={title ?? ''} className={styles.icon}/>
+                                    {/*{title && <span className={styles.iconLabel}>{title}</span>}*/}
+                                </div>
                             ))}
                         </div>
                     )}

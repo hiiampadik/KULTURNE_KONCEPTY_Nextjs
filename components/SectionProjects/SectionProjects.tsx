@@ -2,6 +2,7 @@
 
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {PortableText} from 'next-sanity'
+import {useTranslations} from 'next-intl'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
 import {Figure} from '@/components/Figure/Figure'
 import {OverlayProject, OverlayProjectData} from '@/components/OverlayProject/OverlayProject'
@@ -36,6 +37,7 @@ interface SectionProjectsProps {
 const PROJECT_PARAM = 'project'
 
 export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, title, subtitle, items, fieldIconMap = {}}) => {
+    const t = useTranslations('OverlayProject')
     const [selected, setSelected] = useState<OverlayProjectData | null>(null)
 
     const setUrlParam = (projectId: string | null) => {
@@ -83,8 +85,15 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
                                 onClick={() => openProject(item)}
                             >
                                 <div className={styles.cardHeader}>
-                                    {item.date && (
-                                        <p className={styles.date}>{item.date}</p>
+                                    {(item.active === true || item.date) && (
+                                        <div className={styles.dateGroup}>
+                                            {item.active === true && (
+                                                <span className={styles.badge}>{t('active')}</span>
+                                            )}
+                                            {item.date && (
+                                                <p className={styles.date}>{item.date}</p>
+                                            )}
+                                        </div>
                                     )}
                                     {icons.length > 0 && (
                                         <div className={styles.fieldIcons}>

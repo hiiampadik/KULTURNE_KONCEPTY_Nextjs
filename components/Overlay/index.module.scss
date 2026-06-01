@@ -87,6 +87,19 @@
   gap: 8px;
 }
 
+.iconItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconLabel {
+  @include date;
+  max-width: 200px;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
 .icon {
   height: 50px;
   width: auto;

@@ -27,7 +27,6 @@
   },
   "OverlayProject": {
     "active": "Aktivný projekt",
-    "completed": "Dokončený projekt",
     "location": "Miesto",
     "copyLink": "Kopírovať odkaz",
     "partners": "{count, plural, one {Partner} other {Partneri}}"
