@@ -5,15 +5,15 @@
     width: 100vw;
     overflow-x: clip;
     overflow-y: visible;
-    height: calc(100vh - 207px);
+    height: calc(100vh - 400px);
     pointer-events: none;
     z-index: 1000;
 
-    @media (max-width: $breakpoint-lg-max) {
-        height: calc(100vh - 196px);
+    @media (max-width: 1900px) {
+        height: calc(100vh - 260px);
     }
     @media (max-width: $breakpoint-md-max) {
-        height: calc(100vh + 5px);
+        height: calc(100vh);
     }
     @media (max-width: $breakpoint-xs-max) {
         z-index: 1;
@@ -63,13 +63,21 @@
 
 .image {
     display: block;
-    height: 200px;
-    max-width: 300px;
     width: auto;
+    height: 300px;
+    max-width: 450px;
     pointer-events: none;
     object-fit: contain;
     transition: filter 0.4s ease;
 
+    @media (max-width: 1900px) {
+        height: 240px;
+        max-width: 320px;
+    }
+    @media (max-width: $breakpoint-xl-max) {
+        height: 200px;
+        max-width: 300px;
+    }
     @media (max-width: $breakpoint-md-max) {
         height: 150px;
         max-width: 150px;
