@@ -84,6 +84,9 @@ $greyText: #e4e4e4;
   font-size: 26px;
   line-height: 120%;
   font-weight: 600;
+  strong {
+    background: linear-gradient(transparent 9%, $greyText 9%, $greyText 96%, transparent 96%);
+  }
 }
 
 @mixin date {
