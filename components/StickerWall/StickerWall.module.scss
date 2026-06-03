@@ -6,20 +6,25 @@
     overflow-x: clip;
     overflow-y: visible;
     height: calc(100vh - 140px);
+    height: calc(100svh - 140px);
     pointer-events: none;
     z-index: 1000;
 
     @media (max-width: 1900px) {
         height: calc(100vh - 130px);
+        height: calc(100svh - 130px);
     }
     @media (max-width: $breakpoint-xl-max) {
         height: calc(100vh - 110px);
+        height: calc(100svh - 110px);
     }
     @media (max-width: $breakpoint-lg-max) {
         height: calc(100vh - 100px);
+        height: calc(100svh - 100px);
     }
     @media (max-width: $breakpoint-md-max) {
-        height: calc(100vh);
+        height: 100vh;
+        height: 100svh;
     }
 }
 

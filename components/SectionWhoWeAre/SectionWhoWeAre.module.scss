@@ -16,6 +16,9 @@
     @include body-text;
 
     p {
-        font-size: 17px;
+        strong {
+            @include perex;
+            line-height: 130%;
+        }
     }
 }
