@@ -30,8 +30,22 @@ html {
   --bg: #EFEFEF;
   --toggle-container-bg: black;
   --toggle-icon-filter: invert(1);
-  --footer-text: black;
 
+  --bg-container: #FFF;
+  --text-color: black;
+
+  --icon-filter: brightness(0);
+  --strong-bg: #ebe6e4;
+  --strong-color: inherit;
+
+  --color-blue: #9BB5E1;
+  --color-swamp: #B0A421;
+  --color-red: #ff3216;
+
+  --color-brown: #744428;
+  --color-green: #3bff0e;
+
+  --shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
 
 
   @media (max-width: 1920px) {
@@ -69,10 +83,22 @@ html {
   }
 
   &[data-theme="dark"] {
-    --bg: black;
+    --bg: #515151;
     --toggle-container-bg: white;
     --toggle-icon-filter: invert(0);
-    --footer-text: white;
+
+    --bg-container: black;
+    --text-color: white;
+
+    --icon-filter: brightness(0) invert(1);
+    --strong-bg: #4a4a4a;
+    --strong-color: white;
+
+    --color-blue: #26276e;
+    --color-swamp: #917043;
+    --color-red: #aa31a4;
+
+    --shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
   }
 }
 
@@ -83,7 +109,7 @@ body {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
-  color: black;
+  color: var(--text-color);
   background: var(--bg);
 }
 
@@ -140,7 +166,7 @@ a {
 }
 
 ::selection {
-  background: $grey;
+  background: #C1C1C1;
 }
 
 * {
@@ -180,7 +206,8 @@ p + p {
 
 strong {
   font-weight: 500;
-  background: linear-gradient(transparent 5%, $greyText 5%, $greyText 100%);
+  color: var(--strong-color);
+  background: linear-gradient(transparent 5%, var(--strong-bg) 5%, var(--strong-bg) 100%);
 }
 
 figure {

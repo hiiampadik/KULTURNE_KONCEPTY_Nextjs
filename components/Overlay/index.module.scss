@@ -17,7 +17,8 @@
   bottom: 0;
   width: calc(100vw - var(--padding-body-left));
   z-index: 1200;
-  background: white;
+  background: var(--bg-container);
+  color: var(--text-color);
   @include shadow;
   transform: translateX(100%);
 
@@ -66,7 +67,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  color: black;
+  color: var(--text-color);
   padding: 0;
   line-height: 0;
   transition: transform 0.3s ease;
@@ -107,6 +108,7 @@
   height: 50px;
   width: auto;
   object-fit: contain;
+  filter: var(--icon-filter);
 }
 
 .content {

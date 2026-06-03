@@ -1,7 +1,8 @@
 @import '../../styles/variables';
 
 .card {
-    background: white;
+    background: var(--bg-container);
+    color: var(--text-color);
     padding: var(--padding-content-box);
     display: flex;
     flex-direction: column;
@@ -10,7 +11,7 @@
     width: 100%;
     border: none;
     font: inherit;
-    color: inherit;
+
     text-align: left;
 
     &:focus-visible {
@@ -40,8 +41,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: black;
-    color: white;
+    color: var(--bg-container);
+    background: var(--text-color);
     padding: 6px 10px;
     width: 170px;
 }
@@ -58,6 +59,7 @@
 .fieldIcon {
     height: 50px;
     object-fit: contain;
+    filter: var(--icon-filter);
 }
 
 .cardMain {

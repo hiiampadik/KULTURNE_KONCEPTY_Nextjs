@@ -31,9 +31,9 @@
     padding: var(--padding-big-box);
     display: block;
 
-    &[data-color='blue']  { background: $blue; }
-    &[data-color='swamp'] { background: $swamp; }
-    &[data-color='red']   { background: $red; }
+    &[data-color='blue']  { background: var(--color-blue); }
+    &[data-color='swamp'] { background: var(--color-swamp); }
+    &[data-color='red']   { background: var(--color-red); }
 }
 
 .title {

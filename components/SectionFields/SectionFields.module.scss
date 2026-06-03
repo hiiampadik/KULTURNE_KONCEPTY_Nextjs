@@ -2,7 +2,8 @@
 
 
 .wrap {
-    background: white;
+    background: var(--bg-container);
+    color: var(--text-color);
     @include shadow;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .fieldItem + .fieldItem {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--text-color);
 }
 
 .fieldHeader {
@@ -44,7 +45,7 @@
 }
 
 .iconWrapper {
-    background: $greyText;
+    background: var(--strong-bg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,6 +60,11 @@
 .fieldIcon {
     height: 50px;
     object-fit: contain;
+    filter: brightness(0) invert(1);
+
+    @media (max-width: $breakpoint-sm-max) {
+        filter: var(--icon-filter);
+    }
 }
 
 .fieldTitle {

@@ -11,24 +11,8 @@ $breakpoint-xl-min: 1200px;
 $breakpoint-xl-max: 1399px;
 $breakpoint-xxl-min: 1400px;
 
-$text-secondary-default: #A4A4A4;
-$text-primary-default: #000;
-
-$blue: #9BB5E1;
-$blueText: #d1e3ff;
-$swamp: #B0A421;
-$swampText: #c1b73d;
-$red: #FF2000;
-$redText: #ffccc3;
-$brown: #744428;
-$green: #3bff0e;
-$grey: #C1C1C1;
-$greyText: #ebe6e4;
-
-
-
 @mixin shadow {
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+  filter: var(--shadow);
 }
 
 @mixin title {
@@ -75,7 +59,8 @@ $greyText: #ebe6e4;
   font-weight: 600;
   strong {
     font-weight: 600;
-    background: linear-gradient(transparent 9%, $greyText 9%, $greyText 96%, transparent 96%);
+    color: var(--strong-color);
+    background: linear-gradient(transparent 9%, var(--strong-bg) 9%, var(--strong-bg) 96%, transparent 96%);
   }
 
 }
@@ -91,7 +76,8 @@ $greyText: #ebe6e4;
   font-family: 'cy', sans-serif;
   strong {
     font-weight: 600;
-    background: linear-gradient(transparent 9%, $greyText 9%, $greyText 96%, transparent 96%);
+    color: var(--strong-color);
+    background: linear-gradient(transparent 9%, var(--strong-bg) 9%, var(--strong-bg) 96%, transparent 96%);
   }
   @media (max-width: $breakpoint-sm-max) {
     font-size: 24px;

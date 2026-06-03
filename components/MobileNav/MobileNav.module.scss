@@ -12,7 +12,8 @@
     left: 0;
     right: 0;
     z-index: 998;
-    background: white;
+    background: var(--bg-container);
+    color: var(--text-color);
     padding: var(--layout-padding-x) var(--layout-padding-x) 20px;
     @media (max-width: $breakpoint-sm-max) {
       padding: var(--layout-padding-x) var(--layout-padding-x) 14px;
@@ -90,15 +91,15 @@
 }
 
 .item1 {
-  background: $blue;
+  background: var(--color-blue);
 }
 
 .item2 {
-  background: $swamp;
+  background: var(--color-swamp);
 }
 
 .item3 {
-  background: $red;
+  background: var(--color-red);
 }
 
 .menuContact {

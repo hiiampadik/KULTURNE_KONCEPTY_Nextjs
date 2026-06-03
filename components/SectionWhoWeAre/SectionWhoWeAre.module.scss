@@ -5,11 +5,11 @@
 }
 
 .body {
-    background: white;
+    background: var(--bg-container);
+    color: var(--text-color);
     @include shadow;
     padding: var(--padding-content-box);
     padding-top: calc(var(--padding-content-box) * 2);
-    //max-width: calc(540px + 2 * 30px);
 }
 
 .content {

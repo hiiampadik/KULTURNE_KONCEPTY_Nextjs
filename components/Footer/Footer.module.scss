@@ -19,7 +19,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    color: var(--footer-text);
+    color: var(--text-color);
     transition: color 0.5s ease;
 
     @media (max-width: $breakpoint-lg-max) {
@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border-top: 1px solid var(--footer-text);
+    border-top: 1px solid var(--text-color);
     padding: 20px 0 0;
 }
 
@@ -57,6 +57,10 @@
             margin-bottom: 1em;
         }
     }
+    a {
+        color: var(--text-color);
+        text-decoration-color: var(--text-color);
+    }
 }
 
 .heading {
@@ -66,8 +70,8 @@
 
 .link {
     @include date;
-    color: var(--footer-text);
-    text-decoration-color: var(--footer-text);
+    color: var(--text-color);
+    text-decoration-color: var(--text-color);
 
     @media (hover: hover) {
         &:hover {
@@ -81,8 +85,8 @@
     gap: 10px;
 
     a {
-        color: var(--footer-text);
-        text-decoration-color: var(--footer-text);
+        color: var(--text-color);
+        text-decoration-color: var(--text-color);
         display: block;
         line-height: 0;
     }
@@ -105,9 +109,9 @@
     padding: 0;
     background: none;
     border: none;
-    color: var(--footer-text);
+    color: var(--text-color);
     text-decoration: underline;
-    text-decoration-color: var(--footer-text);
+    text-decoration-color: var(--text-color);
     text-align: left;
     cursor: pointer;
 
@@ -139,8 +143,9 @@
 }
 
 .documentLink {
-    color: black;
+    color: var(--text-color);
     text-decoration: underline;
+    text-decoration-color: var(--text-color);
 
     @media (hover: hover) {
         &:hover {

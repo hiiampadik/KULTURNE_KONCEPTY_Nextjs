@@ -127,6 +127,10 @@ export const GridTransition: FunctionComponent = () => {
                     ease: 'none',
                 })
             } else {
+                const root = document.documentElement
+                const darkBg = getComputedStyle(root).getPropertyValue('--bg').trim()
+                root.style.setProperty('--grid-cell-bg', darkBg)
+                root.dataset.theme = 'light'
                 gsap.set(fills, { x: -TILE_W * v.MOVE_X, y: -TILE_H * v.MOVE_Y })
                 gsap.to(fills, {
                     x: 0,
@@ -139,7 +143,7 @@ export const GridTransition: FunctionComponent = () => {
                         return (col / cols) * v.STAGGER_AMOUNT + row * v.ROW_DELAY
                     },
                     onComplete: () => {
-                        document.documentElement.dataset.theme = 'light'
+                        root.style.removeProperty('--grid-cell-bg')
                         window.dispatchEvent(new Event('theme-transition-end'))
                     },
                 })

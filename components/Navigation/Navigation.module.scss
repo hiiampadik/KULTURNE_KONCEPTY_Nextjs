@@ -18,13 +18,13 @@
 
 .supportButton {
     border: none;
-    background: $grey;
+    background: var(--bg-container);
     cursor: pointer;
     padding: 0 var(--padding-content-box);
     height: 3em;
 
     @include date;
-    color: black;
+    color: var(--text-color);
     letter-spacing: 0.05em;
     transition: opacity 0.2s ease;
 
@@ -47,6 +47,11 @@
     padding: var(--layout-padding-x) 0 0;
     gap: var(--layout-padding-y);
     overflow-y: scroll;
+    color: var(--text-color);
+
+    a {
+        color: var(--text-color);
+    }
 
     @media (max-height: 700px) and (min-width: $breakpoint-xl-min) {
         .supportCorner {
@@ -83,8 +88,12 @@
     padding: 0 var(--padding-content-box);
     @include date;
     height: 3em;
-    background: white;
+    background: var(--bg-container);
     @include shadow;
+
+    img {
+        filter: var(--icon-filter);
+    }
 
     @media (max-width: $breakpoint-lg-max) {
         gap: 28px
@@ -110,7 +119,7 @@
             &:hover {
                 text-decoration: underline;
                 text-decoration-thickness: 1px;
-                text-decoration-color: black;
+                text-decoration-color: currentColor;
                 text-underline-offset: 1px;
             }
         }
@@ -135,11 +144,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding-right: var(--layout-padding-x);
 
     .logo {
         position: relative;
         z-index: 4;
-        background: white;
+        background: var(--bg-container);
 
         @include shadow;
 
@@ -151,6 +161,7 @@
             display: block;
             width: 6em;
             height: auto;
+            filter: var(--icon-filter);
         }
     }
 
@@ -177,13 +188,13 @@
     }
 
     .item1 {
-        background: $blue;
+        background: var(--color-blue);
     }
     .item2 {
-        background: $swamp;
+        background: var(--color-swamp);
     }
     .item3 {
-        background: $red;
+        background: var(--color-red);
     }
 }
 
