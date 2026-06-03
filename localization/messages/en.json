@@ -14,7 +14,9 @@
     "whoWeAre": "Who are we?",
     "fields": "Fields",
     "projects": "Realized projects",
-    "references": "References"
+    "references": "References",
+    "showMore": "Show more",
+    "showLess": "Show less"
   },
   "OverlayContact": {
     "title": "Contact",

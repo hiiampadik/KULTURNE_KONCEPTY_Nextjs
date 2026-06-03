@@ -32,15 +32,18 @@
 .dateGroup {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .badge {
     @include date;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: black;
     color: white;
     padding: 6px 10px;
+    width: 170px;
 }
 
 .date {
@@ -59,7 +62,7 @@
 
 .cardMain {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     align-items: flex-start;
     @media (max-width: $breakpoint-xs-max) {
         flex-direction: column;
@@ -68,8 +71,8 @@
 
 .cover {
     flex-shrink: 0;
-    width: 108px;
-    height: 74px;
+    width: 170px;
+    height: 90px;
     overflow: hidden;
 }
 
@@ -86,7 +89,8 @@
 }
 
 .cardTitle {
-    @include subtitle;
+    //@include subtitle;
+    @include perex;
 }
 
 .description {

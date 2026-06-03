@@ -56,19 +56,18 @@ $greyText: #ebe6e4;
 
 @mixin subtitle {
   font-family: 'AnoAngular', sans-serif;
-  font-size: 40px;
+  font-size: 38px;
   line-height: 105%;
   font-weight: 300;
   letter-spacing: -0.04em;
   paint-order: stroke fill;
-
 }
 
 @mixin body-text {
-  font-family: var(--font-geist-sans), sans-serif;
+  //font-family: var(--font-geist-sans), sans-serif;
   font-size: 18px;
   line-height: 130%;
-  font-weight: 400;
+  //font-weight: 400;
   max-width: 650px;
 
   font-feature-settings: 'liga' off, 'clig' off, 'calt' off;
@@ -82,8 +81,8 @@ $greyText: #ebe6e4;
 }
 
 @mixin perex {
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 25px;
+  //font-family: var(--font-geist-sans), sans-serif;
+  font-size: 26px;
   line-height: 130%;
   font-weight: 600;
   max-width: 650px;

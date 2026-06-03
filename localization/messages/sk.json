@@ -14,7 +14,9 @@
     "whoWeAre": "Kto sme?",
     "fields": "Čo ponúkame?",
     "projects": "Realizované projekty",
-    "references": "Ohlasy"
+    "references": "Ohlasy",
+    "showMore": "Zobraziť viac",
+    "showLess": "Zobraziť menej"
   },
   "OverlayContact": {
     "title": "Kontakt",

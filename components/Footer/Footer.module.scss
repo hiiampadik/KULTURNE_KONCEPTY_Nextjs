@@ -60,7 +60,8 @@
 }
 
 .heading {
-    @include subtitle;
+    //@include subtitle;
+    @include title;
 }
 
 .link {

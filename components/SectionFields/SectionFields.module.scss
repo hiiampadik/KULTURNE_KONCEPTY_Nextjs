@@ -1,40 +1,59 @@
 @import '../../styles/variables';
 
 
-.fieldItem {
+.wrap {
     background: white;
     @include shadow;
-    padding: var(--padding-content-box);
+}
+
+.fieldItem {
+    margin: var(--padding-content-box);
+    padding: var(--padding-content-box) 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    gap: calc(var(--padding-content-box) / 2);
 
     &.firstItem {
+        margin-top: 0;
         padding-top: calc(var(--padding-content-box) * 2);
     }
 }
 
-.itemMain {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
+.fieldContent {
+    display: grid;
+    grid-template-columns: 200px 2fr;
+    gap: calc(var(--padding-content-box) / 2);
 
-    @media (max-width: $breakpoint-xs-max) {
-        flex-direction: column;
+    @media (max-width: $breakpoint-sm-max) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fieldItem + .fieldItem {
+    border-top: 1px solid black;
+}
+
+.fieldHeader {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--padding-content-box) / 2);
+    @media (max-width: $breakpoint-sm-max) {
+        align-items: flex-start;
+        gap: 0;
     }
 }
 
 .iconWrapper {
-    flex-shrink: 0;
-    height: 74px;
-    width: 108px;
     background: $greyText;
-    margin-top: -8px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: calc(var(--padding-content-box) / 2);
     overflow: hidden;
+    @media (max-width: $breakpoint-sm-max) {
+        background: none;
+        margin-left: -8px;
+    }
 }
 
 .fieldIcon {
@@ -43,7 +62,7 @@
 }
 
 .fieldTitle {
-    @include subtitle;
+    @include perex;
 }
 
 .fieldBody {

@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react'
-import {PortableText} from 'next-sanity'
 import {useTranslations} from 'next-intl'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
+import {CollapsibleBody} from './CollapsibleBody'
 import styles from './SectionFields.module.scss'
 import {SimpleBlockContent} from '@/sanity/sanity.types'
 
@@ -22,25 +22,29 @@ export const SectionFields: FunctionComponent<SectionFieldsProps> = ({id, fields
 
     return (
         <SectionContainer id={id} color="swamp" title={t('fields')}>
-            {fields?.map((field, index) => (
-                <div key={field._id} className={`${styles.fieldItem} ${index === 0 ? styles.firstItem : ''}`}>
-                    <div className={styles.itemMain}>
-                        <div className={styles.iconWrapper}>
-                            {field.icon?.asset?.url && (
-                                <img src={field.icon.asset.url} alt="" className={styles.fieldIcon}/>
+            <div className={styles.wrap}>
+                {fields?.map((field, index) => (
+                    <div key={field._id} className={`${styles.fieldItem} ${index === 0 ? styles.firstItem : ''}`}>
+                        <div className={styles.fieldContent}>
+                            <div className={styles.fieldHeader}>
+                                <div className={styles.iconWrapper}>
+                                    {field.icon?.asset?.url && (
+                                        <img src={field.icon.asset.url} alt="" className={styles.fieldIcon}/>
+                                    )}
+                                </div>
+                                <h3 className={styles.fieldTitle}>
+                                    {field.title}
+                                </h3>
+                            </div>
+                            {field.body && (
+                                <div className={styles.fieldBody}>
+                                    <CollapsibleBody value={field.body}/>
+                                </div>
                             )}
                         </div>
-                        <h3 className={styles.fieldTitle}>
-                            {field.title}
-                        </h3>
                     </div>
-                    {field.body && (
-                        <div className={styles.fieldBody}>
-                            <PortableText value={field.body}/>
-                        </div>
-                    )}
-                </div>
-            ))}
+                ))}
+            </div>
         </SectionContainer>
     )
 }

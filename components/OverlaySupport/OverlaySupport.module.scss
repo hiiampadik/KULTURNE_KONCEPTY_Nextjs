@@ -1,73 +1,10 @@
 @import '../../styles/variables';
 
-.backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 1100;
-    background: rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    pointer-events: none;
-}
-
-.wrapper {
-    position: fixed;
-    inset: 0;
-    z-index: 1200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    padding: 20px;
-}
-
-.panel {
-    outline: none;
-    position: relative;
-    pointer-events: auto;
-    background: white;
-    @include shadow;
-    padding: var(--layout-padding-x);
-    width: 500px;
-    max-width: calc(100vw - var(--layout-padding-x) * 2);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    opacity: 0;
-}
-
-.closeButton {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: black;
-    padding: 6px;
-    line-height: 0;
-    transition: opacity 0.3s ease;
-
-    @media (hover: hover) {
-        &:hover {
-            opacity: 0.5;
-        }
-    }
-
-    &:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 4px;
-        border-radius: 2px;
-    }
-}
-
 .title {
-    margin: 0;
     @include title;
-    padding-right: 30px;
 }
 
 .body {
-    margin: 0;
     @include body-text;
 
     p {
