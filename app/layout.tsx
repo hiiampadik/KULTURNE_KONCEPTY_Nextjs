@@ -1,6 +1,8 @@
 import type {Metadata} from 'next'
 import '../styles/globals.scss'
 import {siteUrl, socialLinks} from '@/constants/site'
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
 const baseURL = siteUrl
 const description = '' // TODO

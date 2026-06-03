@@ -27,7 +27,9 @@
 
 .iconWrapper {
     flex-shrink: 0;
-    width: 50px;
+    height: 74px;
+    width: 108px;
+    background: $greyText;
     margin-top: -8px;
     display: flex;
     align-items: center;
@@ -36,8 +38,7 @@
 }
 
 .fieldIcon {
-    max-width: 70px;
-    max-height: 50px;
+    height: 50px;
     object-fit: contain;
 }
 

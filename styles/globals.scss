@@ -21,6 +21,7 @@ html {
   }
 
   --layout-padding-x: 50px;
+  --layout-padding-y: 25px;
   --padding-overlay: 50px;
   --padding-big-box: 32px 80px 8px 32px;
   --padding-content-box: 32px;
@@ -39,32 +40,32 @@ html {
   }
   @media (max-width: $breakpoint-xl-max) {
     --layout-padding-x: 40px;
+    --layout-padding-y: 20px;
     --padding-big-box: 24px 60px 6px 24px;
     --padding-content-box: 24px;
   }
 
   @media (max-width: $breakpoint-lg-max) {
     --layout-padding-x: 30px;
+    --layout-padding-y: 15px;
     --padding-big-box: 22px 56px 5px 22px;
     --padding-content-box: 22px;
     --padding-body-left: 480px;
   }
 
   @media (max-width: $breakpoint-md-max) {
-    --layout-padding-x: 30px;
     --padding-body-left: 0px;
   }
 
   @media (max-width: $breakpoint-sm-max) {
     --layout-padding-x: 20px;
+    --layout-padding-y: 20px;
     --padding-big-box: 20px 48px 5px 20px;
     --padding-content-box: 20px;
   }
 
   @media (max-width: $breakpoint-xs-max) {
-    --layout-padding-x: 15px;
-    --padding-big-box: 15px 40px 4px 15px;
-    --padding-content-box: 15px;
+    --layout-padding-x: 0px;
   }
 
   &[data-theme="dark"] {
@@ -112,6 +113,7 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
 }
 
@@ -177,7 +179,7 @@ p + p {
 }
 
 strong {
-  font-weight: 600;
+  font-weight: 500;
   background: linear-gradient(transparent 5%, $greyText 5%, $greyText 100%);
 }
 

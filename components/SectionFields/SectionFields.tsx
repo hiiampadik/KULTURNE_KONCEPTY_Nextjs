@@ -30,7 +30,9 @@ export const SectionFields: FunctionComponent<SectionFieldsProps> = ({id, fields
                                 <img src={field.icon.asset.url} alt="" className={styles.fieldIcon}/>
                             )}
                         </div>
-                        <h3 className={styles.fieldTitle}>{field.title}</h3>
+                        <h3 className={styles.fieldTitle}>
+                            {field.title}
+                        </h3>
                     </div>
                     {field.body && (
                         <div className={styles.fieldBody}>

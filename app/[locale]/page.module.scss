@@ -18,7 +18,7 @@
     pointer-events: auto;
 
     @media (max-width: $breakpoint-md-max) {
-        gap: var(--layout-padding-x);
+        gap: var(--layout-padding-y);
         max-width: 800px;
     }
 }

@@ -1,4 +1,4 @@
-import {GeistMono} from 'geist/font/mono'
+
 import {NextIntlClientProvider} from 'next-intl'
 import {getMessages, setRequestLocale} from 'next-intl/server'
 import {routing} from '@/localization/routing'
@@ -11,6 +11,8 @@ import {siteUrl, socialLinks} from '@/constants/site'
 import {sanityFetch} from '@/sanity/client'
 import {footerQuery} from '@/sanity/queries'
 import type {SimpleBlockContent} from '@/sanity/sanity.types'
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
 export const dynamic = 'force-static'
 export const revalidate = 60
@@ -62,7 +64,7 @@ export default async function LocaleLayout({
         items?: Array<{_key: string; title: string; url: string; originalFilename?: string; size?: number; extension?: string}>
     } | null
     return (
-        <html lang={locale} className={GeistMono.variable}>
+        <html lang={locale} className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <head>
             <link rel="canonical" href={`${baseURL}${locale}`}/>
             <link rel="alternate" href={`${baseURL}sk`} hrefLang="sk"/>
@@ -83,7 +85,7 @@ export default async function LocaleLayout({
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <DogEarSyncProvider>
                         <Navigation contacts={footerData?.contacts} info={footerData?.info} support={footerData?.support}/>
-                        <MobileNav contacts={footerData?.contacts} info={footerData?.info}/>
+                        {/*<MobileNav contacts={footerData?.contacts} info={footerData?.info}/>*/}
                         <main>
                             {children}
                         </main>

@@ -20,18 +20,25 @@
   background: white;
   @include shadow;
   transform: translateX(100%);
-  overflow-y: auto;
-  padding: var(--padding-content-box);
-  display: flex;
-  flex-direction: column;
+
 
   @media (max-width: $breakpoint-md-max) {
     top: auto;
     right: 0;
     left: 0;
     height: 100vh;
+    height: 100dvh;
     transform: translateY(100%);
   }
+}
+
+.wrap {
+  overflow-y: auto;
+  padding: var(--padding-content-box);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .toolbar {

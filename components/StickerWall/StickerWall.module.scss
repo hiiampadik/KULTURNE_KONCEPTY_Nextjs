@@ -21,9 +21,6 @@
     @media (max-width: $breakpoint-md-max) {
         height: calc(100vh);
     }
-    @media (max-width: $breakpoint-xs-max) {
-        z-index: 1;
-    }
 }
 
 .stickerWrapper {
@@ -60,10 +57,6 @@
 
     &:active {
         cursor: grabbing;
-    }
-
-    @media (max-width: $breakpoint-xs-max) {
-        pointer-events: none;
     }
 }
 

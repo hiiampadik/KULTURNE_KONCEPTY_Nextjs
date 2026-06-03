@@ -7,11 +7,11 @@
 .supportCorner {
     z-index: 999;
     margin-top: auto;
-    margin-bottom: var(--layout-padding-x);
+    margin-bottom: var(--layout-padding-y);
     @include shadow;
 
-    @media (max-width: $breakpoint-md-max) {
-        margin-top: var(--layout-padding-x);
+    @media (max-width: $breakpoint-sm-max) {
+        display: none;
     }
 
 }
@@ -20,12 +20,8 @@
     border: none;
     background: $grey;
     cursor: pointer;
-    padding: var(--padding-content-box);
-
-    @media (min-width: $breakpoint-xl-min) {
-        padding-top: calc(var(--padding-content-box) / 1.5);
-        padding-bottom: calc(var(--padding-content-box) / 1.5);
-    }
+    padding: 0 var(--padding-content-box);
+    height: 3em;
 
     @include date;
     color: black;
@@ -43,12 +39,13 @@
     top: 0;
     left: 0;
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
     z-index: 999;
     padding: var(--layout-padding-x) 0 0;
+    gap: var(--layout-padding-y);
     overflow-y: scroll;
 
     @media (max-height: 700px) and (min-width: $breakpoint-xl-min) {
@@ -75,7 +72,7 @@
 
     @media (max-width: $breakpoint-md-max) {
         position: absolute;
-        padding: var(--layout-padding-x) 0;
+        padding: var(--layout-padding-y) 0;
         height: auto;
     }
 }
@@ -83,11 +80,9 @@
     display: flex;
     align-items: center;
     gap: 36px;
-    padding: var(--padding-content-box);
-    @media (min-width: $breakpoint-xl-min) {
-        padding-top: calc(var(--padding-content-box) /2);
-        padding-bottom: calc(var(--padding-content-box) /2);
-    }
+    padding: 0 var(--padding-content-box);
+    @include date;
+    height: 3em;
     background: white;
     @include shadow;
 

@@ -115,29 +115,31 @@ const Overlay: FunctionComponent<PropsWithChildren<OverlayProps>> = ({isOpen, ha
                 tabIndex={-1}
                 inert={!isOpen}
             >
-                <div className={styles.toolbar}>
-                    <div className={styles.closeGroup}>
-                        <button ref={closeButtonRef} className={styles.closeButton} onClick={handleClose} aria-label="Close">
-                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <line x1="2" y1="2" x2="28" y2="28" stroke="currentColor" strokeWidth="1.5"/>
-                                <line x1="28" y1="2" x2="2" y2="28" stroke="currentColor" strokeWidth="1.5"/>
-                            </svg>
-                        </button>
-                        {toolbarExtras}
-                    </div>
-                    {icons && icons.length > 0 && (
-                        <div className={styles.icons}>
-                            {icons.map(({url, title}) => (
-                                <div key={url} className={styles.iconItem}>
-                                    <img src={url} alt={title ?? ''} className={styles.icon}/>
-                                    {/*{title && <span className={styles.iconLabel}>{title}</span>}*/}
-                                </div>
-                            ))}
+                <div className={styles.wrap}>
+                    <div className={styles.toolbar}>
+                        <div className={styles.closeGroup}>
+                            <button ref={closeButtonRef} className={styles.closeButton} onClick={handleClose} aria-label="Close">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <line x1="2" y1="2" x2="28" y2="28" stroke="currentColor" strokeWidth="1.5"/>
+                                    <line x1="28" y1="2" x2="2" y2="28" stroke="currentColor" strokeWidth="1.5"/>
+                                </svg>
+                            </button>
+                            {toolbarExtras}
                         </div>
-                    )}
-                </div>
-                <div className={classNames([styles.content, className])}>
-                    {children}
+                        {icons && icons.length > 0 && (
+                            <div className={styles.icons}>
+                                {icons.map(({url, title}) => (
+                                    <div key={url} className={styles.iconItem}>
+                                        <img src={url} alt={title ?? ''} className={styles.icon}/>
+                                        {/*{title && <span className={styles.iconLabel}>{title}</span>}*/}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    <div className={classNames([styles.content, className])}>
+                        {children}
+                    </div>
                 </div>
             </div>
         </>
