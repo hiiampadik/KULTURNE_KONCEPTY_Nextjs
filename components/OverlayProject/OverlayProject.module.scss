@@ -60,8 +60,8 @@
 .metaRow {
   @include date;
   display: flex;
-  gap: 20px;
-  align-items: center;
+  column-gap: 20px;
+  align-items: flex-start;
 }
 
 .metaLabel {
@@ -70,12 +70,16 @@
 }
 
 .metaValue {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   a {
     color: black;
   }
 
   p {
     @include date;
+    margin: 0;
   }
 }
 
