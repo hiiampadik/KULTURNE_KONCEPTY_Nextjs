@@ -132,7 +132,7 @@ export type Project = {
   _rev: string
   active?: boolean
   title?: InternationalizedArrayString
-  date?: string
+  date?: InternationalizedArrayString
   fields?: Array<
     {
       _key: string
