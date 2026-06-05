@@ -40,6 +40,7 @@ export type Footer = {
   info?: InternationalizedArraySimpleBlockContent
   support?: InternationalizedArraySimpleBlockContent
   contacts?: InternationalizedArraySimpleBlockContent
+  collaboration?: InternationalizedArraySimpleBlockContent
 }
 
 export type InternationalizedArraySimpleBlockContent = Array<

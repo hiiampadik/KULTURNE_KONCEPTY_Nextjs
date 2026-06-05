@@ -148,6 +148,14 @@
           "name": "internationalizedArraySimpleBlockContent"
         },
         "optional": true
+      },
+      "collaboration": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "internationalizedArraySimpleBlockContent"
+        },
+        "optional": true
       }
     }
   },

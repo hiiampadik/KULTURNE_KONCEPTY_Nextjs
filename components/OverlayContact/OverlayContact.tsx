@@ -11,10 +11,11 @@ interface OverlayContactProps {
     readonly isOpen: boolean
     readonly handleClose: () => void
     readonly contacts?: SimpleBlockContent
+    readonly collaboration?: SimpleBlockContent
     readonly info?: SimpleBlockContent
 }
 
-export const OverlayContact: FunctionComponent<OverlayContactProps> = ({isOpen, handleClose, contacts, info}) => {
+export const OverlayContact: FunctionComponent<OverlayContactProps> = ({isOpen, handleClose, contacts, collaboration, info}) => {
     const t = useTranslations('OverlayContact')
 
     return (
@@ -22,6 +23,13 @@ export const OverlayContact: FunctionComponent<OverlayContactProps> = ({isOpen, 
             <h2 className={styles.title}>{t('title')}</h2>
 
             <div className={styles.info}>
+
+                {collaboration && (
+                    <div className={styles.collaboration}>
+                        <PortableText value={collaboration}/>
+                    </div>
+                )}
+
                 {contacts ? (
                     <div>
                         <PortableText value={contacts}/>

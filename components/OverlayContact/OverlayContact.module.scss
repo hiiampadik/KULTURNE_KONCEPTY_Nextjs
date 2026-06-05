@@ -37,3 +37,12 @@
   width: 28px;
   height: 28px;
 }
+
+.collaboration {
+  border-bottom: 1px solid var(--text-color);
+  border-top: 1px solid var(--text-color);
+  padding: 0.5em 0;
+  p {
+    //@include body-text
+  }
+}

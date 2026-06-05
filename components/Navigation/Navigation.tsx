@@ -15,11 +15,12 @@ import {useDogEarSync} from '@/contexts/DogEarSync';
 
 interface NavigationProps {
     readonly contacts?: SimpleBlockContent
+    readonly collaboration?: SimpleBlockContent
     readonly info?: SimpleBlockContent
     readonly support?: SimpleBlockContent
 }
 
-export const Navigation: FunctionComponent<NavigationProps> = ({contacts, info, support}) => {
+export const Navigation: FunctionComponent<NavigationProps> = ({contacts, collaboration, info, support}) => {
     const t = useTranslations('Navigation')
     const tSupport = useTranslations('OverlaySupport')
     const [contactOpen, setContactOpen] = useState(false)
@@ -157,7 +158,7 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, info, 
 
 
             <OverlayContact isOpen={contactOpen} handleClose={() => setContactOpen(false)} contacts={contacts}
-                            info={info}/>
+                            collaboration={collaboration} info={info}/>
             <OverlaySupport isOpen={supportOpen} handleClose={() => setSupportOpen(false)} support={support}/>
         </>
     )

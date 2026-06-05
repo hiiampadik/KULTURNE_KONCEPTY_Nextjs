@@ -3,7 +3,7 @@
     "contact": "Contact",
     "menu": {
       "whoWeAre": "Who are we?",
-      "fields": "Fields",
+      "fields": "What we do?",
       "projects": "Projects"
     }
   },
@@ -12,7 +12,7 @@
   },
   "Sections": {
     "whoWeAre": "Who are we?",
-    "fields": "Fields",
+    "fields": "What we do?",
     "projects": "Realized projects",
     "references": "References",
     "showMore": "Show more",
@@ -34,7 +34,7 @@
     "partners": "{count, plural, one {Partner} other {Partners}}"
   },
   "References": {
-    "subtitle": "of the core KK team\nM. Bohumelová, B. Hromádková, A. Kusá\n(selection)"
+    "subtitle": "Čo hovoria naši partneri a návštevníci?"
   },
   "Footer": {
     "contact": "Contact",

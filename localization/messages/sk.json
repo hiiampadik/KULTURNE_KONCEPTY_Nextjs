@@ -3,7 +3,7 @@
     "contact": "Kontakt",
     "menu": {
       "whoWeAre": "Kto sme?",
-      "fields": "Čo ponúkame?",
+      "fields": "Čo robíme?",
       "projects": "Projekty"
     }
   },
@@ -12,8 +12,8 @@
   },
   "Sections": {
     "whoWeAre": "Kto sme?",
-    "fields": "Čo ponúkame?",
-    "projects": "Realizované projekty",
+    "fields": "Čo robíme?",
+    "projects": "Projekty",
     "references": "Ohlasy",
     "showMore": "Zobraziť viac",
     "showLess": "Zobraziť menej"
@@ -28,13 +28,13 @@
     "close": "Zavrieť"
   },
   "OverlayProject": {
-    "active": "Aktivný projekt",
+    "active": "Aktívny projekt",
     "location": "Miesto",
     "copyLink": "Kopírovať odkaz",
     "partners": "{count, plural, one {Partner} other {Partneri}}"
   },
   "References": {
-    "subtitle": "základného tímu KK\nM. Bohumelová, B. Hromádková, A. Kusá\n(výber)"
+    "subtitle": "What do our partners and visitors say?"
   },
   "Footer": {
     "contact": "Kontakt",
