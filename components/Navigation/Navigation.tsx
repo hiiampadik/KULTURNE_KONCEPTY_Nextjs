@@ -2,7 +2,8 @@
 import React, {FunctionComponent, useEffect, useRef, useState} from 'react'
 import {gsap} from 'gsap'
 import {useTranslations} from 'next-intl'
-import {LocaleSwitcher} from './LocaleSwitcher'
+// EN mutácia dočasne vypnutá – prepínač jazykov skrytý, kým nebudú preklady zo Sanity (viď localization/routing.ts)
+// import {LocaleSwitcher} from './LocaleSwitcher'
 import {ThemeToggle} from './ThemeToggle'
 import {socialLinks} from '@/constants/site'
 import type {SimpleBlockContent} from '@/sanity/sanity.types'
@@ -88,7 +89,8 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, collab
             <nav className={styles.nav}>
 
                 <div ref={topRef} className={classNames([styles.top, styles.navRevealItem])}>
-                    <LocaleSwitcher/>
+                    {/* EN mutácia dočasne vypnutá – prepínač jazykov skrytý, kým nebudú preklady zo Sanity */}
+                    {/*<LocaleSwitcher/>*/}
                     <button
                         className={styles.contact}
                         onClick={() => setContactOpen(prev => !prev)}

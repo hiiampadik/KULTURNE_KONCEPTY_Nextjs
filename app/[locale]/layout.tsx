@@ -69,7 +69,8 @@ export default async function LocaleLayout({
         <head>
             <link rel="canonical" href={`${baseURL}${locale}`}/>
             <link rel="alternate" href={`${baseURL}sk`} hrefLang="sk"/>
-            <link rel="alternate" href={`${baseURL}en`} hrefLang="en"/>
+            {/* EN mutácia dočasne vypnutá – vrátiť späť, keď budú preklady zo Sanity (viď localization/routing.ts) */}
+            {/*<link rel="alternate" href={`${baseURL}en`} hrefLang="en"/>*/}
             <link rel="alternate" href={`${baseURL}sk`} hrefLang="x-default"/>
             <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2"
                   crossOrigin="anonymous"/>
