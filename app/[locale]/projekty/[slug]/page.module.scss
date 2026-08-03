@@ -18,16 +18,25 @@
     @media (max-width: $breakpoint-md-max) {
         gap: var(--layout-padding-y);
     }
+
+    // Pod xs je --layout-padding-x = 0 (edge-to-edge dizajn homepage), ale textový
+    // detail projektu potrebuje odsadenie od okrajov.
+    @media (max-width: $breakpoint-xs-max) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 .back {
     @include date;
     align-self: flex-start;
+    color: var(--text-color);
     text-decoration: none;
 
     @media (hover: hover) {
         &:hover {
             text-decoration: underline;
+            text-decoration-color: currentColor;
         }
     }
 }

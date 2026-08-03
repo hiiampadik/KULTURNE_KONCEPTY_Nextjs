@@ -81,6 +81,26 @@
         height: auto;
     }
 }
+
+// Detail stránka projektu: na mobile nech navigáciu tiecť v dokumente (žiadny overlay),
+// zobraz len Kontakt/Theme + logo (→ domov), sekčné taby skry. Na desktope ostáva fixná.
+.nav.detail {
+    @media (max-width: $breakpoint-md-max) {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+
+        .menu {
+            display: none;
+        }
+
+        .supportCorner {
+            display: none;
+        }
+    }
+}
+
 .top {
     display: flex;
     align-items: center;

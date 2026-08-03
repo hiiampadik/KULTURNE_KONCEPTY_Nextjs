@@ -57,7 +57,8 @@
   flex-direction: column;
   gap: 4px;
   a {
-    color: black;
+    color: var(--text-color);
+    text-decoration-color: currentColor;
   }
 
   p {
@@ -70,6 +71,11 @@
   display: flex;
   flex-direction: column;
   gap: 22px;
+
+  a {
+    color: var(--text-color);
+    text-decoration-color: currentColor;
+  }
 }
 
 .perex {

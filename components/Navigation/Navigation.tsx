@@ -2,6 +2,7 @@
 import React, {FunctionComponent, useEffect, useRef, useState} from 'react'
 import {gsap} from 'gsap'
 import {useTranslations} from 'next-intl'
+import {Link, usePathname} from '@/localization/navigation'
 // EN mutácia dočasne vypnutá – prepínač jazykov skrytý, kým nebudú preklady zo Sanity (viď localization/routing.ts)
 // import {LocaleSwitcher} from './LocaleSwitcher'
 import {ThemeToggle} from './ThemeToggle'
@@ -27,6 +28,9 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, collab
     const [contactOpen, setContactOpen] = useState(false)
     const [supportOpen, setSupportOpen] = useState(false)
     const {hoveredSection, setHoveredSection} = useDogEarSync()
+    // usePathname() (next-intl) je bez prefixu locale: '/' na domovskej, '/projekty/...' na detaile.
+    const pathname = usePathname()
+    const isHome = pathname === '/'
 
     const topRef = useRef<HTMLDivElement>(null)
     const logoRef = useRef<HTMLAnchorElement>(null)
@@ -86,7 +90,7 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, collab
 
     return (
         <>
-            <nav className={styles.nav}>
+            <nav className={classNames([styles.nav, !isHome && styles.detail])}>
 
                 <div ref={topRef} className={classNames([styles.top, styles.navRevealItem])}>
                     {/* EN mutácia dočasne vypnutá – prepínač jazykov skrytý, kým nebudú preklady zo Sanity */}
@@ -107,42 +111,40 @@ export const Navigation: FunctionComponent<NavigationProps> = ({contacts, collab
                 </div>
 
                 <div className={styles.bottom}>
-                    <a ref={logoRef} href="#" className={classNames([styles.logo, styles.navRevealItem])}
-                       onClick={(e) => {
-                           e.preventDefault();
-                           window.scrollTo({top: 0, behavior: 'smooth'})
-                       }}>
+                    {/* Vždy rovnaký element (Link), aby sa DOM uzol pri zmene routy nerekreoval a
+                        neprišiel o reveal (inak by logo po otvorení modálu / navigácii zmizlo –
+                        navRevealItem má visibility:hidden a reveal beží len raz pri mounte). */}
+                    <Link ref={logoRef} href="/" className={classNames([styles.logo, styles.navRevealItem])}
+                          onClick={(e) => {
+                              if (isHome) {
+                                  e.preventDefault()
+                                  window.scrollTo({top: 0, behavior: 'smooth'})
+                              }
+                          }}>
                         <img src="/KK_LOGO.svg" alt="Kultúrne Koncepty" className={styles.logoImage}/>
-                    </a>
+                    </Link>
 
                     <div className={styles.menu}>
-                        <div ref={menuItem1Ref} className={styles.navRevealItem}>
-                            <DogEar corner={'top-right'} shadow={true}
-                                    forceHover={hoveredSection === 'who-we-are'}
-                                    onMouseEnter={() => setHoveredSection('who-we-are')}
-                                    onMouseLeave={() => setHoveredSection(null)}>
-                                <a className={classNames([styles.menuItem, styles.item1])} href="#who-we-are"
-                                   onClick={() => setContactOpen(false)}>{t('menu.whoWeAre')}</a>
-                            </DogEar>
-                        </div>
-                        <div ref={menuItem2Ref} className={styles.navRevealItem}>
-                            <DogEar corner={'top-right'} shadow={true}
-                                    forceHover={hoveredSection === 'fields'}
-                                    onMouseEnter={() => setHoveredSection('fields')}
-                                    onMouseLeave={() => setHoveredSection(null)}>
-                                <a className={classNames([styles.menuItem, styles.item2])} href="#fields"
-                                   onClick={() => setContactOpen(false)}>{t('menu.fields')}</a>
-                            </DogEar>
-                        </div>
-                        <div ref={menuItem3Ref} className={styles.navRevealItem}>
-                            <DogEar corner={'top-right'} shadow={true}
-                                    forceHover={hoveredSection === 'projects'}
-                                    onMouseEnter={() => setHoveredSection('projects')}
-                                    onMouseLeave={() => setHoveredSection(null)}>
-                                <a className={classNames([styles.menuItem, styles.item3])} href="#projects"
-                                   onClick={() => setContactOpen(false)}>{t('menu.projects')}</a>
-                            </DogEar>
-                        </div>
+                        {[
+                            {key: 'who-we-are', label: t('menu.whoWeAre'), cls: styles.item1, itemRef: menuItem1Ref},
+                            {key: 'fields', label: t('menu.fields'), cls: styles.item2, itemRef: menuItem2Ref},
+                            {key: 'projects', label: t('menu.projects'), cls: styles.item3, itemRef: menuItem3Ref},
+                        ].map(({key, label, cls, itemRef}) => (
+                            <div key={key} ref={itemRef} className={styles.navRevealItem}>
+                                <DogEar corner={'top-right'} shadow={true}
+                                        forceHover={hoveredSection === key}
+                                        onMouseEnter={() => setHoveredSection(key)}
+                                        onMouseLeave={() => setHoveredSection(null)}>
+                                    {isHome ? (
+                                        <a className={classNames([styles.menuItem, cls])} href={`#${key}`}
+                                           onClick={() => setContactOpen(false)}>{label}</a>
+                                    ) : (
+                                        <Link className={classNames([styles.menuItem, cls])} href={`/#${key}`}
+                                              onClick={() => setContactOpen(false)}>{label}</Link>
+                                    )}
+                                </DogEar>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
