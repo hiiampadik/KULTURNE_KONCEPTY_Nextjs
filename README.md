@@ -1,6 +1,6 @@
 # Kulturne Koncepty
 
-Website for [Kultúrne Koncepty](https://www.kulturnekoncepty.sk) — built with Next.js 16+ (App Router), Sanity CMS, and deployed to GitHub Pages.
+Website for [Kultúrne Koncepty](https://kulturnekoncepty.sk) — built with Next.js 16+ (App Router), Sanity CMS, and deployed to GitHub Pages.
 
 ## Development
 
@@ -68,7 +68,10 @@ const nextConfig: NextConfig = {
 export default withNextIntl(nextConfig)
 ```
 
-> **basePath**: Only needed if the site is served at `username.github.io/repo-name` (no custom domain). Set it to `'/repo-name'`.
+> **basePath** — read this before deploying:
+> - Set it **only** when the site is served from a subpath, i.e. `username.github.io/repo-name` (no custom domain). Value = `'/repo-name'`.
+> - **With a custom domain served from the root (our case, `kulturnekoncepty.sk`), `basePath` MUST be unset.** A leftover `basePath` prefixes every asset (`/repo-name/_next/...`), which then 404s on the root domain → **the page loads with no CSS/JS** (unstyled HTML, "broken" look). This is exactly the bug we hit — see the Pitfalls table.
+> - Rule of thumb: `basePath` and a root custom domain are mutually exclusive. Switching to a custom domain? Remove `basePath` in the same change.
 
 ### i18n: `[locale]` URL segment with next-intl
 
@@ -242,7 +245,7 @@ export default function RootRedirect() {
         <html>
             <head>
                 <meta httpEquiv="refresh" content="0;url=/sk" />
-                <link rel="canonical" href="https://www.kulturnekoncepty.sk/sk" />
+                <link rel="canonical" href="https://kulturnekoncepty.sk/sk" />
             </head>
             <body />
         </html>
@@ -282,7 +285,7 @@ Fix this with a post-build step in the workflow that creates redirect `index.htm
       target="/${dir#./out/}"
       if [ -d "$dir" ]; then
         if [ ! -f "$dir/index.html" ]; then
-          echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://www.kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
+          echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
         fi
       fi
     done
@@ -295,7 +298,7 @@ Fix this with a post-build step in the workflow that creates redirect `index.htm
 ```js
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-    siteUrl: 'https://www.kulturnekoncepty.sk',
+    siteUrl: 'https://kulturnekoncepty.sk',
     generateRobotsTxt: false,
     outDir: './out',
     exclude: ['/'],
@@ -369,7 +372,7 @@ jobs:
             target="/${dir#./out/}"
             if [ -d "$dir" ]; then
               if [ ! -f "$dir/index.html" ]; then
-                echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://www.kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
+                echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
               fi
             fi
           done
@@ -398,7 +401,31 @@ jobs:
 
 1. Go to **Settings → Pages**
 2. Set **Source** to `GitHub Actions`
-3. (Optional) Set custom domain if not using `username.github.io/repo-name`
+3. Set the **Custom domain** to `kulturnekoncepty.sk` (see the next section for the full custom-domain + HTTPS setup)
+
+### Custom domain + HTTPS (Cloudflare DNS)
+
+This site runs on a **custom domain served from the root** (`https://kulturnekoncepty.sk`), with DNS at Cloudflare and hosting on GitHub Pages. Getting this right requires four things to agree with each other — if any drift apart you get the classic "no CSS" / "Not Secure" symptoms.
+
+**1. Primary domain = apex, no `www`.** The canonical host is the apex `kulturnekoncepty.sk`; `www.kulturnekoncepty.sk` 301-redirects to it (GitHub Pages does this automatically once the apex is set as the custom domain). Every hard-coded URL in the codebase MUST use the apex, no `www`:
+
+| Where | Value |
+|---|---|
+| `constants/site.ts` → `siteUrl` | `https://kulturnekoncepty.sk/` |
+| `next-sitemap.config.js` → `siteUrl` | `https://kulturnekoncepty.sk` |
+| `app/page.tsx` root-redirect canonical | `https://kulturnekoncepty.sk/sk` |
+| `deploy.yml` trailing-slash redirect stubs | `https://kulturnekoncepty.sk${target}` |
+
+> If these point to `www` while GitHub Pages serves the apex (or vice-versa), your `canonical`/`og:url`/sitemap URLs point to a **host that immediately redirects** — a self-inflicted SEO smell. Keep code and the Pages custom-domain setting on the same host.
+
+**2. `basePath` must be unset.** See the `next.config.ts` section above — a custom root domain and `basePath` are mutually exclusive.
+
+**3. `CNAME` file.** `public/CNAME` contains the apex domain (`kulturnekoncepty.sk`). Next copies `public/*` into `out/` on export, so the domain ships with every Actions deploy and can't be silently dropped. Its content must match the Custom domain in Settings → Pages.
+
+**4. HTTPS certificate.** Cloudflare's DNS records for the apex + `www` are **"DNS only" (grey cloud)** — traffic goes straight to GitHub Pages, and **GitHub provisions the Let's Encrypt certificate** (covers both apex and `www`). After first setting the custom domain:
+- The cert takes a few minutes up to ~24h to issue. **Until then the browser shows "Not Secure" — this is expected and self-resolves.** Don't "fix" it by switching Cloudflare to Flexible SSL; that would break things.
+- Once the padlock is green, tick **Settings → Pages → Enforce HTTPS**.
+- If you ever switch the Cloudflare records to **proxied (orange cloud)**, GitHub can no longer issue its cert — you then rely on Cloudflare's edge cert and must set the Cloudflare **SSL/TLS mode to Full** (never Flexible, which causes redirect loops with GitHub Pages).
 
 ### Environment variables for GitHub Actions
 
@@ -434,3 +461,7 @@ For **public** datasets, no token is required.
 | `/sk/` returns 404 on GitHub Pages | `out/sk/` directory exists but has no `index.html` | Add trailing-slash redirect build step (see above) |
 | Google picks wrong canonical (`/` instead of `/sk`) | Root redirect page has self-referencing canonical | Set canonical on `/` to `/sk`; point `x-default` hreflang to `/sk` |
 | `redirects()` not working on production | `output: 'export'` ignores `redirects()` — they only work with a Node.js server | Use HTML redirect pages (`meta http-equiv="refresh"`) instead |
+| Page loads unstyled — all CSS/JS 404 on the custom domain | Leftover `basePath` prefixes assets with `/repo-name/…` while the domain serves from root | Remove `basePath` from `next.config.ts` (custom root domain ⇒ no basePath). See Custom domain section |
+| Browser shows "Not Secure" right after setting the custom domain | GitHub Pages hasn't provisioned the Let's Encrypt cert yet (takes minutes–24h) | Wait, then hard-refresh / try incognito; tick **Enforce HTTPS**. Do NOT switch Cloudflare to Flexible SSL |
+| `canonical` / `og:url` / sitemap point to a redirecting host | Code uses `www` but Pages serves the apex (or vice-versa) | Align every hard-coded URL and `public/CNAME` to the primary host (apex, no `www`) |
+| Custom domain disappears after an Actions deploy | Deploy artifact had no `CNAME`, so Pages lost the domain | Keep `public/CNAME` (apex domain) — it's exported into `out/` on every build |

@@ -8,7 +8,8 @@ const isGithubPages = process.env.GITHUB_PAGES === 'true'
 const nextConfig: NextConfig = {
     ...(isGithubPages && {
         output: 'export',
-        basePath: '/KULTURNE_KONCEPTY_Nextjs', // To be removed in future when using custom domain
+        // basePath odstránený – web beží na vlastnej doméne (kulturnekoncepty.sk) z rootu.
+        // Pri nasadení cez subcestu (napr. user.github.io/REPO) ho vrátiť späť: basePath: '/KULTURNE_KONCEPTY_Nextjs'
         images: {
             unoptimized: true,
         },

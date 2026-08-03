@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
-    siteUrl: 'https://www.kulturnekoncepty.sk',
+    siteUrl: 'https://kulturnekoncepty.sk',
     generateRobotsTxt: false,
     outDir: './out',
     exclude: ['/'],

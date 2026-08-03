@@ -63,7 +63,7 @@ jobs:
             target="/${dir#./out/}"
             if [ -d "$dir" ]; then
               if [ ! -f "$dir/index.html" ]; then
-                echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://www.kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
+                echo "<!DOCTYPE html><html><head><link rel=\"canonical\" href=\"https://kulturnekoncepty.sk${target}\"/><meta http-equiv=\"refresh\" content=\"0;url=${target}\"/></head></html>" > "$dir/index.html"
               fi
             fi
           done
