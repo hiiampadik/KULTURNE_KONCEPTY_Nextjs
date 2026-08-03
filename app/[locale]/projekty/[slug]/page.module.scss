@@ -1,0 +1,39 @@
+@import '../../../../styles/variables';
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    padding-left: var(--padding-body-left);
+    align-items: center;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px var(--layout-padding-x) 40px var(--layout-padding-x);
+    max-width: 800px;
+    width: 100%;
+
+    @media (max-width: $breakpoint-md-max) {
+        gap: var(--layout-padding-y);
+    }
+}
+
+.back {
+    @include date;
+    align-self: flex-start;
+    text-decoration: none;
+
+    @media (hover: hover) {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.cover {
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+}

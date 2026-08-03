@@ -2,17 +2,20 @@
 
 import React, {FunctionComponent, useEffect, useState} from 'react'
 import {PortableText} from 'next-sanity'
-import {useTranslations} from 'next-intl'
+import {useTranslations, useLocale} from 'next-intl'
+import {Link} from '@/localization/navigation'
 import {SectionContainer} from '@/components/SectionContainer/SectionContainer'
 import {Figure} from '@/components/Figure/Figure'
 import {OverlayProject, OverlayProjectData} from '@/components/OverlayProject/OverlayProject'
 import {DogEar} from '@/components/DogEar/DogEar'
 import styles from './SectionProjects.module.scss'
 import {ImageObject, LinkText, SimpleBlockContent, SimpleBlockContentWithLists} from '@/sanity/sanity.types'
+import {PROJECT_SEGMENT, projectPath} from '@/sanity/projects'
 import {classNames} from '@/components/utils/classNames';
 
 export interface ProjectItem {
     _id: string
+    slug?: string
     active?: boolean | null
     title: string | null | undefined
     date: string | null | undefined
@@ -36,30 +39,42 @@ interface SectionProjectsProps {
 
 const PROJECT_PARAM = 'project'
 
+// Card subtitles are wrapped in an <a> (the card link); render Portable Text
+// link marks as plain text so we never nest an <a> inside an <a>.
+const cardTextComponents = {
+    marks: {
+        link: ({children}: {children?: React.ReactNode}) => <>{children}</>,
+    },
+}
+
 export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, title, subtitle, items, fieldIconMap = {}}) => {
     const t = useTranslations('OverlayProject')
+    const locale = useLocale()
     const [selected, setSelected] = useState<OverlayProjectData | null>(null)
 
-    const setUrlParam = (projectId: string | null) => {
-        const url = new URL(window.location.href)
-        if (projectId) {
-            url.searchParams.set(PROJECT_PARAM, projectId)
-        } else {
-            url.searchParams.delete(PROJECT_PARAM)
-        }
-        window.history.replaceState(null, '', url.toString())
+    const replaceUrl = (path: string) => {
+        window.history.replaceState(null, '', path)
     }
 
     const openProject = (item: ProjectItem) => {
         setSelected({...item, id: item._id})
-        setUrlParam(item._id)
+        if (item.slug) replaceUrl(projectPath(locale, item.slug))
     }
 
     const closeProject = () => {
         setSelected(null)
-        setUrlParam(null)
+        replaceUrl(`/${locale}`)
     }
 
+    // Intercept a plain left-click to open the modal; let modified/middle
+    // clicks fall through so the real detail page opens (new tab, etc.).
+    const handleCardClick = (item: ProjectItem) => (e: React.MouseEvent) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+        e.preventDefault()
+        openProject(item)
+    }
+
+    // Backward compatibility: legacy deep links use `?project=<sanity _id>`.
     useEffect(() => {
         if (!items) return
         const params = new URLSearchParams(window.location.search)
@@ -79,10 +94,10 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
 
                     return (
                         <DogEar key={item._id} corner="bottom-left" size={0} hoverSize={45} shadow bgTriangle>
-                            <button
-                                type="button"
+                            <Link
+                                href={item.slug ? `/${PROJECT_SEGMENT}/${item.slug}` : `/${PROJECT_SEGMENT}`}
                                 className={classNames([styles.card, index === 0 && styles.firstCard])}
-                                onClick={() => openProject(item)}
+                                onClick={handleCardClick(item)}
                             >
                                 <div className={styles.cardHeader}>
                                     {(item.active === true || item.date) && (
@@ -120,10 +135,10 @@ export const SectionProjects: FunctionComponent<SectionProjectsProps> = ({id, ti
                                 </div>
                                 {item.subtitle && (
                                     <div className={styles.description}>
-                                        <PortableText value={item.subtitle}/>
+                                        <PortableText value={item.subtitle} components={cardTextComponents}/>
                                     </div>
                                 )}
-                            </button>
+                            </Link>
                         </DogEar>
                     )
                 })}

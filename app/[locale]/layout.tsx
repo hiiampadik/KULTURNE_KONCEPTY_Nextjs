@@ -1,4 +1,5 @@
 
+import type {Metadata} from 'next'
 import {NextIntlClientProvider} from 'next-intl'
 import {getMessages, setRequestLocale} from 'next-intl/server'
 import {routing} from '@/localization/routing'
@@ -47,6 +48,18 @@ export function generateStaticParams() {
     return routing.locales.map(locale => ({locale}))
 }
 
+// Default canonical for the locale tree (the homepage). Sub-pages (e.g. project
+// detail) override `alternates.canonical` in their own generateMetadata.
+// hreflang: obnoviť `languages` keď sa vráti EN mutácia (viď localization/routing.ts).
+export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
+    const {locale} = await params
+    return {
+        alternates: {
+            canonical: `/${locale}`,
+        },
+    }
+}
+
 export default async function LocaleLayout({
     children,
     params,
@@ -67,11 +80,8 @@ export default async function LocaleLayout({
     return (
         <html lang={locale} className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <head>
-            <link rel="canonical" href={`${baseURL}${locale}`}/>
-            <link rel="alternate" href={`${baseURL}sk`} hrefLang="sk"/>
-            {/* EN mutácia dočasne vypnutá – vrátiť späť, keď budú preklady zo Sanity (viď localization/routing.ts) */}
-            {/*<link rel="alternate" href={`${baseURL}en`} hrefLang="en"/>*/}
-            <link rel="alternate" href={`${baseURL}sk`} hrefLang="x-default"/>
+            {/* canonical + hreflang sa generujú cez Metadata API (viď generateMetadata vyššie
+                a v app/[locale]/projekty/[slug]/page.tsx), nie natvrdo tu. */}
             <link rel="preload" href="/fonts/AnoAngularDiacritics-Light.woff2" as="font" type="font/woff2"
                   crossOrigin="anonymous"/>
             <link rel="stylesheet" href="https://use.typekit.net/hcm5cdz.css"/>

@@ -53,8 +53,8 @@ jobs:
         env:
           GITHUB_PAGES: "true"
 
-      - name: Generate sitemap
-        run: npx next-sitemap
+      # sitemap.xml a robots.txt sa generujú natívne cez app/sitemap.ts a app/robots.ts
+      # počas `next build` (predtým samostatný krok `npx next-sitemap`).
 
       - name: Add trailing-slash redirects
         run: |
