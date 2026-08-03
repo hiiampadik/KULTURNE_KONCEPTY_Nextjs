@@ -2,7 +2,6 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {getTranslations, setRequestLocale} from 'next-intl/server'
 import {Link} from '@/localization/navigation'
-import {Figure} from '@/components/Figure/Figure'
 import {ProjectDetail} from '@/components/ProjectDetail/ProjectDetail'
 import {siteUrl} from '@/constants/site'
 import {urlForImage} from '@/sanity/image'
@@ -105,25 +104,19 @@ export default async function ProjectPage({params}: {params: Promise<PageParams>
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
             />
-            <article className={styles.page}>
+            <div className={styles.inner}>
+                <div className={styles.backContainer}>
                 <Link href="/" className={styles.back}>← {t('backHome')}</Link>
-
-                {project.cover?.asset && (
-                    <Figure
-                        image={project.cover}
-                        alt={project.cover.altTextSk ?? project.title ?? ''}
-                        sizes="(max-width: 800px) 100vw, 800px"
-                        className={styles.cover}
+                </div>
+                <article className={styles.page}>
+                    <ProjectDetail
+                        project={{...project, id: project._id}}
+                        fieldIconMap={fieldIconMap}
+                        showFields
+                        titleAs="h1"
                     />
-                )}
-
-                <ProjectDetail
-                    project={{...project, id: project._id}}
-                    fieldIconMap={fieldIconMap}
-                    showFields
-                    titleAs="h1"
-                />
-            </article>
+                </article>
+            </div>
         </div>
     )
 }

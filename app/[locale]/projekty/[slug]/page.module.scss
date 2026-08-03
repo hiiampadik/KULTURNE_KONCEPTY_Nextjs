@@ -3,30 +3,28 @@
 .wrap {
     display: flex;
     flex-direction: column;
-    padding-left: var(--padding-body-left);
     align-items: center;
+    // Margin okolo kontajnera (rovnako ako sekcie na homepage) – na telefóne zmizne,
+    // lebo --layout-padding-x je pod $breakpoint-xs-max nastavené na 0.
+    // Vľavo drž priestor pre fixnú navigáciu; zároveň to na desktope zarovná vrch karty s navigáciou.
+    padding: var(--layout-padding-x);
+    padding-left: max(var(--padding-body-left), var(--layout-padding-x));
 }
 
-.page {
+.inner {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    padding: 40px var(--layout-padding-x) 40px var(--layout-padding-x);
-    max-width: 800px;
+    gap: 16px;
     width: 100%;
-
-    @media (max-width: $breakpoint-md-max) {
-        gap: var(--layout-padding-y);
-    }
-
-    // Pod xs je --layout-padding-x = 0 (edge-to-edge dizajn homepage), ale textový
-    // detail projektu potrebuje odsadenie od okrajov.
-    @media (max-width: $breakpoint-xs-max) {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+    max-width: 800px;
 }
 
+.backContainer {
+    margin-bottom: 20px;
+    @media (max-width: $breakpoint-xs-max) {
+        margin: 20px 20px 20px;
+    }
+}
 .back {
     @include date;
     align-self: flex-start;
@@ -41,8 +39,19 @@
     }
 }
 
-.cover {
+// Karta detailu: rovnaké pozadie/tieň a padding ako sekcia „Kto sme?" (SectionWhoWeAre .body).
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: var(--padding-content-box);
+    padding-top: calc(var(--padding-content-box) * 2);
     width: 100%;
-    max-height: 460px;
-    object-fit: cover;
+    background: var(--bg-container);
+    color: var(--text-color);
+    @include shadow;
+
+    @media (max-width: $breakpoint-md-max) {
+        gap: var(--layout-padding-y);
+    }
 }
