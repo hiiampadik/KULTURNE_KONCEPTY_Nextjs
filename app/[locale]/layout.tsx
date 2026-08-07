@@ -50,12 +50,16 @@ export function generateStaticParams() {
 
 // Default canonical for the locale tree (the homepage). Sub-pages (e.g. project
 // detail) override `alternates.canonical` in their own generateMetadata.
-// hreflang: obnoviť `languages` keď sa vráti EN mutácia (viď localization/routing.ts).
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
     const {locale} = await params
     return {
         alternates: {
             canonical: `/${locale}`,
+            languages: {
+                sk: '/sk',
+                en: '/en',
+                'x-default': '/sk',
+            },
         },
     }
 }
