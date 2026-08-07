@@ -5,12 +5,15 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
 const baseURL = siteUrl
-const description = '' // TODO
+const description = 'Kultúrne Koncepty – pomáhame kultúre nájsť hlavu a pätu. Kultúrny manažment, umelecké projekty a plány na mieru pre inštitúcie, mestá aj súkromný sektor.'
 const keywords = '' // TODO
 
 export const metadata: Metadata = {
     metadataBase: new URL(baseURL),
-    title: 'Kultúrne Koncepty',
+    title: {
+        default: 'Kultúrne Koncepty – kultúrny manažment a umelecké projekty',
+        template: '%s – Kultúrne Koncepty',
+    },
     description: description,
     keywords: keywords,
     robots: 'index, follow',

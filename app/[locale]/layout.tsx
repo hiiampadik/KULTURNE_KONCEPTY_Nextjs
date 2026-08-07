@@ -27,6 +27,7 @@ const jsonLd = {
             '@type': 'Organization',
             '@id': `${baseURL}#organization`,
             name: 'Kultúrne Koncepty',
+            alternateName: ['Kulturne Koncepty', 'Kulturne koncepty Bratislava'],
             url: baseURL,
             sameAs: [
                 socialLinks.facebook,
@@ -39,7 +40,7 @@ const jsonLd = {
             url: baseURL,
             name: 'Kultúrne Koncepty',
             publisher: {'@id': `${baseURL}#organization`},
-            description: '',
+            description: 'Pomáhame kultúre nájsť hlavu a pätu – kultúrny manažment, umelecké projekty a plány na mieru.',
         },
     ],
 }
