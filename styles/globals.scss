@@ -34,7 +34,7 @@ html {
   --bg-container: #FFF;
   --text-color: black;
 
-  --icon-filter: brightness(0);
+  --icon-filter: invert(0);
   --strong-bg: #ebe6e4;
   --strong-color: inherit;
 
@@ -88,7 +88,7 @@ html {
     --bg-container: black;
     --text-color: white;
 
-    --icon-filter: brightness(0) invert(1);
+    --icon-filter: invert(1);
     --strong-bg: #4a4a4a;
     --strong-color: white;
 

@@ -60,11 +60,8 @@
 .fieldIcon {
     height: 50px;
     object-fit: contain;
-    filter: brightness(0) invert(1);
+    filter: var(--icon-filter);
 
-    @media (max-width: $breakpoint-sm-max) {
-        filter: var(--icon-filter);
-    }
 }
 
 .fieldTitle {
