@@ -5,8 +5,7 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 
 const baseURL = siteUrl
-const description = 'Kultúrne Koncepty – pomáhame kultúre nájsť hlavu a pätu. Kultúrny manažment, umelecké projekty a plány na mieru pre inštitúcie, mestá aj súkromný sektor.'
-const keywords = '' // TODO
+const description = 'Kultúrne Koncepty – pomáhame kultúre nájsť hlavu a pätu. Kultúrny manažment, umelecké projekty ako Múzeum hodnôt a plány na mieru pre inštitúcie, mestá aj súkromný sektor.'
 
 export const metadata: Metadata = {
     metadataBase: new URL(baseURL),
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
         template: '%s – Kultúrne Koncepty',
     },
     description: description,
-    keywords: keywords,
     robots: 'index, follow',
     openGraph: {
         siteName: 'Kultúrne Koncepty',
