@@ -30,14 +30,13 @@ export const DogEar: FunctionComponent<DogEarProps> = ({
 }) => {
     return (
         <div
-            className={classNames([styles.dogEar, shadow && styles.shadow, bgTriangle && styles.bgTriangle, className])}
+            className={classNames([styles.dogEar, shadow && styles.shadow, bgTriangle && styles.bgTriangle, forceHover && styles.forceHover, className])}
             data-corner={corner}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             style={{
                 '--size': `${size}px`,
                 ...(hoverSize != null ? {'--hover-grow-target': `${hoverSize}px`} as Record<string, string> : {}),
-                ...(forceHover ? {'--hover-grow': 'var(--hover-grow-target)'} as Record<string, string> : {}),
             } as React.CSSProperties}
         >
             <div className={styles.inner}>

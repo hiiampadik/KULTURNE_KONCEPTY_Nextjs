@@ -26,6 +26,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  @media (max-width: $breakpoint-xs-max) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
 .badge {
@@ -45,6 +50,7 @@
   display: flex;
   column-gap: 20px;
   align-items: flex-start;
+
 }
 
 .metaLabel {
@@ -53,6 +59,7 @@
 }
 
 .metaValue {
+  word-break: break-word;
   display: flex;
   flex-direction: column;
   gap: 4px;

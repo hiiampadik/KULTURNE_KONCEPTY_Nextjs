@@ -7,8 +7,11 @@ $transition: 0.25s ease;
     --hover-grow: 0px;
     --hover-grow-target: 20px;
 
+    // Len na zariadeniach s myšou – na dotykových obrazovkách tap vyvolá mouseenter,
+    // takže rohy musia zostať statické (platí aj pre synchronizovaný forceHover).
     @media (hover: hover) {
-        &:hover {
+        &:hover,
+        &.forceHover {
             --hover-grow: var(--hover-grow-target);
         }
     }

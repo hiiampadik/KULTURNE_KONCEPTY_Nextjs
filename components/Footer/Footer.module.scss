@@ -15,7 +15,7 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 800px;
-    padding: 0 var(--layout-padding-x) 100px;
+    padding: 20px var(--layout-padding-x) 100px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
@@ -31,7 +31,7 @@
     }
 
     @media (max-width: $breakpoint-xs-max) {
-        padding: 0 var(--padding-content-box) 100px;
+        padding: 20px var(--padding-content-box) 100px;
     }
 
 
