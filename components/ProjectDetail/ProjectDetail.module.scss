@@ -100,10 +100,13 @@
   }
 }
 
+// Galéria ignoruje horizontálny padding rodiča (.page na stránke projektu, .wrap v overlayi –
+// oba používajú --padding-content-box), aby sa dala scrollovať od okraja po okraj.
 .gallery {
   display: flex;
   gap: 13px;
   overflow-x: auto;
+  margin-inline: calc(-1 * var(--padding-content-box));
 }
 
 .galleryImage {
@@ -111,4 +114,13 @@
   width: auto;
   flex-shrink: 0;
   object-fit: cover;
+
+  // Prvý obrázok začína zarovno s obsahom nad galériou, za posledným ostáva rovnaká medzera.
+  &:first-child {
+    margin-left: var(--padding-content-box);
+  }
+
+  &:last-child {
+    margin-right: var(--padding-content-box);
+  }
 }
