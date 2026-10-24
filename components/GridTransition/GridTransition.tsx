@@ -102,8 +102,16 @@ export const GridTransition: FunctionComponent = () => {
             const v = nextVariant()
             const totalDuration = v.FILLS_DURATION + v.STAGGER_AMOUNT
 
+            // Barvy kontejnerů animujeme jen při ručním přepnutí, při prvním načtení se přepnou hned
+            const root = document.documentElement
+            if (!detail.initial) root.dataset.themeAnimating = ''
+            const finish = () => {
+                delete root.dataset.themeAnimating
+                window.dispatchEvent(new Event('theme-transition-end'))
+            }
+
             if (to === 'dark') {
-                document.documentElement.dataset.theme = 'dark'
+                root.dataset.theme = 'dark'
                 gsap.set(fills, { x: 0, y: 0 })
                 gsap.to(fills, {
                     x: TILE_W * v.MOVE_X,
@@ -116,9 +124,7 @@ export const GridTransition: FunctionComponent = () => {
                         const row = Math.floor(index / cols)
                         return (col / cols) * v.STAGGER_AMOUNT + row * v.ROW_DELAY
                     },
-                    onComplete: () => {
-                        window.dispatchEvent(new Event('theme-transition-end'))
-                    },
+                    onComplete: finish,
                 })
                 gsap.to(container, {
                     backgroundColor: GRID_LINE_DARK,
@@ -127,7 +133,6 @@ export const GridTransition: FunctionComponent = () => {
                     ease: 'none',
                 })
             } else {
-                const root = document.documentElement
                 const darkBg = getComputedStyle(root).getPropertyValue('--bg').trim()
                 root.style.setProperty('--grid-cell-bg', darkBg)
                 root.dataset.theme = 'light'
@@ -144,7 +149,7 @@ export const GridTransition: FunctionComponent = () => {
                     },
                     onComplete: () => {
                         root.style.removeProperty('--grid-cell-bg')
-                        window.dispatchEvent(new Event('theme-transition-end'))
+                        finish()
                     },
                 })
                 gsap.to(container, {

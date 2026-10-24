@@ -1,5 +1,40 @@
+@use 'sass:list';
+@use 'sass:map';
 @import '_variables.scss';
 @import '_fonts.scss';
+
+// Registrované proměnné, aby šly při ručním přepnutí theme plynule animovat.
+// --bg schválně chybí – používá ho GridTransition pro buňky gridu, má vlastní animaci.
+$theme-colors: (
+  --bg-container: #FFF,
+  --text-color: black,
+  --strong-bg: #ebe6e4,
+  --toggle-container-bg: black,
+  --color-blue: #9BB5E1,
+  --color-swamp: #B0A421,
+  --color-red: #ff3216,
+);
+$theme-numbers: (
+  --icon-invert: 0,
+  --toggle-icon-invert: 1,
+  --shadow-alpha: 0.15,
+);
+$theme-transition-duration: 0.6s;
+
+@each $name, $value in $theme-colors {
+  @property #{$name} {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: $value;
+  }
+}
+@each $name, $value in $theme-numbers {
+  @property #{$name} {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: $value;
+  }
+}
 
 :root {
   -webkit-text-size-adjust: 100%;
@@ -29,12 +64,14 @@ html {
 
   --bg: #EFEFEF;
   --toggle-container-bg: black;
-  --toggle-icon-filter: invert(1);
+  --toggle-icon-invert: 1;
+  --toggle-icon-filter: invert(var(--toggle-icon-invert));
 
   --bg-container: #FFF;
   --text-color: black;
 
-  --icon-filter: invert(0);
+  --icon-invert: 0;
+  --icon-filter: invert(var(--icon-invert));
   --strong-bg: #ebe6e4;
   --strong-color: inherit;
 
@@ -43,8 +80,15 @@ html {
   --color-red: #ff3216;
 
 
-  --shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15));
+  --shadow-alpha: 0.15;
+  --shadow: drop-shadow(0 0 10px rgba(0, 0, 0, var(--shadow-alpha)));
 
+  // Jen při ručním přepnutí (nastavuje GridTransition), první načtení zůstává bez animace
+  &[data-theme-animating] {
+    transition-property: #{list.join(map.keys($theme-colors), map.keys($theme-numbers), comma)};
+    transition-duration: $theme-transition-duration;
+    transition-timing-function: ease;
+  }
 
   @media (max-width: 1920px) {
     --padding-big-box: 28px 70px 7px 28px;
@@ -83,12 +127,12 @@ html {
   &[data-theme="dark"] {
     --bg: #515151;
     --toggle-container-bg: white;
-    --toggle-icon-filter: invert(0);
+    --toggle-icon-invert: 0;
 
     --bg-container: black;
     --text-color: white;
 
-    --icon-filter: invert(1);
+    --icon-invert: 1;
     --strong-bg: #4a4a4a;
     --strong-color: white;
 
@@ -96,7 +140,7 @@ html {
     --color-swamp: #917043;
     --color-red: #aa31a4;
 
-    --shadow: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    --shadow-alpha: 0.5;
   }
 }
 
